@@ -1,0 +1,1258 @@
+
+* { margin: 0; padding: 0; }
+
+.topnav a:link {
+    color:#000000;
+    background-color:transparent;
+    text-decoration:none;
+}
+
+body:before {
+    content: "";
+    position: fixed;
+    top: -0.625em;
+    left: 0;
+    width: 100%;
+    height: 0.625em;
+    -webkit-box-shadow: 0px 0px 1.250em rgba(0,0,0,.8);
+    -moz-box-shadow: 0px 0px 1.250em rgba(0,0,0,.8);
+    box-shadow: 0px 0px 1.250em rgba(0,0,0,.8);
+    z-index: 100;
+}
+
+@media all and (min-width:1366px){	
+    /************************Max 1900px yli medium-largen *********************/
+
+    body{
+        font: 1em Georgia, serif;
+        font-size:110%;
+    }
+    .topnav{
+        height: 12.5em;
+        position: relative;
+        top: 3.125em;
+        margin: 0 auto;
+        min-width:75em;
+    }
+    .topnav img{
+        position: relative;
+        float: left;
+        width: 25em; 
+        height: 6.25em;
+        margin-left: 12%;
+        top: 1.875em;
+    }
+    .topnav ul{
+        float: right;
+        margin-top: 5em;
+        margin-right: 2.5em;
+        width: 38.5em;
+    }
+    .topnav li {
+        list-style-type: none;
+        float: left;
+        margin: 0px 0.625em;
+        width: 5.2em;
+        padding: 0.6em;	
+        font-size: 1.25em;
+    }
+    #path{
+        position: relative;
+        height: 3.125em;
+        width:100%;
+        background: linear-gradient(to bottom, #A4A4A4 50%,#6E6E6E);
+    }
+    #path p{
+        padding: 0.938em;
+        margin-left:9%;
+        color:white;
+    }
+    #path a{
+        color:white;
+        background-color:transparent;
+        text-decoration:none;
+    }
+    #bigpicture {
+        position:relative;
+        width:100%;
+        height:31.25em;
+        overflow:hidden;
+        background-image: url('mustavuori.jpg');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center
+    }
+    #darkarea{
+        position:absolute;
+        height:100%;
+        width: 31.25em;
+        right:8.125em;
+        background: linear-gradient(to bottom, hsla(0,0%,10%,0.5) 50%,hsla(0,0%,0%,0.9));
+    }
+    #darkarea p{
+        padding:1.25em;
+        font-size:1.25em;
+        color:white;
+        margin-top:1.25em;
+    }
+    #boxes {
+        margin: 6.0em auto 2.0em auto;
+        width: 68.75em;
+    }
+    .box {
+        float:left;
+        margin: 0 auto 0.625em 0.625em;
+        width: 28.875em;
+        height: 15.000em;
+        padding: 1.00em;
+        background:#e6e2df;
+        color:#6E6E6E;
+        -webkit-transition:all 0.2s ease;
+        -moz-transition:all 0.2s ease;
+        background-position: 20.000em 50%;
+        background-repeat:no-repeat;
+        text-decoration: none;
+        display: block;
+    }
+    .box h5 {
+        font: bold 1.500em Sans-Serif !important;
+        text-transform:uppercase;
+        font-size: 2.375em;
+        line-height:1;
+        padding:0 0 0.625em 0;
+    }
+    .box:hover h5 {
+        text-shadow:0 0 0.250em rgba(0,0,0,0.4);
+        color:white;
+    }
+    .box:hover p {
+        color:white;
+    }
+    .box p {
+        font-size: 0.90em;
+        width: 20em;
+        line-height: 1.5;
+    }
+    .palvelutbox {
+        float:left;
+        margin: 0 auto 0.625em 0.625em;
+        width: 28.875em;
+        height: 15.000em;
+        padding: 1.00em;
+        background:#e6e2df;
+        color:#6E6E6E;
+        -webkit-transition:all 0.2s ease;
+        -moz-transition:all 0.2s ease;
+        background-position: 20.000em 50%;
+        background-repeat:no-repeat;
+        text-decoration: none;
+        display: block;
+        -webkit-border-radius: 0.938em;
+        -moz-border-radius: 0.938em;
+        border-radius: 0.938em;
+        border:solid 0.50em #0B0B3B;
+    }
+    .palvelutbox h5 {
+        font: bold 2.00em Sans-Serif;
+        text-transform:uppercase;
+        /*  font-size: 2.375em; */
+        line-height: 1;
+        padding:0 0 0.625em 0;
+    }
+    .palvelutbox p {
+        font-size: 0.90em;
+        width: 20em;
+        line-height:1.3;
+    }
+    .palvelutbox:hover h5 {
+        text-shadow:0 0 0.250em rgba(0,0,0,0.4);
+        font-size: 90%;
+        color:white;
+        text-decoration: underline;
+    }
+    .palvelutbox:hover p {
+        color:white;
+        font-size: 130%;
+    }
+    article {
+        width: 40em;
+        margin: 2em auto 0 auto;
+        font-size: 1.250em;
+        padding: 2.000em;
+        color:#0B0B3B;
+        text-align: center;
+        line-height: 180%;
+    }
+    article h4{
+        color: #0B263B;
+    }
+    #map-canvas {
+        width: 27em;
+        height: 20.000em;
+        float:left;
+        margin: 0 auto 0 3em;
+    }
+    footer {
+        clear:both;
+        overflow:hidden;
+        font-size: 1.25em;
+        line-height: 1.3;
+        height: 34.375em;
+        min-width: 55em;
+        background: linear-gradient(to bottom, #A4A4A4 50%,#6E6E6E);
+        padding: 3em;
+        vertical-align:top;
+        color:white;
+    }	
+    #centerfooter{
+        margin:auto;
+        width:65em;
+    }
+    footer #left{
+        float:left;
+        padding:0.625em;
+        margin-left:10%;
+    }
+    footer #right{
+        margin-top: 1.25em;
+    }
+
+    footer ul {
+        float:left;
+        width: 30em;
+        margin: 0 0 4em 4em;
+    }
+    footer li {
+        float:left;
+        width: 15em;
+        list-style-type: none;
+    }
+    #yhtotto input {
+        font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 1.500em;
+        color: #00000;
+        background-color: #C0C0C0;
+        padding: 0.125em;
+        border: thin solid #00000;
+    }
+    #yhtotto textarea {
+        resize:none;
+        font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 1.500em;
+        overflow-y: scroll;
+        color: #00000;
+        background-color:#C0C0C0;
+        padding: 0.125em;
+        border: thin solid #00000;
+    }
+    #maestroinfopic{
+        margin-left: -14%;
+        margin-top: 5%;
+        margin-bottom: 5%;
+        height: 25em;
+        width: 54em;
+    }
+    #mobile{
+        right:10em;
+    }
+    #mobiletext{
+        bottom:10em;
+    }
+    #maestroinfo {
+        width: 40em;
+        margin: 2em auto 0 auto;
+        font-size: 1.0em;
+        padding: 1.0em;
+        color:#0B0B3B;
+        text-align: left;
+        line-height: 180%;
+        list-style-position: inside;
+    }
+} /***************************END OF LARGE ************************************/
+
+@media all and (max-width:1365px) and (min-width:1025px){	
+    /***********************MEDIUM LARGE =1365px juuri sopiva *******************/
+
+    body{
+        font: 1em Georgia, serif;
+        font-size: 100%;
+        width:auto;
+    }
+    .topnav{
+        height: 12.5em;
+        position: relative;
+        top: 3.125em;
+        margin: auto;
+        width:auto;
+    }
+    .topnav img{
+        position: relative;
+        float: left;
+        max-width: 23em; 
+        height: 6.2em;
+        margin-left: 3%;
+        top: 1.875em;
+    }
+    .topnav ul{
+        float: right;
+        margin-top: 5em;
+        margin-right: 2.1em;
+        width: auto;
+    }
+    .topnav li {
+        list-style-type: none;
+        float: left;
+        margin: 0px 0.625em;
+        width: 5.1em;
+        padding: 0.5em;	
+        font-size: 1.25em;
+    }
+
+    #path{
+        position: relative;
+        height: 3.125em;
+        width: auto;
+        background: linear-gradient(to bottom, #A4A4A4 50%,#6E6E6E);
+    }
+    #path p{
+        padding: 0.938em;
+        margin-left:9%;
+        color:white;
+    }
+    #path a{
+        color:white;
+        background-color:transparent;
+        text-decoration:none;
+    }
+
+    #bigpicture {
+        position:relative;
+        width:100%;
+        height:31.25em;
+        overflow:hidden;
+        background-image: url('mustavuori.jpg');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center
+    }
+    #darkarea{
+        position:absolute;
+        height:100%;
+        width: 31.25em;
+        right:8.125em;
+        background: linear-gradient(to bottom, hsla(0,0%,10%,0.5) 50%,hsla(0,0%,0%,0.9));
+
+    }
+    #darkarea p{
+        padding:1.25em;
+        font-size:1.25em;
+        color:white;
+        margin-top:1.25em;
+    }
+    #boxes {
+        margin: 6.25em auto 0 auto;
+        width: 100%;
+		text-align: center;
+    }
+
+    .box {
+        margin: 0 auto 0.625em auto;
+        width: 28.875em;
+        height: 15.000em;
+        padding: 1.00em;
+        background:#e6e2df;
+        color:#6E6E6E;
+        -webkit-transition:all 0.2s ease;
+        -moz-transition:all 0.2s ease;
+        background-position: 20.000em 50%;
+        background-repeat:no-repeat;
+        text-decoration: none;
+        display: inline-block;
+		vertical-align: top;
+        text-align: left;
+    }
+    .box h5 {
+        font: bold 1.500em Sans-Serif !important;
+        text-transform:uppercase;
+        font-size: 2.375em;
+        line-height:1;
+        padding:0 0 0.625em 0;
+    }
+    .box:hover h5 {
+        text-shadow:0 0 0.250em rgba(0,0,0,0.4);
+        color:white;
+    }
+    .box:hover p {
+        color:white;
+    }
+    .box p {
+        font-size: 0.90em;
+        width: 20em;
+        line-height: 1.5;
+    }
+    .palvelutbox {
+		display: inline-block;
+        margin: 0.5em;
+        width: 29em;
+        height: 18.000em;
+        padding: 1.00em;
+        background:#e6e2df;
+        color:#6E6E6E;
+        -webkit-transition:all 0.2s ease;
+        -moz-transition:all 0.2s ease;
+        background-position: 20.000em 50%;
+        background-repeat:no-repeat;
+        text-decoration: none;
+        -webkit-border-radius: 0.938em;
+        -moz-border-radius: 0.938em;
+        border-radius: 0.938em;
+        border:solid 0.50em #0B0B3B;
+		-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+        -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+        box-sizing: border-box;         /* Opera/IE 8+ */
+        vertical-align: top;
+        text-align: left;
+    }
+    .palvelutbox h5 {
+        font: bold 2.00em Sans-Serif;
+        text-transform:uppercase;
+        /*  font-size: 2.375em; */
+        line-height: 1;
+        padding:0 0 0.625em 0;
+    }
+    .palvelutbox p {
+        font-size: 0.85em;
+        width: 20em;
+        line-height: 1.35;
+    }
+    .palvelutbox:hover h5 {
+        text-shadow:0 0 0.250em rgba(0,0,0,0.4);
+        font-size: 100%;
+        color:white;
+        line-height: 1.4;
+        text-decoration: underline;
+    }
+    .palvelutbox:hover p {
+        color:white;
+        font-size: 130%;
+    }
+    article {
+        width: 40em;
+        margin: 2.0em auto 0 auto;
+        font-size: 1.250em;
+        padding: 2.000em;
+        color:#0B0B3B;
+        text-align: center;
+        line-height: 180%;
+    }
+    article h4{
+        color: #0B263B;
+    }
+
+    #map-canvas {
+        width: 25em;
+        height: 20.000em;
+        float:left;
+        margin: 0 auto 0 3em;
+    }
+
+    footer {
+        clear:both;
+        overflow:hidden;
+        font-size: 1.25em;
+        line-height: 1.3;
+        height: 34.375em;
+        width:auto;
+        //min-width: 55em;
+        background: linear-gradient(to bottom, #A4A4A4 50%,#6E6E6E);
+        padding: 1em;
+        vertical-align:top;
+        color:white;
+    }
+    #centerfooter{
+        margin:auto;
+        width:60em;
+    }
+    footer #left{
+        float: 		left;
+        padding: 	0.625em;
+    }
+    footer #right{
+        margin-top:		1.25em;
+    }
+    footer ul {
+        float:left;
+        width: 25em;
+        margin: 0 0 4em 4em;
+    }
+    footer li {
+        float:left;
+        width: 12.500em;
+        list-style-type: none;
+    }
+    #yhtotto input {
+        font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 1.500em;
+        color: #00000;
+        background-color: #C0C0C0;
+        padding: 0.125em;
+        border: thin solid #00000;
+    }
+    #yhtotto textarea {
+        resize:none;
+        font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 1.500em;
+        overflow-y: scroll;
+        color: #00000;
+        background-color:#C0C0C0;
+        padding: 0.125em;
+        border: thin solid #00000;
+    }
+    #maestroinfopic{
+        margin-left: -14%;
+        margin-top: 3%;
+        margin-bottom: 3%;
+        height: 25em;
+        width: 54em;
+    }
+    #mobile{
+        right:8em;
+    }
+    #mobiletext{
+        bottom:10em;
+    }
+    #maestroinfo {
+        width: 40em;
+        margin: 2em auto 0 auto;
+        font-size: 1.0em;
+        padding: 1.0em;
+        color:#0B0B3B;
+        text-align: left;
+        line-height: 180%;
+        list-style-position: inside;
+    }
+} /************************END OF MEDIUM LARGE *******************************/
+
+@media all and (max-width:1024px) and (min-width:631px){ 
+    /*******************MEDIUM SMALL <1024px TABLETS ***************************/
+
+    body{
+        font: 1em Georgia, serif;
+        width: auto;
+        height: auto;
+    }
+    .topnav{
+        height: 16em;
+        position: relative;
+        top: 3.125em;
+        margin: 0 auto;
+        width: 100%;
+    }
+    .topnav img{
+        position: relative;
+        float: left;
+        width: 25em; 
+        height: 6.25em;
+        margin-left: 2%;
+        top: 1.5em;
+    }
+    .topnav ul{
+        float: left;
+        margin-top: 3em;
+        margin-right: 2.0em;
+        width: 38em;
+    }
+    .topnav li {
+        list-style-type: none;
+        float: left;
+        margin: 0px 0.625em;
+        width: 5.1em;
+        padding: 0.5em;	
+        font-size: 1.25em;
+    }
+    #path{
+        position: relative;
+        height: 3.125em;
+        width: 100%;
+        background: linear-gradient(to bottom, #A4A4A4 50%,#6E6E6E);
+    }
+    #path p{
+        padding: 0.938em;
+        margin-left:2%;
+        color:white;
+    }
+    #path a{
+        color:white;
+        background-color:transparent;
+        text-decoration:none;
+    }
+    #bigpicture {
+        position:relative;
+        width:auto;
+        height:21.25em;
+        overflow:hidden;
+        background-image: url('mustavuori.jpg');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center
+    }
+    #darkarea{
+        position: absolute;
+        height: 100%;
+        width: 22.00em;
+        right: 5%;
+        background: linear-gradient(to bottom, hsla(0,0%,10%,0.5) 50%,hsla(0,0%,0%,0.9));	
+    }
+    #darkarea p{
+        padding: 0.80em;
+        font-size: 1.00em;
+        color:white;
+        margin-top: 0.50em;
+    }
+    #boxes {
+        margin: 6.25em auto 0 auto;
+        width: auto;
+        //min-width: 52em;
+    }
+    .box {
+        float:left;
+        margin: 0 auto 0.625em 0.625em;
+        width: auto;
+        //max-width: 23em;
+        height: auto;
+        min-height: 15.000em;
+        padding: 1.00em;
+        background:#e6e2df;
+        color:#6E6E6E;
+        -webkit-transition:all 0.2s ease;
+        -moz-transition:all 0.2s ease;
+        background-position: 20.000em 50%;
+        background-repeat:no-repeat;
+        text-decoration: none;
+        display: block;
+    }
+    .box h5 {
+        font: bold 1.500em Sans-Serif !important;
+        text-transform:uppercase;
+        font-size: 2.375em;
+        width:auto;
+        line-height:1;
+        padding:0 0 0.625em 0;
+    }
+    .box:hover h5 {
+        text-shadow:0 0 0.250em rgba(0,0,0,0.4);
+        color:white;
+    }
+    .box:hover p {
+        color:white;
+    }
+    .box p {
+        font-size: 1.2em;
+        width: auto;
+        line-height: 1.6;
+    }
+    .palvelutbox {
+        float:left;
+        margin: 0 auto 0.625em auto;
+        width: auto;
+        height: auto;
+        min-height: 15em;
+        padding: 1.00em;
+        background:#e6e2df;
+        color:#6E6E6E;
+        -webkit-transition:all 0.2s ease;
+        -moz-transition:all 0.2s ease;
+        //background-position: 20.000em 50%;
+        //background-repeat:no-repeat;
+        text-decoration: none;
+        display: block;
+        -webkit-border-radius: 0.938em;
+        -moz-border-radius: 0.938em;
+        border-radius: 0.938em;
+        border:solid 0.40em #0B0B3B;
+    }
+    .palvelutbox h5 {
+        font: bold 1.50em Sans-Serif;
+        text-transform:uppercase;
+        /*  font-size: 2.375em; */
+        line-height: 1;
+        padding-left: 1em;
+    }
+    .palvelutbox p {
+        font-size: 1.50em;
+        padding: 1.5em;
+        width: auto;
+        line-height:1.4;
+    }
+    .palvelutbox:hover h5 {
+        text-shadow:0 0 0.250em rgba(0,0,0,0.4);
+        font-size: 100%;
+        line-height: 1.5;
+        color:white;
+        text-decoration: underline;
+    }
+    .palvelutbox:hover p {
+        color:white;
+    }
+    article {
+        width: auto;
+        margin: 2.00em auto 0 auto;
+        font-size: 1.10em;
+        padding: 1.50em;
+        color:#0B0B3B;
+        text-align: center;
+        line-height: 180%;
+    }
+    article h4{
+        color: #0B263B;
+    }
+    #kirjanpito {
+        width: 40em !important; 
+    }
+    footer {
+        clear:both;
+        overflow:hidden;
+        font-size: 1.25em;
+        line-height: 1.3;
+        height: 100%;
+        width: auto;
+        background: linear-gradient(to bottom, #A4A4A4 50%,#6E6E6E);
+        vertical-align:top;
+        color:white;
+    }
+    footer #left{
+        float:left;
+        padding:0.625em;
+    }
+    footer #right{
+        margin-top:1.25em;
+    }
+    #map-canvas {
+        //width:auto;
+        width: 23em;
+        //height:auto;
+        height: 16em;
+        float:left;
+        margin: 0.2em auto 3em 1em;
+        display: block;
+        //clear:left;
+    }
+    footer ul {
+        float:left;
+        width: auto;
+        max-width: 23em;
+        margin: 0.5em 0 4em 1em;
+    }
+    footer li {
+        float:left;
+        width: 11em;
+        list-style-type: none;
+        margin: 0 0 0.5em 0.2em;
+    }
+    #yhtotto input {
+        font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 1.500em;
+        color: #00000;
+        background-color: #C0C0C0;
+        padding: 0.125em;
+        border: thin solid #00000;
+    }
+    #yhtotto textarea {
+        resize:none;
+        font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 1.500em;
+        overflow-y: scroll;
+        color: #00000;
+        background-color:#C0C0C0;
+        padding: 0.125em;
+        border: thin solid #00000;
+    }
+    #maestroinfopic{
+        margin-left: -4%;
+        height: 19em;
+        width: 42em;
+    }
+    #mobile{
+        right:8em;
+    }
+    #mobiletext{
+        bottom:10em;
+    }
+    #maestroinfo {
+        width: 36em;
+        margin: 2em auto 0 auto;
+        font-size: 1.0em;
+        padding: 1.0em;
+        color:#0B0B3B;
+        text-align: left;
+        line-height: 180%;
+        list-style-position: inside;
+    }
+    #aloittavatbox {
+        background-image:url(power.png);
+        background-position:38.00em 8.250em !important;
+    }
+    #aloittavatbox:hover {
+        background-color:#237abe;
+        background-position:29.00em 8.250em !important;
+    }
+    #kehitysbox {
+        background-image:url(laskin.png);
+        background-position: 44.00em 10.250em !important;
+    }
+    #kehitysbox:hover {
+        background-color:#37597a;
+        background-position:32.00em 10.250em !important;
+    }
+    #taloyhtbox {
+        background-image:url(rsz_rubik.png);
+        background-position:44.00em 10.250em !important;
+    }
+    #taloyhtbox:hover {
+        background-color:#ff8400;
+        background-position:36.00em 10.250em !important;
+    }
+    #kotisivubox {
+        background-image:url(rsz_laptop.png);
+        background-position:44.00em 8.250em !important;
+    }
+    #kotisivubox:hover {
+        background-color:#333333;
+        background-position:29.00em 8.250em !important;
+    }
+} /*************************END OF SMALL MEDIUM *****************************/
+
+@media all and (max-width:630px){ 
+    /*********************** SMALL <630px PHONES *****************************/
+
+    body{
+        //overflow-x:hidden;
+        font: 1em Georgia, serif;
+        width: auto;
+        margin: auto;
+    }
+    .topnav{
+        height: 15.5em;
+        position: relative;
+        top: 1.125em;
+        margin: 0 auto;
+        width:100%;
+    }
+    .topnav img{
+        width: auto;
+        height: 5.25em;
+        margin: 1.5em auto 0 1em;
+    }
+    .topnav ul{
+        margin: 2em auto 0 auto;
+        width: 100%;
+    }
+    .topnav li {
+        list-style-type: none;
+        float: left;
+        margin: 0.20em 0.40em;
+        width: 5.5em;
+        padding: 0.2em;	
+        font-size: 1.3em;
+    }
+    #path{
+        position: relative;
+        height: 3.125em;
+        width:auto;
+        background: linear-gradient(to bottom, #A4A4A4 50%,#6E6E6E);
+    }
+    #path p{
+        padding: 0.90em;
+        margin-left:7%;
+        color:white;
+    }
+    #path a{
+        color:white;
+        background-color:transparent;
+        text-decoration:none;
+    }
+    #bigpicture {
+        display: none;
+    }
+    #darkarea{
+        display: none;
+    }
+    #darkarea p{
+        display: none;
+    }
+    #boxes {
+        margin: 4.00em auto 0 auto;
+        width: auto;
+        //overflow-x:hidden;
+    }
+    .box {
+        float:none;
+        margin: 0 auto 0.625em auto;
+        width: auto;
+        height: auto;
+        min-height: 25.000em;
+        padding: 0.00em;
+        background:#e6e2df;
+        color:#6E6E6E;
+        -webkit-transition:all 0.2s ease;
+        -moz-transition:all 0.2s ease;
+        background-position: 20.000em 50%;
+        background-repeat: no-repeat;
+        text-decoration: none;
+        display: block;
+    }
+    .box h5 {
+        font: bold 1.500em Sans-Serif !important;
+        text-transform: uppercase;
+        font-size: 2.375em;
+        line-height:1;
+        padding:0 0 0.625em 0;
+        padding: 1em;
+    }
+    .box:hover h5 {
+        text-shadow:0 0 0.250em rgba(0,0,0,0.4);
+        color:white;
+    }
+    .box:hover p {
+        color:white;
+        font-size: 1.2em;
+    }
+    .box p {
+        font-size: 1.2em;
+        padding: 1em;
+        width: auto;
+        line-height: 1.2;
+    }
+    .palvelutbox {
+        float:none;
+        margin: 0 auto 0.625em auto;
+        width: auto;
+        height: auto;
+        min-height: 18em;
+        padding: 1.00em;
+        background:#e6e2df;
+        color:#6E6E6E;
+        -webkit-transition:all 0.2s ease;
+        -moz-transition:all 0.2s ease;
+        background-position: 20.000em 50%;
+        background-repeat:no-repeat;
+        text-decoration: none;
+        -webkit-border-radius: 0.938em;
+        -moz-border-radius: 0.938em;
+        border-radius: 0.938em;
+        border:solid 0.40em #0B0B3B;
+        display:block;
+    }
+    .palvelutbox h5 {
+        font: bold 1.80em Sans-Serif;
+        text-transform:uppercase;
+        line-height: 1;
+        padding:0 0 0.625em 0;
+    }
+    .palvelutbox p {
+        font-size: 1.4em;
+        width: auto;
+        line-height:1.6;
+        padding:0.5em;
+    }
+    .palvelutbox:hover h5 {
+        text-shadow:0 0 0.250em rgba(0,0,0,0.4);
+        font-size: 100%;
+        color:white;
+        line-height: 1.5;
+        text-decoration: underline;
+    }
+    .palvelutbox:hover p {
+        color:white;
+    }
+    article {
+        width: auto;
+        margin: 1.250em auto 0 auto;
+        font-size: 1.00em;
+        padding: 0.000em;
+        color:#0B0B3B;
+        text-align: center;
+        line-height: 180%;
+    }
+    article h2{
+        padding: 1em;
+    }
+    article h4{
+        color: #0B263B;
+        padding: 2em;
+        line-height: 180%;
+    }
+    #kirjanpito {
+        width: 30em !important; 
+    }
+    #palkanlaskenta {
+        width: 30em !important;
+    }
+    #map-canvas {
+        width: 90%;
+        height: 20em;
+        float:none;
+        margin: 4em auto 3em auto;
+        clear:left;
+    }
+    footer {
+        clear:both;
+        overflow:hidden;
+        font-size: 1.00em;
+        line-height: 1.3;
+        height: auto;
+        width: auto;
+        background: linear-gradient(to bottom, #A4A4A4 50%,#6E6E6E);
+        padding: 0em;
+        vertical-align:top;
+        color:white;
+    }
+    footer #left{
+        float:left;
+        padding:0.8em;
+    }
+    footer #right{
+        margin-top:1.25em;
+    }
+    footer ul {
+        float:none;
+        width: auto;
+        margin: 5em auto 2em 2em;
+        line-height:130%;
+    }
+    footer li {
+        float:left;
+        width: 11.00em;
+        list-style-type: none;
+        margin: 0 auto 1em 1em;
+    }
+    #yhtotto input {
+        font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 1.500em;
+        color: #00000;
+        background-color: #C0C0C0;
+        padding: 0.125em;
+        border: thin solid #00000;
+    }
+    #yhtotto textarea {
+        resize:none;
+        font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 1.500em;
+        overflow-y: scroll;
+        color: #00000;
+        background-color:#C0C0C0;
+        padding: 0.125em;
+        border: thin solid #00000;
+    }
+    #maestroinfo {
+        width: 23em;
+        margin: 1em auto 0 auto;
+        font-size: 1.0em;
+        padding: 0.2em;
+        color:#0B0B3B;
+        text-align: left;
+        line-height: 160%;
+        list-style-position: inside;
+    }
+    #maestroinfopic{
+        height: 13em;
+        width: 27em;
+        margin-left: -12%;
+    }
+    #mobile{
+        display: none;
+    }
+    #mobiletext{
+        position: inherit;
+    }
+
+    #aloittavatbox {
+        background-image:url(power.png);
+        background-position:38.00em 12.250em !important;
+    }
+    #aloittavatbox:hover {
+        background-color:#237abe;
+        background-position:21.00em 12.250em !important;
+    }
+    #kehitysbox {
+        background-image:url(laskin.png);
+        background-position: 38.00em 14.250em !important;
+    }
+    #kehitysbox:hover {
+        background-color:#37597a;
+        background-position:21.00em 14.250em !important;
+    }
+    #taloyhtbox {
+        background-image:url(rsz_rubik.png);
+        background-position:38.00em 15.250em !important;
+    }
+    #taloyhtbox:hover {
+        background-color:#ff8400;
+        background-position:21.00em 15.250em !important;
+    }
+    #kotisivubox {
+        background-image:url(rsz_laptop.png);
+        background-position:38.00em 12.250em !important;
+    }
+    #kotisivubox:hover {
+        background-color:#333333;
+        background-position:21.00em 12.250em !important;
+    }
+
+} /******************************END OF SMALL *******************************/
+
+aside{
+    clear:both;
+    height:3em;
+}
+#etusivu {
+    background: linear-gradient(to bottom, white 90%,#3ADF00 90%);
+}
+#etusivu:hover{
+    background: linear-gradient(to bottom, #82FA58 50%,#3ADF00);
+}
+#palvelut {
+    background: linear-gradient(to bottom, white 90%,#DF0101 90%);
+}
+#palvelut:hover{
+    background: linear-gradient(to bottom, #FA5858, #DF0101);
+    color:white;
+}
+#hintalaskuri {
+    background: linear-gradient(to bottom, white 90%,#FFFF00 90%);
+}
+#hintalaskuri:hover{
+    background: linear-gradient(to bottom, #F4FA58 50%,#FFFF00);
+}
+#yhteystiedot {
+    background: linear-gradient(to bottom, white 90%,#0040FF 90%);
+}
+#yhteystiedot:hover{
+    background: linear-gradient(to bottom, #0000FF ,#0040FF);
+    color:white;
+}
+#aloittavatbox {
+    background-image:url(power.png);
+    background-position:31.250em 6.250em;
+}
+#aloittavatbox:hover {
+    background-color:#237abe;
+    background-position:18.750em 6.250em;
+}
+#kehitysbox {
+    background-image:url(laskin.png);
+    background-position:31.250em 6.250em;
+}
+#kehitysbox:hover {
+    background-color:#37597a;
+    background-position:18.750em 6.250em;
+}
+#taloyhtbox {
+    background-image:url(rsz_rubik.png);
+    background-position:31.250em 6.250em;
+}
+#taloyhtbox:hover {
+    background-color:#ff8400;
+    background-position:18.750em 6.250em;
+}
+#kehitysbox:hover p {
+    color:#adbde3;
+}
+#kotisivubox {
+    background-image:url(rsz_laptop.png);
+    background-position:31.250em 6.250em;
+}
+#kotisivubox:hover {
+    background-color:#333333;
+    background-position:18.750em 6.250em;
+}
+#taloyhtbox:hover p {
+    color:#fff8da;
+}
+#kirjanpitobox {
+    background-image:url();
+    background-position:31.250em 6.250em;
+}
+#kirjanpitobox:hover {
+    background-color:#237abe;
+    background-position:18.750em 6.250em;
+}
+#palkanlaskentabox {
+    background-image:url();
+    background-position:31.250em 6.250em;
+}
+#palkanlaskentabox:hover {
+    background-color:#37597a;
+    background-position:18.750em 6.250em;
+}
+#controllerbox {
+    background-image:url();
+    background-position:31.250em 6.250em;
+}
+#controllerbox:hover {
+    background-color:#ff8400;
+    background-position:18.750em 6.250em;
+}
+#controllerbox:hover p {
+    color:#333333;
+}
+#sahkoinenbox {
+    background-image:url();
+    background-position:31.250em 6.250em;
+}
+#sahkoinenbox:hover {
+    background-color:#333333;
+    background-position:18.750em 6.250em;
+}
+#sahkoinenbox:hover p {
+    color:#fff8da;
+}
+#maestroinfo h3 {
+    margin-top: 2em;
+}
+#maestroinfo li > ul{
+    list-style-position: inside;
+    margin-left:3%;
+}
+#palkanlaskenta {
+    width: 40em; //Small overrides
+    margin: 1.5em auto 0 auto;
+    font-size: 1.0em;
+    padding: 1.0em;
+    color:#0B0B3B;
+    text-align: left;
+    line-height: 180%;
+    list-style-position: inside;
+}
+#palkanlaskenta a:link{
+    color:inherit;
+}
+#kirjanpito {
+    width: 50em; //Small and medium overrides
+    margin: 1.5em auto 0 auto;
+    font-size: 1.0em;
+    padding: 1.0em;
+    color:#0B0B3B;
+    text-align: left;
+    line-height: 180%;
+    list-style-position: inside;
+}
+#kirjanpito a:link{
+    color:inherit;
+}
+#flash{
+    margin-left: 25%;
+    height: 5em;
+    width: 5em;
+}
+.botnav a:link {
+    color:white;
+    background-color:transparent;
+    text-decoration:none;
+}
+.botnav ul{
+
+}
+.botnav li {
+    text-decoration: underline;
+}

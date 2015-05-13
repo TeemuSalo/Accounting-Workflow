@@ -1,0 +1,354 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+    <head>
+        <title>JP TILIT - Hintalaskuri</title>
+        <meta name="keywords" content="JP-tilit, hinta, kustannus, kirjanpito hinta, kirjanpito kuukausihinta, palkanlaskenta hinta, kirjanpito veloitus"/>
+        <meta name="description" content="JP-Tilit kuukausiveloituksien hintalaskuri. Laskurilla voit saada hinta-arvion kirjanpidon ja taloushallinnon palveluista."/>   
+
+        <script src="https://maps.googleapis.com/maps/api/js"></script>
+        <script>
+            function initialize() {
+                var myLatlng = new google.maps.LatLng(60.24493, 25.04500);
+                var mapOptions = {
+                    zoom: 15,
+                    center: myLatlng
+                }
+                var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+                var marker = new google.maps.Marker({
+                    position: myLatlng,
+                    map: map,
+                    title: ''
+                });
+            }
+            google.maps.event.addDomListener(window, 'load', initialize);
+        </script>
+        <script src="laskurijava.js" type="text/javascript"></script>
+        <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js'></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1"> 
+        <link rel="stylesheet" type="text/css" href="styles.css"/>
+        <link rel='stylesheet' media='screen and (max-width: 780px)' href='laskuristylemobile.css' />
+        <link rel='stylesheet' media='screen and (min-width: 781px)' href='laskuristyle.css' />
+    </head>
+    <body>
+
+        <nav class="topnav">
+
+            <a href="index.html"><img src="jplogo.jpg"></img></a>
+
+            <ul>
+                <a href="index.html"><li id="etusivu">Etusivu</li></a>
+                <a href="palvelut.html"><li id="palvelut">Palvelut</li></a>
+                <a href="hintalaskuri.html"><li id="hintalaskuri">Hintalaskuri</li></a>
+                <a href="yhteystiedot.html"><li id="yhteystiedot">Yhteystiedot</li></a>
+            </ul>
+
+        </nav>
+
+        <div id="path"><p><a href="index.html">Etusivu </a> > Hintalaskuri</a></p></div>
+
+        <div id="big_wrapper" style="height:auto; margin: 20px auto 0 auto; color:white; text-align:center;">
+            
+        <article>
+            <p>Hintalaskurilla voit saada esimerkkejä eri kokoisten kuukausikirjanpitojen hinnoittelusta.<br/>
+                Huomioithan, että hinnat ovat arvioita ja jokainen sopimus räätälöidään asiakkaan tarpeen mukaan ja 
+                hinnoittelusta sovitaan erikseen.
+                <br/><br/>
+                Valitse aluksi aloituspaketti<br/>
+                Sen jälkeen voit liikuttaa laskurin elementtejä, jolloin alhaalla näkyvä summa muuttuu.
+            </p>
+        </article>
+            
+            <div>
+
+                <button class="topbuttons" id="kittana" onclick="javascript:kittana(), summa()">Kittana</button>
+
+                <button class="topbuttons" id="navakka" onclick="navakka(), summa()">Navakka</button>
+
+                <button class="topbuttons" id="uljas" onclick="uljas(), summa()">Uljas</button>
+
+                <script>
+                    $(document).ready(function () {
+                        $(".topbuttons").click(function () {
+                            $("#piilota").css("display", "inherit");
+                            $("#piilota").show(1200);
+                        });
+                    });
+                </script>
+
+            </div>
+
+            <div id="piilota" style="display:none">
+
+                <!--------------------------------------------------------MYYNTILASKUT-------------------------------------------->
+                <div class="boxes" id="box1">
+
+                    <h3>Myyntilaskut kuukaudessa</h3>
+
+                    <input id="myyntilaskut" type="range" min="0" max="250" value="0" step="10" oninput="showValue(this.value), summa()" onchange="showValue(this.value), summa()"/> <br/>
+                    <span id="myyntilaskutteksti">1 myyntilasku / kk</span>
+
+                    <script type="text/javascript">
+                        function showValue(newValue)
+                        {
+                            if (newValue == 0)
+                                document.getElementById("myyntilaskutteksti").innerHTML = 1 + " myyntilasku / kk";
+                            else if (newValue == 250)
+                                document.getElementById("myyntilaskutteksti").innerHTML = "yli 250 myyntilaskua / kk";
+                            else {
+                                document.getElementById("myyntilaskutteksti").innerHTML = newValue + " myyntilaskua / kk";
+                            }
+                        }
+                    </script>
+                    <br/>
+                    <br/>
+
+                    <button id="kpmyynti" class="smallbuttons" onclick="buttonActive(this), summa()">Kirjanpitäjä hoitaa laskutuksen</button>
+                    <script>
+                        function buttonActive(element)
+                        {
+                            if (element.className == "smallbuttons") {
+                                element.className = "smallbuttonsactivated";
+                            }
+                            else if (element.className == "smallbuttonsactivated") {
+                                element.className = "smallbuttons";
+                            }
+
+                        }
+                    </script>
+                </div>
+
+                <!------------------------------------------------OSTOLASKUT---------------------------------------------------------->
+                <div class="boxes" id="box2">
+
+                    <h3>Ostolaskut kuukaudessa</h3>
+
+                    <input id="ostolaskut" type="range" min="0" max="250" value="0" step="10" oninput="showValue2(this.value), summa()" onchange="showValue2(this.value), summa()"/> </br>
+                    <span id="ostolaskutteksti">1 ostolasku / kk</span>
+
+                    <script type="text/javascript">
+                        function showValue2(newValue)
+                        {
+                            if (newValue == 0)
+                                document.getElementById("ostolaskutteksti").innerHTML = 1 + " ostolasku / kk";
+                            else if (newValue == 250)
+                                document.getElementById("ostolaskutteksti").innerHTML = "yli 250 ostolaskua / kk";
+                            else {
+                                document.getElementById("ostolaskutteksti").innerHTML = newValue + " ostolaskua / kk";
+                            }
+                        }
+                    </script>
+                    <br/>
+                    <br/>
+
+                    <button id="kpostot" class="smallbuttons" onclick="buttonActive(this), summa()" title="LISÄINFO">Kirjanpitäjä hoitaa maksatuksen</button>
+
+
+
+                </div>
+
+                <div style="display:block"></div>
+
+                <!------------------------------------------------KÄTEIS JA KORTTIOSTOT------------------------------------------------->
+                <div class="boxes" id="box3">
+
+                    <h3>Käteis- ja korttiostot</h3>
+
+                    <input id="käteismaksut" type="range" min="0" max="160" value="0" step="10" oninput="kätmaks(this.value), summa()" onchange="kätmaks(this.value), summa()"/> </br>
+                    <span id="kätmaks">Ei käteiskuitteja</span></br>
+                    <script>
+                        function kätmaks(newValue)
+                        {
+                            if (newValue == 0)
+                                document.getElementById("kätmaks").innerHTML = "Ei käteiskuitteja";
+                            else if (newValue == 160)
+                                document.getElementById("kätmaks").innerHTML = "yli 150 käteiskuittia / kk";
+                            else {
+                                document.getElementById("kätmaks").innerHTML = newValue + " käteiskuittia / kk";
+                            }
+                        }
+                    </script>
+
+                    <input id="korttimaksut" type="range" min="0" max="160" value="0" step="10" oninput="pmaks(this.value), summa()" onchange="pmaks(this.value), summa()"/> </br>
+                    <span id="pmaks">Ei korttimaksuja</span></br>
+                    <script>
+                        function pmaks(newValue)
+                        {
+                            if (newValue == 0)
+                                document.getElementById("pmaks").innerHTML = "Ei korttimaksuja";
+                            else if (newValue == 160)
+                                document.getElementById("pmaks").innerHTML = "yli 150 korttimaksua / kk";
+                            else {
+                                document.getElementById("pmaks").innerHTML = newValue + " korttimaksua / kk";
+                            }
+                        }
+                    </script>
+                    <br/>
+                    <button id="kuitit" class="smallbuttons" onclick="buttonActive(this), summa()" title="LISÄINFO">Kirjänpitäjä järjestää toimitetut kuitit</button>
+                </div>
+
+                <!-------------------------------------------------PALKANLASKENTA--------------------------------------------------------->
+                <div class="boxes" id="box4">
+
+                    <h3>Palkanlaskenta</h3>
+
+                    <button id="palkkabox" class="smallboxes">Ei palkanlaskentaa valittu</button>
+                    <script>
+                        function boxActive(element)
+                        {
+                            if (document.getElementById("tuntipalkka").value == 0 && document.getElementById("kkpalkka").value == 0) {
+                                document.getElementById("palkkabox").className = "smallboxes";
+                                document.getElementById("palkkabox").innerHTML = "Ei palkanlaskentaa valittu";
+                            }
+                            else {
+                                document.getElementById("palkkabox").className = "smallboxesactivated";
+                                document.getElementById("palkkabox").innerHTML = "Palkanlaskenta valittu";
+                            }
+                        }
+                    </script>
+                    <br/>
+                    <br/>
+                    <input id="tuntipalkka" type="range" min="0" max="31" value="0" step="1" oninput="palkkah(this.value), summa(), boxActive()" onchange="palkkah(this.value), summa(), boxActive()"/> </br>
+                    <span id="palkkah">Ei Palkkalajia</span></br>
+                    <script>
+                        function palkkah(newValue)
+                        {
+                            if (newValue == 0)
+                                document.getElementById("palkkah").innerHTML = "Ei palkkalajia";
+                            else if (newValue == 31)
+                                document.getElementById("palkkah").innerHTML = "yli 30 tuntipalkkaa";
+                            else {
+                                document.getElementById("palkkah").innerHTML = newValue + " tuntipalkkaa";
+                            }
+                        }
+                    </script>
+
+                    <input id="kkpalkka" type="range" min="0" max="31" value="0" step="1" oninput="palkkakk(this.value), summa(), boxActive()" onchange="palkkakk(this.value), summa(), boxActive()"/> </br>
+                    <span id="palkkakk">Ei Palkkalajia</span></br>
+                    <script>
+                        function palkkakk(newValue)
+                        {
+                            if (newValue == 0)
+                                document.getElementById("palkkakk").innerHTML = "Ei palkkalajia";
+                            else if (newValue == 31)
+                                document.getElementById("palkkakk").innerHTML = "yli 30 kuukausipalkkaa";
+                            else {
+                                document.getElementById("palkkakk").innerHTML = newValue + " kuukausipalkkaa";
+                            }
+                        }
+                    </script>
+
+                </div>
+
+                <div style="display:block"></div>
+
+                <!----------------------------------------------PROJEKTI JA KUSTANNUSSEURANTA-------------------------------------------->
+                <div class="boxes" id="box5">
+
+                    <h4>Kustannusseuranta</h4>
+
+                    <button id="seuranta1" class="smallbuttons" value="1" onclick="buttonActivateSeuranta(this.id), summa()" title="LISÄINFO">Yritys ei tarvitse seurantaa</button>
+                    </br>
+                    </br>
+                    <button id="seuranta2" class="smallbuttons" value="1.15" onclick="buttonActivateSeuranta(this.id), summa()" title="LISÄINFO">Suppea projektiseuranta</button>
+                    </br>
+                    </br>
+                    <button id="seuranta3" class="smallbuttons" value="1.3" onclick="buttonActivateSeuranta(this.id), summa()" title="LISÄINFO">Kattava projekti- ja kustannusseuranta</button>
+
+                </div>
+
+                <!------------------------------------------------KONSULTOINTI------------------------------------------------>
+                <div class="boxes" id="box6">
+
+                    <h4>Yrityksen konsultointi</h4>
+
+                    <p id="firstline" style=" line-height:20px;">Et ole valinnut pakettia</p>
+                    <p id="secondline" style=" line-height:20px;">Valitse talouspalaverien määrä</p>
+                    <p id="thirdline" style=" line-height:20px;">klikkaamalla ylälaidan pakettia</p>
+                </div>
+
+            </div>
+
+            <!----------------------------------------------YHTEENSÄ LAATIKKO------------------------------------------------>
+            <div class="boxes" id="box7">
+                <h1 id="summa">0 €</h1>
+
+                <p id="yht">Hinnat alv 0%</p></br>
+            </div>
+
+            <form id="tarjous" action="otayhteytta.php" method="post">
+                <input type="hidden" id = "myyntiform" name="myynti" value="0"/> <br/>
+                <input type="hidden" id = "ostotform" name="ostot" value="0"/> <br/>
+                <input type="hidden" id = "käteisform" name="kateis" value="0"/> <br/>
+                <input type="hidden" id = "kortitform" name="kortit" value="0"/> <br/>
+                <input type="hidden" id = "tuntipalkkaform" name="tuntipalkka" value="0"/> <br/>
+                <input type="hidden" id = "kkpalkkaform" name="kkpalkka" value="0"/> <br/>
+                <input type="hidden" id = "projektiform" name="projektiseuranta" value="0"/> <br/>
+                <input type="hidden" id = "konsultointiform" name="konsultointi" value="0"/> <br/>
+                <input type="hidden" id = "summaform" name="summa" value="0"/> <br/>
+    <!--            <input class="smallbuttons" type="submit" name="submit" value="Lähetä tarjouspyyntönä!" /> -->
+            </form>
+
+            <br/>
+            
+            <p id="apunappi" onclick="apuaeinäy()">Näkyykö laskuri oikein?</p>
+
+        </div>
+
+        <script>
+            //<!-------------------------------------- TITTELI APUIKKUNOIDEN TEKSTIT ----------------------------------------------------->
+            document.getElementById("kpmyynti").title = "Aktivoi tämä nappula, mikä haluat että yrityksesi myyntilaskut tehdään ja lähetetään tilitoimistossa";
+            document.getElementById("kpostot").title = "Aktivoi tämä nappula, mikäli haluat että yrityksesti saapuvat ostolaskut tulevat tilitoimistoon ja maksatetaan puolestasi";
+            document.getElementById("kuitit").title = "Aktivoi tämä nappula, mikäli haluat että käteis- sekä korttimaksujen kuitit järjestetään kuukauden materiaalin mukana puolestasi tilitoimistossa";
+            document.getElementById("seuranta1").title = "Voit aktivoida tämän nappulan, mikäli yrityksesi ei tarvitse kustannuspaikka- tai projektiseurantaa";
+            document.getElementById("seuranta2").title = "Aktivoi tämä nappula, mikäli haluat että yrityksesi kustannuksia seurataan sovittujen projektien tai alueiden mukaan";
+            document.getElementById("seuranta3").title = "Aktivoi tämä nappula, mikäli haluat että yrityksesi jokaista kustannusta seurataan projektin tai kustannusalueen mukaan";
+        </script>
+
+        <aside>
+            <ul>
+
+            </ul>
+        </aside>
+
+        <footer>
+            <div id="centerfooter">
+                <section id="left">
+                    <h4>Yhteystiedot</h4>
+                    <p>JP Tilit</p>
+                    <p>Takoraudantie 2 00700 Helsinki</p>
+                    <p>puh. 010 2920 910</p>
+                    <p>fax. 09 386 7150</p>
+                    <p>email: posti@jptilit.fi</p>
+                    <br/>
+                    <div id="yhtotto">
+                        <form action="contact.php" method="post">
+                            <p>Nimi: </p><input name="name" type="text" size="21"/>
+                            <br/>
+                            <p>E-mail: </p><input name="email" type="text" size="21"/>
+                            <br/>
+                            <p>Puh: </p><input name="puh" type="text" size="21"/>
+                            <br/>
+                            <p>Viesti: </p><textarea name="message" rows="4" cols="20"></textarea>
+                            <br/>
+                            <input type="submit" style="font-size:18pt;" name="submit" value="Lähetä"/> 
+                        </form>
+                    </div>
+                </section>
+
+                <section id="right">
+                    <ul class="botnav">
+                        <a href="perustaminen.html"><li>Aloittavat yritykset</li></a>
+                        <a href="talhalkehitys.html"><li>Taloushallinnon kehitys</li></a>
+                        <a href="Taloyhtiot.html"><li>Taloyhtiöt</li></a>
+                        <a href="kotisivut.html"><li>Kotisivut</li></a>
+                        <a href="kirjanpito.html"><li>Kirjanpito</li></a>
+                        <a href="palkanlaskenta.html"><li>Palkanlaskenta</li></a>
+                        <a href="controller.html"><li>Controller</li></a>
+                        <a href="sahkoinen.html"><li>Sähköinen taloushallinto</li></a>
+                    </ul>
+                    <div id="map-canvas"></div>
+                </section>
+            </div>
+        </footer>
+    </body>
+</html>

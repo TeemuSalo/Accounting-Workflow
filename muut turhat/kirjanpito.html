@@ -1,0 +1,149 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+    <head>
+        <title>JP TILIT - Kirjanpito</title>
+        <meta name="keywords" content="JP-tilit, kirjanpito, veroilmoitus, tilinpäätös, myyntilaskut, ostolaskut"/>
+        <meta name="description" content="JP Tilit palvelee ammattitaidolla kirjanpidon, veroilmoituksen, tilinpäätöksen, laskutuksen ja ostolaskujen asioissa."/> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>    
+        <link rel="stylesheet" type="text/css" href="styles.css"/>
+
+        <script src="https://maps.googleapis.com/maps/api/js"></script>
+        <script>
+            function initialize() {
+                var myLatlng = new google.maps.LatLng(60.24493, 25.04500);
+                var mapOptions = {
+                    zoom: 15,
+                    center: myLatlng
+                }
+                var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+                var marker = new google.maps.Marker({
+                    position: myLatlng,
+                    map: map,
+                    title: ''
+                });
+            }
+            google.maps.event.addDomListener(window, 'load', initialize);
+        </script>
+        <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js'></script>
+
+    </head>
+    <body>
+
+        <nav class="topnav">
+
+            <a href=""><img src="jplogo.jpg"></img></a>
+
+            <ul>
+                <a href="index.html"><li id="etusivu">Etusivu</li></a>
+                <a href="palvelut.html"><li id="palvelut">Palvelut</li></a>
+                <a href="hintalaskuri.html"><li id="hintalaskuri">Hintalaskuri</li></a>
+                <a href="yhteystiedot.html"><li id="yhteystiedot">Yhteystiedot</li></a>
+            </ul>
+
+        </nav>
+
+        <div id="path"><p><a href="index.html">Etusivu</a> > <a href="palvelut.html">Palvelut</a> > Kirjanpito ja Tilinpäätös</p></div>
+
+        <div id="bigpicture">
+            <section id="darkarea">
+                <p>
+                    Yrityksen kirjanpito on yksinkertaisimmillaan tapahtumien kirjausta helposti luettavaan muotoon, 
+                    jonka avulla voidaan esittää yrityksen taloudellinen tilanne ja laatia tilinpäätös sekä veroilmoitus.</br></br>
+                    Kirjanpitoa voidaan kehittää lähemmäksi reaaliaikaista raportointia, jolloin sitä voidaan hyödyntää myös 
+                    yrityksen toiminnan päätöksenteossa.</br></br>
+                    Parhaimmillaan kirjanpito on työkalu yrityksen toiminnan sunnittelussa, 
+                    esim. projekti- ja kustannusseurannassa. Ulkoistettu taloushallinto selkeyttää yrityksesi toimintaa. 
+                </p>
+            </section>
+        </div>
+
+        <section>
+            <article id="kirjanpito">
+                <h3>KIRJANPITO</h3>
+                <p>
+                    Meidän avullamme yrityksesi kirjanpito on hoidettu luotettavasti ja asiantuntemuksella.
+                    Panostamalla taloushallintoosi voit synnyttää kirjanpidosta lisäarvoa tuottavaa 
+                    raportointia päätöksentekoon ja johdon työvälineiksi.</br></br>
+                    Voit sopia kanssamme kiinteään kuukausihintaan perustuvan sopimuksen, ajoittain
+                    tarkistettavan määräaikaisen kuukausihinnan tai jopa tapahtumien perusteella laskutettavan
+                    kuukausiyhteenvedon.</br>
+                    Riippuen valitsemastasi paketista kirjanpidon perusmaksuun 
+                    kuuluu sovituin väliajoin talouspalaveri, jossa käydään läpi yritykselle
+                    oleellisia asioita sekä tarvittavia konsultointeja</br></br>
+                    Peruskirjanpitoon sisältyy tapahtumien kirjaus, arvonlisäveron kausiveroilmoitukset 
+                    ja kuukausiraportointi. Jokainen kirjanpito on räätälöity asiakkaan yritykselle sopivaksi ja 
+                    kehitetty asiakkaan toiveiden mukaan. 
+                </p>
+                </br></br>
+                <h3>MYYNTI JA OSTOLASKUT</h3>
+                <p>
+                    Yrityksen myyntilaskut voidaan luoda ja lähettää tilitoimistostamme. 
+                    Näin yritys voi keskittyä varsinaiseen toimintaan ja antaa tilitoimiston huolehtia 
+                    laskutuksen juoksevasta toiminnasta.
+                    </br></br>
+                    Myös ostolaskujen maksatus ja seuranta voidaan hoitaa tilitoimiston kautta asiakkaan 
+                    tarpeen mukaan. </br>
+                    Mikäli olet kiinnostunut ostolaskujen sähköisestä kierrätyksestä, jossa
+                    me hoidamme tilitoimistossa ostolaskujen vastaanoton ja laskut hyväksytetään
+                    yrityksen kautta selaimen välityksellä esimerkiksi älypuhelinta tai tietokonetta
+                    käyttämällä, tutustu tarkemmin taloushallintosi <a href="sahkoinen.html">sähköistämiseen.</a>
+                </p>
+                </br></br>
+                <h3>TILINPÄÄTÖS JA VEROILMOITUS</h3>
+                <p>
+                    Yrityksesi veroilmoitus laaditaan sähköisesti tilitoimistossamme.</br>
+                    Tilinpäätös ja veroilmoitus hoidetaan sopimuksen mukaan tilikauden
+                    tilikauden päättymisen jälkeen. </br>
+                    Saat meiltä myös apua kaikkiin tilinpäätöksen kysymyksiin.
+                </p>
+            </article>
+        </section>
+
+        <aside>
+            <ul>
+
+            </ul>
+        </aside>
+
+        <footer>
+            <div id="centerfooter">
+                <section id="left">
+                    <h4>Yhteystiedot</h4>
+                    <p>JP Tilit</p>
+                    <p>Takoraudantie 2 00700 Helsinki</p>
+                    <p>puh. 010 2920 910</p>
+                    <p>fax. 09 386 7150</p>
+                    <p>email: posti@jptilit.fi</p>
+                    <br/>
+                        <div id="yhtotto">
+                            <form action="contact.php" method="post">
+                                <p>Nimi: </p><input name="name" type="text" size="21"/>
+                                <br/>
+                                <p>E-mail: </p><input name="email" type="text" size="21"/>
+                                <br/>
+                                <p>Puh: </p><input name="puh" type="text" size="21"/>
+                                <br/>
+                                <p>Viesti: </p><textarea name="message" rows="4" cols="20"></textarea>
+                                <br/>
+                                <input type="submit" style="font-size:18pt;" name="submit" value="Lähetä"/> 
+                            </form>
+                        </div>
+                </section>
+
+                <section id="right">
+                    <ul class="botnav">
+                        <a href="perustaminen.html"><li>Aloittavat yritykset</li></a>
+                        <a href="talhalkehitys.html"><li>Taloushallinnon kehitys</li></a>
+                        <a href="Taloyhtiot.html"><li>Taloyhtiöt</li></a>
+                        <a href="kotisivut.html"><li>Kotisivut</li></a>
+                        <a href="kirjanpito.html"><li>Kirjanpito</li></a>
+                        <a href="palkanlaskenta.html"><li>Palkanlaskenta</li></a>
+                        <a href="controller.html"><li>Controller</li></a>
+                        <a href="sahkoinen.html"><li>Sähköinen taloushallinto</li></a>
+                    </ul>
+                    <div id="map-canvas"></div>
+                </section>
+            </div>
+        </footer>
+    </body>
+</html>
