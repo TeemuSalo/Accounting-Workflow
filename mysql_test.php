@@ -23,13 +23,6 @@
 
         <div id="path"><p><a href="index.html">Etusivu</a> > <a href="mysql_test.php">MySQL testisivu</a></p></div>
 
-
-
-
-
-
-
-
         <section>
             <article id="kirjanpito">
 
@@ -70,6 +63,9 @@
                     $editrow = ($_POST['row1']);
                     $editcolumn = ($_POST['column1']);
                     $newvalue = ($_POST['newvalue1']);
+                    
+                    // curdate used for empty fields
+                    $curdate = date('Y-m-d');
 
                     $conn = mysql_connect($db_host, $db_user, $db_pwd);
                     if (!$conn)
@@ -80,15 +76,61 @@
 
                     mysql_query("SET NAMES 'utf8'");
 
-                    // sending query
-                    if (empty($_POST['newvalue1']) && ($editcolumn == "ALV" || "TAS" || "TYEL" || "Sähköposti")){
-                    $curdate = date('Y-m-d');
-                    $sql = "UPDATE {$table} SET $editcolumn='$curdate' WHERE ID='$editrow'";
-                    }else{
-                    $sql = "UPDATE {$table} SET $editcolumn='$newvalue' WHERE ID='$editrow'";
+                    // Set empty value in field as current date
+                    if (empty($_POST['newvalue1']) && strpos($editcolumn, "ALV") !== false) {
+                        $sql = "UPDATE {$table} SET ALV='$curdate' WHERE ID='$editrow'";
+                    }
+                    elseif (empty($_POST['newvalue1']) && strpos($editcolumn, "TAS") !== false) {
+                        $sql = "UPDATE {$table} SET TAS='$curdate' WHERE ID='$editrow'";
+                    }
+                    elseif (empty($_POST['newvalue1']) && strpos($editcolumn, "TYEL") !== false){
+                        $sql = "UPDATE {$table} SET TYEL='$curdate' WHERE ID='$editrow'";
+                    }
+                    elseif (empty($_POST['newvalue1']) && strpos($editcolumn, "Sähköposti") !== false){
+                        $sql = "UPDATE {$table} SET Sähköposti='$curdate' WHERE ID='$editrow'";
+                    }
+                    
+                    // This means no empty value, set text as field value, value 'null' means erase field
+                    elseif (!empty($_POST['newvalue1']) && strpos($editcolumn, "ALV") !== false) {
+                        if (strpos($newvalue, "null") !== false){
+                            $sql = "UPDATE {$table} SET ALV='' WHERE ID='$editrow'";  
+                        }
+                        else{
+                            $sql = "UPDATE {$table} SET ALV='$newvalue' WHERE ID='$editrow'";
+                        }
+                    }
+                    elseif (!empty($_POST['newvalue1']) && strpos($editcolumn, "TAS") !== false) {
+                        if (strpos($newvalue, "null") !== false){
+                            $sql = "UPDATE {$table} SET TAS='' WHERE ID='$editrow'";  
+                        }
+                        else{
+                            $sql = "UPDATE {$table} SET TAS='$newvalue' WHERE ID='$editrow'";
+                        }
+                    }
+                    elseif (!empty($_POST['newvalue1']) && strpos($editcolumn, "TYEL") !== false){
+                        if (strpos($newvalue, "null") !== false){
+                            $sql = "UPDATE {$table} SET TYEL='' WHERE ID='$editrow'";  
+                        }
+                        else{
+                            $sql = "UPDATE {$table} SET TYEL='$newvalue' WHERE ID='$editrow'";
+                        }
+                    }
+                    elseif (!empty($_POST['newvalue1']) && strpos($editcolumn, "Sähköposti") !== false){
+                        if (strpos($newvalue, "null") !== false){
+                            $sql = "UPDATE {$table} SET Sähköposti='' WHERE ID='$editrow'";  
+                        }
+                        else{
+                            $sql = "UPDATE {$table} SET Sähköposti='$newvalue' WHERE ID='$editrow'";   
+                        }
+                    }
+                    
+                    // Not a custom column
+                    else{
+                        $sql = "UPDATE {$table} SET $editcolumn='$newvalue' WHERE ID='$editrow'";
                     }
 
                     $retval = mysql_query($sql, $conn);
+                    
                     if (!$retval) {
                         die('Could not update data: ' . mysql_error());
                     }
@@ -118,8 +160,8 @@
 
                 mysql_query("SET NAMES 'utf8'");
 
-                // sending query
-                //Kuukausi valittu
+                //  sending query
+                //  Kuukausi valittu
                 if (isset($_POST['vaihdakk'])) {
 
                     $kuukausi = $_POST['kuukausilista'];
@@ -206,12 +248,12 @@
                             $id = $row[0] . $col;
                             echo
                             "<td>
-                            <div id=\"$id show1\">$cell 
+                            <div id=\"$id"."show1\">$cell 
                             <button onclick=\"return editkausi('$id', '$cell')\">X</button>
                             </div>
-                            <div id=\"$id hide1\" style='display:none'>
+                            <div id=\"$id"."hide1\" style='display:none'>
                             <button onclick=\"return canceleditkausi('$id', '$cell')\">EI</button>
-                            <form id=\"$id seuranta\" action='' method='post'>
+                            <form id=\"$id"."seuranta\" action='' method='post'>
                             <input value=\"{$row[0]}\" name='row1' type='hidden'/>
                             <input value=\"$col\" name='column1' type='hidden'/>
                             <input name='newvalue1' type='text' size='20'/>
@@ -283,7 +325,8 @@
                             . "TAS AS 'TAS $TAS_month', "
                             . "TYEL AS 'TYEL $TAS_month',"
                             . "Sähköposti,"
-                            . "Kommentit "
+                            . "Kommentit,"
+                            . "TP "
                             . "FROM {$table}");
                             
                     if (!$result) {
@@ -311,12 +354,12 @@
                             $id = $row[0] . $col;
                             echo
                             "<td>
-                            <div id=\"$id show1\">$cell 
+                            <div id=\"$id"."show1\">$cell 
                             <button onclick=\"return editkausi('$id', '$cell')\">X</button>
                             </div>
-                            <div id=\"$id hide1\" style='display:none'>
+                            <div id=\"$id"."hide1\" style='display:none'>
                             <button onclick=\"return canceleditkausi('$id', '$cell')\">EI</button>
-                            <form id=\"$id seuranta\" action='' method='post'>
+                            <form id=\"$id"."seuranta\" action='' method='post'>
                             <input value=\"{$row[0]}\" name='row1' type='hidden'/>
                             <input value=\"$col\" name='column1' type='hidden'/>
                             <input name='newvalue1' type='text' size='20'/>
@@ -337,12 +380,12 @@
                 <script>
                     function editkausi(id, solu) {
 
-                        var shownelement = document.getElementById(id + ' show1');
+                        var shownelement = document.getElementById(id + 'show1');
                         shownelement.style.display = "none";
 
-                        var Form = document.forms[id + ' seuranta'];
+                        var Form = document.forms[id + 'seuranta'];
                         Form.elements['newvalue1'].value = solu;
-                        var hiddenelement = document.getElementById(id + ' hide1');
+                        var hiddenelement = document.getElementById(id + 'hide1');
                         hiddenelement.style.display = "";
 
                         return false;
@@ -352,10 +395,10 @@
                 <script>
                     function canceleditkausi(id, solu) {
 
-                        var shownelement = document.getElementById(id + ' show1');
+                        var shownelement = document.getElementById(id + 'show1');
                         shownelement.style.display = "";
 
-                        var hiddenelement = document.getElementById(id + ' hide1');
+                        var hiddenelement = document.getElementById(id + 'hide1');
                         hiddenelement.style.display = "none";
 
                         return false;
@@ -500,12 +543,12 @@
                         $id = $row[0] . $col;
                         echo
                         "<td>
-                            <div id=\"$id show2\">$cell 
+                            <div id=\"$id"."show2\">$cell 
                             <button onclick=\"return editasiakas('$id', '$cell')\">X</button>
                             </div>
-							<div id=\"$id hide2\" style='display:none'>
+							<div id=\"$id"."hide2\" style='display:none'>
                             <button onclick=\"return canceledit('$id', '$cell')\">EI</button>
-							<form id=\"$id rek\" action='' method='post'>
+							<form id=\"$id"."rek\" action='' method='post'>
                             <input value=\"{$row[0]}\" name='row2' type='hidden'/>
                             <input value=\"$col\" name='column2' type='hidden'/>
                             <input name='newvalue2' type='text' size='20'/>
@@ -525,12 +568,12 @@
                 <script>
                     function editasiakas(id, solu) {
 
-                        var shownelement = document.getElementById(id + ' show2');
+                        var shownelement = document.getElementById(id + 'show2');
                         shownelement.style.display = "none";
 
-                        var Form = document.forms[id + ' rek'];
+                        var Form = document.forms[id + 'rek'];
                         Form.elements['newvalue2'].value = solu;
-                        var hiddenelement = document.getElementById(id + ' hide2');
+                        var hiddenelement = document.getElementById(id + 'hide2');
                         hiddenelement.style.display = "";
 
                         return false;
@@ -540,10 +583,10 @@
                 <script>
                     function canceledit(id, solu) {
 
-                        var shownelement = document.getElementById(id + ' show2');
+                        var shownelement = document.getElementById(id + 'show2');
                         shownelement.style.display = "";
 
-                        var hiddenelement = document.getElementById(id + ' hide2');
+                        var hiddenelement = document.getElementById(id + 'hide2');
                         hiddenelement.style.display = "none";
 
                         return false;
@@ -610,5 +653,36 @@
 </div>
 </footer>
         -->
+        
+        <script type="text/javascript" src="jquery-1.11.3.min.js"></script>
+        
+        <script type="text/javascript">
+            $(document).ready(function (){
+                
+                var arr = $('[id*=TP]');
+                
+                $.each(arr, function (i, val){
+
+                        var tp = $(val).text().substring(0,10);
+
+                        var tap = new Date(tp);
+
+                        var cur = new Date();
+                        var diff = new Date(cur - tap);
+
+                        //get days
+                        var days = diff/1000/60/60/24;
+
+                        if( (days > -30)&& (days < 30) ) {
+                            $(val).css('background', 'yellow');
+                        }
+
+                        $('#debug').text(tp);
+                });
+            });
+        </script>
+        
+        <div id="debug">asd</div>
+        
     </body>
 </html>
