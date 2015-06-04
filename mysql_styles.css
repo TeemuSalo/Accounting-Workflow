@@ -20,9 +20,9 @@ body:before {
     z-index: 100;
 }
 
-@media all and (min-width:1366px){	
+/*@media all and (min-width:1366px){ */
     /************************Max 1900px yli medium-largen *********************/
-
+/*
     body{
         font: 1em Georgia, serif;
         font-size:110%;
@@ -190,14 +190,14 @@ body:before {
         line-height: 180%;
         list-style-position: inside;
     }
-} /***************************END OF LARGE ************************************/
+} *//***************************END OF LARGE ************************************/
 
-@media all and (max-width:1365px) and (min-width:1025px){	
+/*@media all and (max-width:1365px) and (min-width:1025px){ */
     /***********************MEDIUM LARGE =1365px juuri sopiva *******************/
 
     body{
-        font: 1em Georgia, serif;
-        font-size: 100%;
+        font: 1em Arial, Helvetica, sans-serif;
+        font-size: 1em;
         width:auto;
     }
     .topnav{
@@ -246,7 +246,7 @@ body:before {
         background-color:transparent;
         text-decoration:none;
     }
-
+/*
     #bigpicture {
         position:relative;
         width:100%;
@@ -270,40 +270,122 @@ body:before {
         font-size:1.25em;
         color:white;
         margin-top:1.25em;
-    }
+    }*/
 
     article {
-        width: auto;
-        height: auto;
-        margin: 2.0em auto 0 auto;
-        font-size: 1.250em;
-        padding: 2.000em;
+        margin: 1.0em auto 0 auto;
+        font-size: 1em;
+        padding: 1.000em;
         color:#0B0B3B;
         text-align: left;
-        line-height: 180%;
     }
     article h4{
         color: #0B263B;
     }
-    
-    table {
-        padding: 0.100em;
-        width:100%;
+
+    #pen {
+        width:13px;
+        height: 13px;
+    }
+
+    #vaihdakuukausi input {
+        font-size: 1.1em;
+        padding: 0.2em;
+    }
+    #vaihdakuukausi input[type=checkbox] {
+        margin-right: 0.8em;
+        margin-left: 0.2em;
+    }
+
+    .kuukausiotsikot h4{
+        font-size: 1.5em;
+    }
+    table.kuukausiseuranta{
+        width: 100%;
         border: 0.2em solid #0B0B3B;
     }
-    
-    table tr{
-        
+    table.kuukausiseuranta th{
+        padding: 0.2em;
+        border: 0.1em solid #0B0B3B;
     }
-    
-    table td{
-        padding: 1.000em;
+    table.kuukausiseuranta td{
+        padding: 0.2em;
+        border: 0.1em solid #0B0B3B;
     }
-	
-	table button {
-		float:right;
-	}
+    table.kuukausiseuranta tr:nth-child(even){
+        background-color: #F0F0F0;
+    }
+    table.kuukausiseuranta tr:nth-child(odd){
+        background-color: #D0D0D0;
+    }
+    table.kuukausiseuranta p {
+        float:left;
+    }
+    table.kuukausiseuranta button {
+        float:right;
+    }
 
+    .rekisteriotsikot h4{
+        font-size: 1.5em;
+    }
+    table.asiakasrekisteri{
+        width: 100%;
+        border: 0.2em solid #0B0B3B;
+    }
+    table.asiakasrekisteri th{
+        padding: 0.2em;
+        border: 0.1em solid #0B0B3B;
+    }
+    table.asiakasrekisteri td{
+        padding: 0.2em;
+        border: 0.1em solid #0B0B3B;
+    }
+
+    table.asiakasrekisteri tr:nth-child(even){
+        background-color: #F0F0F0;
+    }
+    table.asiakasrekisteri tr:nth-child(odd){
+        background-color: #D0D0D0;
+    }
+    table.asiakasrekisteri p {
+        float:left;
+    }
+    table.asiakasrekisteri button {
+        float:right;
+    }
+
+    table#luokuukausi{
+        text-align: center;
+        border: 0.2em solid #0B0B3B;
+    }
+    table#luokuukausi td{
+        font-size: 1.5em;
+        padding: 0.8em;
+    }
+    table#luokuukausi input[type=submit]{
+        font-size: 1.1em;
+        padding: 0.2em;
+    }
+    .GUI_form input[type=submit]{
+        font-size: 1.2em;
+        padding: 0.4em;
+    }  
+    select{
+        margin: 0.3em 0 0.3em 0;
+        font-size: 1.2em;
+    }
+    .GUI_form input{
+        font-size: 1.2em;
+    }
+    .GUI_form p{
+        font-size: 1.2em;
+        padding-top: 0.4em;
+    }
+    .GUI_form input[type=checkbox]{
+        margin: 0.5em;
+    }
+
+/*
     footer {
         clear:both;
         overflow:hidden;
@@ -356,12 +438,12 @@ body:before {
         background-color:#C0C0C0;
         padding: 0.125em;
         border: thin solid #00000;
-    }
-} /************************END OF MEDIUM LARGE *******************************/
+    } */
+/*} *//************************END OF MEDIUM LARGE *******************************/
 
-@media all and (max-width:1024px) and (min-width:631px){ 
+/* @media all and (max-width:1024px) and (min-width:631px){ */
     /*******************MEDIUM SMALL <1024px TABLETS ***************************/
-
+/*
     body{
         font: 1em Georgia, serif;
         width: auto;
@@ -530,11 +612,11 @@ body:before {
         line-height: 180%;
         list-style-position: inside;
     }
-} /*************************END OF SMALL MEDIUM *****************************/
+} */ /*************************END OF SMALL MEDIUM *****************************/
 
-@media all and (max-width:630px){ 
+/* @media all and (max-width:630px){ */
     /*********************** SMALL <630px PHONES *****************************/
-
+/*
     body{
         //overflow-x:hidden;
         font: 1em Georgia, serif;
@@ -691,8 +773,8 @@ body:before {
     #mobiletext{
         position: inherit;
     }
-} /******************************END OF SMALL *******************************/
-
+} */ /******************************END OF SMALL *******************************/
+/*
 aside{
     clear:both;
     height:3em;
@@ -758,4 +840,4 @@ aside{
 }
 .botnav li {
     text-decoration: underline;
-}
+} */

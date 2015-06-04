@@ -1,4 +1,9 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php
+    session_start();
+    require 'init.php';
+    require 'datafunctions.php';
+?>
+<!DOCTYPE html>
 <html>
     <head>
         <title>JP TILIT - MySQL</title>
@@ -11,23 +16,28 @@
     </head>
 
     <body>
+        
         <nav class="topnav">
-            <a href=""><img src="jplogo.jpg"></img></a>
+            <!--<a href=""><img src="jplogo.jpg"/></a>-->
             <ul>
+                <a href="mysql_test.php"><li>Seuranta ja Rekisteri</li></a>
+                <a href="mysql_gui.php"><li>Lisäykset ja hallinta</li></a>
+                <!--
                 <a href="index.html"><li id="etusivu">Etusivu</li></a>
                 <a href="palvelut.html"><li id="palvelut">Palvelut</li></a>
                 <a href="hintalaskuri.html"><li id="hintalaskuri">Hintalaskuri</li></a>
-                <a href="yhteystiedot.html"><li id="yhteystiedot">Yhteystiedot</li></a>
+                <a href="yhteystiedot.html"><li id="yhteystiedot">Yhteystiedot</li></a>-->
             </ul>
         </nav>
 
-        <div id="path"><p><a href="index.html">Etusivu</a> > <a href="mysql_test.php">MySQL testisivu</a></p></div>
+        <div id="path"><p>JP Asiakasseuranta ja tietokanta</a></p></div>
 
         <section>
             <article id="kirjanpito">
 
                 <br/>
                 <select form="vaihdakuukausi" name="kuukausilista">
+                    <option value="0">Valitse</option>
                     <option value="1">Tammikuu</option>
                     <option value="2">Helmikuu</option>
                     <option value="3">Maaliskuu</option>
@@ -42,574 +52,149 @@
                     <option value="12">Joulukuu</option>
                 </select>
                 <form id="vaihdakuukausi" action="" method="post">
+                    <input type="hidden" name="jshint" value="<?php if(isset($_SESSION['selected_month']))
+                                                                       {echo $_SESSION['selected_month'];} else{echo '0';} ?>" />
+                    <?php 
+                    if (isset($_SESSION['Kommentit'])) { ?>
+                        Kommentit<input type="checkbox" name="Kommentit" value="Kommentit" checked="yes"/>
+                    <?php } else { ?>
+                        Kommentit<input type="checkbox" name="Kommentit" value="Kommentit"/>
+                    <?php } 
+                    if (isset($_SESSION['Laskutettu'])) { ?>
+                        Laskutettu<input type="checkbox" name="Laskutettu" value="Laskutettu" checked="yes"/>
+                    <?php } else { ?>
+                        Laskutettu<input type="checkbox" name="Laskutettu" value="Laskutettu"/>
+                    <?php }
+                    if (isset($_SESSION['TehdytTunnit'])) { ?>
+                        Tunnit<input type="checkbox" name="TehdytTunnit" value="Tehdyt Tunnit" checked="yes"/>
+                    <?php } else { ?>
+                        Tunnit<input type="checkbox" name="TehdytTunnit" value="Tehdyt Tunnit"/>
+                    <?php }
+                    if (isset($_SESSION['Rakentamis'])) { ?>
+                        Rak.ilmoitus<input type="checkbox" name="Rakentamis" value="Rakentamis" checked="yes"/>
+                    <?php } else { ?>
+                        Rak.ilmoitus<input type="checkbox" name="Rakentamis" value="Rakentamis"/>
+                    <?php } ?>
+                    <br/>
                     <input type='submit' name='vaihdakk' value='Vaihda'/>
                 </form>
+                <br/>
 
-
-                <?php
-                /*
-                 *   PHP Chance values in kuukausiseuranta
-                 */
-
-                if (isset($_POST['insertkk'])) {
-
-                    $db_host = 'localhost';
-                    $db_user = 'root';
-                    $db_pwd = '';
-
-                    $database = 'test';
-                    $table = 'kkseuranta';
-
-                    $editrow = ($_POST['row1']);
-                    $editcolumn = ($_POST['column1']);
-                    $newvalue = ($_POST['newvalue1']);
+                    <!--
+                            PIIRRÄ KUUKAUSISEURANTA OSA 2   
+                     -->
+                    <div class="kuukausiotsikot"><h4><?php echo 'Kuukausiseuranta ',$ALV_month ?></h4><h4> Maksupäivä <?php echo $payday ?></h4></div>
+                    <table class="kuukausiseuranta">
+                        
+                    <tr class="kkseurantasolu">
+                        <?php // printing table headers
+                        for ($i = 0; $i < $seur_fields_num; $i++) {
+                            $seur_field = mysql_fetch_field($draw_seuranta_return);
+                            // Nimeä jokainen sarake $columniksi
+                            $seur_column[$i] = $seur_field->name; ?>
+                            <th><?php echo $seur_field->name ?></th>
+                        <?php } ?>
+                    </tr>
                     
-                    // curdate used for empty fields
-                    $curdate = date('Y-m-d');
-
-                    $conn = mysql_connect($db_host, $db_user, $db_pwd);
-                    if (!$conn)
-                        die("Can't connect to database");
-
-                    if (!mysql_select_db($database))
-                        die("Can't select database");
-
-                    mysql_query("SET NAMES 'utf8'");
-
-                    // Set empty value in field as current date
-                    if (empty($_POST['newvalue1']) && strpos($editcolumn, "ALV") !== false) {
-                        $sql = "UPDATE {$table} SET ALV='$curdate' WHERE ID='$editrow'";
-                    }
-                    elseif (empty($_POST['newvalue1']) && strpos($editcolumn, "TAS") !== false) {
-                        $sql = "UPDATE {$table} SET TAS='$curdate' WHERE ID='$editrow'";
-                    }
-                    elseif (empty($_POST['newvalue1']) && strpos($editcolumn, "TYEL") !== false){
-                        $sql = "UPDATE {$table} SET TYEL='$curdate' WHERE ID='$editrow'";
-                    }
-                    elseif (empty($_POST['newvalue1']) && strpos($editcolumn, "Sähköposti") !== false){
-                        $sql = "UPDATE {$table} SET Sähköposti='$curdate' WHERE ID='$editrow'";
-                    }
-                    
-                    // This means no empty value, set text as field value, value 'null' means erase field
-                    elseif (!empty($_POST['newvalue1']) && strpos($editcolumn, "ALV") !== false) {
-                        if (strpos($newvalue, "null") !== false){
-                            $sql = "UPDATE {$table} SET ALV='' WHERE ID='$editrow'";  
-                        }
-                        else{
-                            $sql = "UPDATE {$table} SET ALV='$newvalue' WHERE ID='$editrow'";
-                        }
-                    }
-                    elseif (!empty($_POST['newvalue1']) && strpos($editcolumn, "TAS") !== false) {
-                        if (strpos($newvalue, "null") !== false){
-                            $sql = "UPDATE {$table} SET TAS='' WHERE ID='$editrow'";  
-                        }
-                        else{
-                            $sql = "UPDATE {$table} SET TAS='$newvalue' WHERE ID='$editrow'";
-                        }
-                    }
-                    elseif (!empty($_POST['newvalue1']) && strpos($editcolumn, "TYEL") !== false){
-                        if (strpos($newvalue, "null") !== false){
-                            $sql = "UPDATE {$table} SET TYEL='' WHERE ID='$editrow'";  
-                        }
-                        else{
-                            $sql = "UPDATE {$table} SET TYEL='$newvalue' WHERE ID='$editrow'";
-                        }
-                    }
-                    elseif (!empty($_POST['newvalue1']) && strpos($editcolumn, "Sähköposti") !== false){
-                        if (strpos($newvalue, "null") !== false){
-                            $sql = "UPDATE {$table} SET Sähköposti='' WHERE ID='$editrow'";  
-                        }
-                        else{
-                            $sql = "UPDATE {$table} SET Sähköposti='$newvalue' WHERE ID='$editrow'";   
-                        }
-                    }
-                    
-                    // Not a custom column
-                    else{
-                        $sql = "UPDATE {$table} SET $editcolumn='$newvalue' WHERE ID='$editrow'";
-                    }
-
-                    $retval = mysql_query($sql, $conn);
-                    
-                    if (!$retval) {
-                        die('Could not update data: ' . mysql_error());
-                    }
-                }
-                ?>
-
-
-
-                <?php
-                /*
-                 *   PHP Draw values in kuukausiseuranta
-                 */
-
-                $db_host = 'localhost';
-                $db_user = 'root';
-                $db_pwd = '';
-
-                $database = 'test';
-                $table = 'kkseuranta';
-
-                $conn = mysql_connect($db_host, $db_user, $db_pwd);
-                if (!$conn)
-                    die("Can't connect to database");
-
-                if (!mysql_select_db($database))
-                    die("Can't select database");
-
-                mysql_query("SET NAMES 'utf8'");
-
-                //  sending query
-                //  Kuukausi valittu
-                if (isset($_POST['vaihdakk'])) {
-
-                    $kuukausi = $_POST['kuukausilista'];
-                    
-                    $nextmonth = 2 + intval($kuukausi);
-                    $payday = '12.'.$nextmonth.'.'.date('Y');
-                    
-                    switch ($kuukausi) {
-                        case 1:
-                            $ALV_month = 'tammikuu';
-                            $TAS_month = 'helmikuu';
-                            break;
-                        case 2:
-                            $ALV_month = 'helmikuu';
-                            $TAS_month = 'maaliskuu';
-                            break;
-                        case 3:
-                            $ALV_month = 'maaliskuu';
-                            $TAS_month = 'huhtikuu';
-                            break;
-                        case 4:
-                            $ALV_month = 'huhtikuu';
-                            $TAS_month = 'toukokuu';
-                            break;
-                        case 5:
-                            $ALV_month = 'toukokuu';
-                            $TAS_month = 'kesäkuu';
-                            break;
-                        case 6:
-                            $ALV_month = 'kesäkuu';
-                            $TAS_month = 'heinäkuu';
-                            break;
-                        case 7:
-                            $ALV_month = 'heinäkuu';
-                            $TAS_month = 'elokuu';
-                            break;
-                        case 8:
-                            $ALV_month = 'elokuu';
-                            $TAS_month = 'syyskuu';
-                            break;
-                        case 9:
-                            $ALV_month = 'syyskuu';
-                            $TAS_month = 'lokakuu';
-                            break;
-                    };
-
-
-                    $retval = mysql_query("SELECT "
-                            . "ID,"
-                            . "Asiakas,"
-                            . "ALV AS 'ALV $ALV_month', "
-                            . "TAS AS 'TAS $TAS_month', "
-                            . "TYEL AS 'TYEL $TAS_month',"
-                            . "Sähköposti,"
-                            . "Kommentit "
-                            . "FROM {$table} "
-                            . "WHERE kuukausi = '$kuukausi'");
-                            
-                    if (!$retval) {
-                        die('Could not update data: ' . mysql_error());
-                    }
-
-                    $fields_num = mysql_num_fields($retval);
-
-                    echo "<h4>Table: {$table} $ALV_month</h4> <h4 style='float:right;'> Maksupäivä $payday</h4>";
-                    echo "<table border='1'><tr>\n";
-                    // printing table headers
-                    for ($i = 0; $i < $fields_num; $i++) {
-                        $field = mysql_fetch_field($retval);
-                        //echo "<td><p>$field->name : </p><input name='$field->name' type='text' size='21'/></td>";
-                        echo "<td>{$field->name}</td>";
-                        $column[$i] = $field->name;
-                    }
-
-                    echo "</tr>\n";
-                    // printing table rows
-                    while ($row = mysql_fetch_row($retval)) {
-                        echo "<tr>";
-                        // $row is array... foreach( .. ) puts every element
+                    <?php // printing table rows
+                    while ($seur_row = mysql_fetch_row($draw_seuranta_return)) 
+                    { ?>
+                        <tr>
+                        <?php // $row is array... foreach( .. ) puts every element
                         // of $row to $cell variable
-                        $iterator = 0;
-                        foreach ($row as $cell) {
-                            $col = $column[$iterator];
-                            $id = $row[0] . $col;
-                            echo
-                            "<td>
-                            <div id=\"$id"."show1\">$cell 
-                            <button onclick=\"return editkausi('$id', '$cell')\">X</button>
+                        $seur_iterator = 0;
+                        foreach ($seur_row as $seur_cell) {
+                            $seur_col = $seur_column[$seur_iterator];
+                            $seur_id = $seur_row[0] . $seur_col; ?>
+                            <td>
+                            <div id="<?php echo $seur_id,'show1' ?>"><p><?php echo $seur_cell ?></p>
+                            <button onclick="return editkausi('<?php echo $seur_id, "', '", $seur_cell ?>')"><img id="pen" src="pen.png"/></button>
                             </div>
-                            <div id=\"$id"."hide1\" style='display:none'>
-                            <button onclick=\"return canceleditkausi('$id', '$cell')\">EI</button>
-                            <form id=\"$id"."seuranta\" action='' method='post'>
-                            <input value=\"{$row[0]}\" name='row1' type='hidden'/>
-                            <input value=\"$col\" name='column1' type='hidden'/>
-                            <input name='newvalue1' type='text' size='20'/>
-                            <input type='submit' name='insertkk' value='OK'/>
+                            <div id="<?php echo $seur_id, 'hide1' ?>" style='display:none'>
+                            <form id="<?php echo $seur_id, 'seuranta' ?>" action='' method='post'>
+                            <input value="<?php echo $seur_row[0] ?>" name='row1' type='hidden'/>
+                            <input value="<?php echo $seur_col ?>" name='column1' type='hidden'/>
+                            <input name='newvalue1' type='text' /><br/>
+                            <input type='submit' name='insertkk' value='Lähetä'/>
+                            <button onclick="return canceleditkausi('<?php echo $seur_id, "', '", $seur_cell ?>')">Peruuta</button>
                             </form>
                             </div>
-                            </td>";
-                            $iterator++;
-                        }
-                        echo "</tr>\n";
-                    }
-                    echo "</table>\n";
-                    mysql_free_result($retval);
-                }
-
-                //Aloitus tai ei valittua kuukautta
-                else {
-
-                    $nextmonth = 1 + intval(date('n'));
-                    $payday = '12.'.$nextmonth.'.'.date('Y');
+                            </td>
+                            <?php $seur_iterator++;
+                        } ?>
+                        </tr>
+                    <?php } ?>
+                    </table>
                     
-                    $this_month = date('n');
-                    $TAS_month = $this_month;
-                    $ALV_month = $this_month - 1;
-                    
-                    switch ($ALV_month) {
-                        case 0:
-                            $ALV_month = 'joulukuu';
-                            $TAS_month = 'tammikuu';
-                            break;
-                        case 1:
-                            $ALV_month = 'tammikuu';
-                            $TAS_month = 'helmikuu';
-                            break;
-                        case 2:
-                            $ALV_month = 'helmikuu';
-                            $TAS_month = 'maaliskuu';
-                            break;
-                        case 3:
-                            $ALV_month = 'maaliskuu';
-                            $TAS_month = 'huhtikuu';
-                            break;
-                        case 4:
-                            $ALV_month = 'huhtikuu';
-                            $TAS_month = 'toukokuu';
-                            break;
-                        case 5:
-                            $ALV_month = 'toukokuu';
-                            $TAS_month = 'kesäkuu';
-                            break;
-                        case 6:
-                            $ALV_month = 'joulukuu';
-                            $TAS_month = 'tammikuu';
-                            break;
-                        case 7:
-                            $ALV_month = 'joulukuu';
-                            $TAS_month = 'tammikuu';
-                            break;
-                        case 8:
-                            $ALV_month = 'joulukuu';
-                            $TAS_month = 'tammikuu';
-                            break;
-                    };
+                    <?php mysql_free_result($draw_seuranta_return); ?>
 
-                    $result = mysql_query("SELECT "
-                            . "ID,"
-                            . "Asiakas,"
-                            . "ALV AS 'ALV $ALV_month', "
-                            . "TAS AS 'TAS $TAS_month', "
-                            . "TYEL AS 'TYEL $TAS_month',"
-                            . "Sähköposti,"
-                            . "Kommentit,"
-                            . "TP "
-                            . "FROM {$table}");
-                            
-                    if (!$result) {
-                        die("Query to show fields from table failed");
-                    }
-                    $fields_num = mysql_num_fields($result);
-
-                    echo "<h4>Table: {$table} $ALV_month</h4> <h4 style='float:right;'> Maksupäivä $payday</h4>";
-                    echo "<table border='1'><tr>\n";
-                    // printing table headers
-                    for ($i = 0; $i < $fields_num; $i++) {
-                        $field = mysql_fetch_field($result);
-                        echo "<td>{$field->name}</td>";
-                        $column[$i] = $field->name;
-                    }
-                    echo "</tr>\n";
-                    // printing table rows
-                    while ($row = mysql_fetch_row($result)) {
-                        echo "<tr>";
-                        // $row is array... foreach( .. ) puts every element
-                        // of $row to $cell variable
-                        $iterator = 0;
-                        foreach ($row as $cell) {
-                            $col = $column[$iterator];
-                            $id = $row[0] . $col;
-                            echo
-                            "<td>
-                            <div id=\"$id"."show1\">$cell 
-                            <button onclick=\"return editkausi('$id', '$cell')\">X</button>
-                            </div>
-                            <div id=\"$id"."hide1\" style='display:none'>
-                            <button onclick=\"return canceleditkausi('$id', '$cell')\">EI</button>
-                            <form id=\"$id"."seuranta\" action='' method='post'>
-                            <input value=\"{$row[0]}\" name='row1' type='hidden'/>
-                            <input value=\"$col\" name='column1' type='hidden'/>
-                            <input name='newvalue1' type='text' size='20'/>
-                            <input type='submit' name='insertkk' value='OK'/>
-                            </form>
-                            </div>
-                            </td>";
-                            $iterator++;
-                        }
-                        echo "</tr>\n";
-                    }
-                    echo "</table>\n";
-                    mysql_free_result($result);
-                }
-                ?>
-
-
-                <script>
-                    function editkausi(id, solu) {
-
-                        var shownelement = document.getElementById(id + 'show1');
-                        shownelement.style.display = "none";
-
-                        var Form = document.forms[id + 'seuranta'];
-                        Form.elements['newvalue1'].value = solu;
-                        var hiddenelement = document.getElementById(id + 'hide1');
-                        hiddenelement.style.display = "";
-
-                        return false;
-                    }
-                </script>
-
-                <script>
-                    function canceleditkausi(id, solu) {
-
-                        var shownelement = document.getElementById(id + 'show1');
-                        shownelement.style.display = "";
-
-                        var hiddenelement = document.getElementById(id + 'hide1');
-                        hiddenelement.style.display = "none";
-
-                        return false;
-                    }
-                </script>
-
-
-                <br/><br/><br/><br/>
+                <br/><br/>
                 <!--
+                -
                 -
                 -
                 TAULUKKO VAIHTUU
                 -
                 -
-                -->			
-                <?php
-                /*
-                 *   PHP Chance values in asiakasrekisteri
-                 */
+                -
+                -->
+                <br/><br/>                
+                
+                <!--
+                            PIIRRÄ ASIAKASREKISTERI OSA 2
+                 -->
+                <div class="rekisteriotsikot"><h4>Asiakasrekisteri</h4></div>
+                <table class="asiakasrekisteri">
+                    <tr>
+                        <?php // printing table headers
+                        for ($i = 0; $i < $rek_fields_num; $i++) {
+                            $rek_field = mysql_fetch_field($draw_rek_return); 
+                            // nimeä kolumnit myöhempää käyttöä varten
+                            $rek_column[$i] = $rek_field->name; ?>
+                            <th><?php echo $rek_field->name ?></th>
+                        <?php } ?>     
+                    </tr>
 
-                if (isset($_POST['insertrek']) && !empty($_POST['newvalue2'])) {
-
-                    $db_host = 'localhost';
-                    $db_user = 'root';
-                    $db_pwd = '';
-
-                    $database = 'test';
-                    $table = 'asiakasrekisteri';
-
-                    $editrow = ($_POST['row2']);
-                    $editcolumn = ($_POST['column2']);
-                    $newvalue = ($_POST['newvalue2']);
-
-                    $conn = mysql_connect($db_host, $db_user, $db_pwd);
-                    if (!$conn)
-                        die("Can't connect to database");
-
-                    if (!mysql_select_db($database))
-                        die("Can't select database");
-
-                    mysql_query("SET NAMES 'utf8'");
-
-                    // sending query
-
-                    $sql = "UPDATE {$table} SET $editcolumn='$newvalue' WHERE ID='$editrow'";
-
-                    $retval = mysql_query($sql, $conn);
-                    if (!$retval) {
-                        die('Could not update data: ' . mysql_error());
-                    }
-                }
-                ?>
-
-
-
-                <?php
-                /*
-                 *   PHP Draw values in asiakasrekisteri
-                 */
-
-                $db_host = 'localhost';
-                $db_user = 'root';
-                $db_pwd = '';
-
-                $database = 'test';
-                $table = 'asiakasrekisteri';
-
-                $conn = mysql_connect($db_host, $db_user, $db_pwd);
-                if (!$conn)
-                    die("Can't connect to database");
-
-                if (!mysql_select_db($database))
-                    die("Can't select database");
-
-                mysql_query("SET NAMES 'utf8'");
-
-                // sending query
-                /*
-                  if (isset($_POST['update'])) {
-
-                  $yritys = $_POST['yritys'];
-                  $tilikausi = $_POST['tilikausi'];
-                  $tilinpäätös = $_POST['tilinpäätös'];
-                  $luokitus = $_POST['luokitus'];
-
-                  $sql = "SELECT * FROM {$table} WHERE yritys LIKE '%$yritys%' " ;
-
-                  $retval = mysql_query($sql, $conn);
-                  if (!$retval) {
-                  die('Could not update data: ' . mysql_error());
-                  }
-
-                  $fields_num = mysql_num_fields($retval);
-
-                  echo "<h4>Table: {$table} Search</h4>";
-                  echo "<table border='1'><tr>\n";
-                  // printing table headers
-                  for ($i = 0; $i < $fields_num; $i++) {
-                  $field = mysql_fetch_field($retval);
-                  echo "<td><p>$field->name : </p><input name='$field->name' type='text' size='21'/></td>";
-                  //echo "<td>{$field->name}</td>";
-                  }
-
-                  echo "</tr>\n";
-                  // printing table rows
-                  while ($row = mysql_fetch_row($retval)) {
-                  echo "<tr>";
-                  // $row is array... foreach( .. ) puts every element
-                  // of $row to $cell variable
-                  foreach ($row as $cell)
-                  echo "<td>$cell</td>";
-
-                  echo "</tr>\n";
-                  }
-                  echo "</table>\n";
-                  mysql_free_result($retval);
-                  }
-                  else { */
-                $result = mysql_query("SELECT * FROM {$table}");
-                if (!$result) {
-                    die("Query to show fields from table failed");
-                }
-                $fields_num = mysql_num_fields($result);
-
-                echo "<h4>Table: {$table}</h4>";
-                echo "<table border='1'><tr>\n";
-                // printing table headers
-                for ($i = 0; $i < $fields_num; $i++) {
-                    $field = mysql_fetch_field($result);
-                    echo "<td>{$field->name}</td>";
-                    $column[$i] = $field->name;
-                }
-                echo "</tr>\n";
-                // printing table rows
-                while ($row = mysql_fetch_row($result)) {
-                    echo "<tr>";
-                    // $row is array... foreach( .. ) puts every element
-                    // of $row to $cell variable
-                    $iterator = 0;
-                    foreach ($row as $cell) {
-                        $col = $column[$iterator];
-                        $id = $row[0] . $col;
-                        echo
-                        "<td>
-                            <div id=\"$id"."show2\">$cell 
-                            <button onclick=\"return editasiakas('$id', '$cell')\">X</button>
-                            </div>
-							<div id=\"$id"."hide2\" style='display:none'>
-                            <button onclick=\"return canceledit('$id', '$cell')\">EI</button>
-							<form id=\"$id"."rek\" action='' method='post'>
-                            <input value=\"{$row[0]}\" name='row2' type='hidden'/>
-                            <input value=\"$col\" name='column2' type='hidden'/>
-                            <input name='newvalue2' type='text' size='20'/>
-                            <input type='submit' name='insertrek' value='OK'/>
-                            </form>
-                            </div>
-                            </td>";
-                        $iterator++;
-                    }
-                    echo "</tr>\n";
-                }
-                echo "</table>\n";
-                mysql_free_result($result);
-                //}
-                ?>             
-
-                <script>
-                    function editasiakas(id, solu) {
-
-                        var shownelement = document.getElementById(id + 'show2');
-                        shownelement.style.display = "none";
-
-                        var Form = document.forms[id + 'rek'];
-                        Form.elements['newvalue2'].value = solu;
-                        var hiddenelement = document.getElementById(id + 'hide2');
-                        hiddenelement.style.display = "";
-
-                        return false;
-                    }
-                </script>
-
-                <script>
-                    function canceledit(id, solu) {
-
-                        var shownelement = document.getElementById(id + 'show2');
-                        shownelement.style.display = "";
-
-                        var hiddenelement = document.getElementById(id + 'hide2');
-                        hiddenelement.style.display = "none";
-
-                        return false;
-                    }
-                </script>
-
-
+                    <?php // printing table rows
+                    while ($rek_row = mysql_fetch_row($draw_rek_return)) { ?>
+                        <tr>
+                        <?php // $row is array... foreach( .. ) puts every element
+                        // of $row to $cell variable
+                        $rek_iterator = 0;
+                        foreach ($rek_row as $rek_cell) {
+                            $rek_col = $rek_column[$rek_iterator];
+                            $rek_id = $rek_row[0] . $rek_col; ?>
+                                <td>
+                                <div id="<?php echo $rek_id, 'show2' ?>"><?php echo $rek_cell ?> 
+                                <button onclick="return editasiakas('<?php echo $rek_id, "', '", $rek_cell ?>')"><img id="pen" src="pen.png"/></button>
+                                </div>
+                                <div id="<?php echo $rek_id, 'hide2' ?>" style='display:none'>
+                                <form id="<?php echo $rek_id, 'rek' ?>" action='' method='get'>
+                                <input value="<?php echo $rek_row[0] ?>" name='row2' type='hidden'/>
+                                <input value="<?php echo $rek_col ?>" name='column2' type='hidden'/>
+                                <input name='newvalue2' type='text'/><br/>
+                                <input type='submit' name='insertrek' value='Lähetä'/>
+                                <button onclick="return canceledit('<?php echo $rek_id, "', '", $rek_cell ?>')">Peruuta</button>
+                                </form>
+                                </div>
+                                </td>
+                        <?php $rek_iterator++; } ?>
+                        </tr>
+                    <?php } ?>
+                </table>
+                <?php mysql_free_result($draw_rek_return); ?>             
 
             </article>
         </section>
 
-
-
-
-
-
-
-
+        <!--
         <aside>
             <ul>
 
             </ul>
         </aside>
+        -->
+        
         <!---
         <footer>
             <div id="centerfooter">
@@ -647,6 +232,7 @@
                         <a href="controller.html"><li>Controller</li></a>
                         <a href="sahkoinen.html"><li>Sähköinen taloushallinto</li></a>
                     </ul>
+        -->
         <!--<div id="map-canvas"></div>-->
         <!--
 </section>			
@@ -655,34 +241,8 @@
         -->
         
         <script type="text/javascript" src="jquery-1.11.3.min.js"></script>
-        
-        <script type="text/javascript">
-            $(document).ready(function (){
-                
-                var arr = $('[id*=TP]');
-                
-                $.each(arr, function (i, val){
-
-                        var tp = $(val).text().substring(0,10);
-
-                        var tap = new Date(tp);
-
-                        var cur = new Date();
-                        var diff = new Date(cur - tap);
-
-                        //get days
-                        var days = diff/1000/60/60/24;
-
-                        if( (days > -30)&& (days < 30) ) {
-                            $(val).css('background', 'yellow');
-                        }
-
-                        $('#debug').text(tp);
-                });
-            });
-        </script>
-        
-        <div id="debug">asd</div>
-        
+        <script type="text/javascript" src="tablefunctions.js"></script>
+        <script type="text/javascript" src="external.js"></script>
+            
     </body>
 </html>
