@@ -201,9 +201,9 @@ body:before {
         width:auto;
     }
     .topnav{
-        height: 12.5em;
+        height: 8.0em;
         position: relative;
-        top: 3.125em;
+        top: 0em;
         margin: auto;
         width:auto;
     }
@@ -211,13 +211,13 @@ body:before {
         position: relative;
         float: left;
         max-width: 23em; 
-        height: 6.2em;
+        height: auto;
         margin-left: 3%;
         top: 1.875em;
     }
     .topnav ul{
         float: right;
-        margin-top: 5em;
+        margin-top: 2em;
         margin-right: 2.1em;
         width: auto;
     }
@@ -225,7 +225,7 @@ body:before {
         list-style-type: none;
         float: left;
         margin: 0px 0.625em;
-        width: 5.1em;
+        width: 10em;
         padding: 0.5em;	
         font-size: 1.25em;
     }
@@ -306,11 +306,11 @@ body:before {
     }
     table.kuukausiseuranta th{
         padding: 0.2em;
-        border: 0.1em solid #0B0B3B;
+        border-right: 0.1em solid #0B0B3B;
     }
     table.kuukausiseuranta td{
         padding: 0.2em;
-        border: 0.1em solid #0B0B3B;
+        border-bottom: 0.1em solid #0B0B3B;
     }
     table.kuukausiseuranta tr:nth-child(even){
         background-color: #F0F0F0;
@@ -383,6 +383,12 @@ body:before {
     }
     .GUI_form input[type=checkbox]{
         margin: 0.5em;
+    }
+
+    .floatingHeader {
+        position: fixed;
+        top:0em;
+        visibility: hidden;
     }
 
 /*

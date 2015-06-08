@@ -21,7 +21,7 @@
             $rekisteri = 'jp_asiakasrekisteri';
             $seuranta = 'jp_kuukausiseuranta';
 
-            $takaisin = '<a href="#">TAKAISIN</a><br/><br/>';
+            $takaisin_hallintaan = '<a href="hallinta.php">TAKAISIN</a><br/><br/>';
 
             $conn = mysql_connect($db_host, $db_user, $db_pwd);
             if (!$conn)
@@ -69,7 +69,7 @@
                     $ret_create_month = mysql_query($sql_create_month);
                     
                     if (!$ret_create_month) {
-                        echo $takaisin;
+                        echo $takaisin_hallintaan;
                         die('Koodi 38. Virhe yhteydessä tietokantaan: ' . mysql_error());
                     }
                     $affected_rows = mysql_affected_rows();
@@ -82,14 +82,14 @@
                     $ret_update_month = mysql_query($sql_update_month);
                     
                     if (!$ret_update_month) {
-                        echo $takaisin;
+                        echo $takaisin_hallintaan;
                         die('Koodi 39. Virhe yhteydessä tietokantaan: ' . mysql_error());
                     }
                     
                     $affected_rows_2 = mysql_affected_rows();
                     
                     if ($affected_rows != $affected_rows_2) {
-                        echo $takaisin;
+                        echo $takaisin_hallintaan;
                         die('Koodi 40. Kuukausiseurantaa ei voitu luoda. Ota yhteyttä ylläpitäjään ' . mysql_error());
                     }
                 }
@@ -115,15 +115,15 @@
                     $get_customer = mysql_query($sql);
                     
                     if (!$get_customer) {
-                        echo $takaisin;
+                        echo $takaisin_hallintaan;
                         die('Koodi 41. Virhe yhteydessä tietokantaan: ' . mysql_error());
                     }
                     if (mysql_num_rows($get_customer) == 0) {
-                        echo $takaisin;
+                        echo $takaisin_hallintaan;
                         die('Koodi 42. Asiakasta ei löytynyt rekisteristä!');
                     }
                     if (mysql_num_rows($get_customer) > 1) {
-                        echo $takaisin;
+                        echo $takaisin_hallintaan;
                         die('Koodi 43. Asiakasrekisteri virhe: Liian monta asiakasta samalla nimellä. Ota yhteyttä ylläpitäjään');
                     }
                     $row = mysql_fetch_row($get_customer);
@@ -139,11 +139,11 @@
                     $check_month_exists = mysql_query($sql);
                     
                     if (!$check_month_exists) {
-                        echo $takaisin;
+                        echo $takaisin_hallintaan;
                         die('Koodi 44. Virhe yhteydessä tietokantaan: ' . mysql_error());
                     }
                     if (mysql_num_rows($check_month_exists) != 0) {
-                        echo $takaisin;
+                        echo $takaisin_hallintaan;
                         die('Koodi 45. Asiakkaalla on jo seuranta samalla kuukaudella!');
                     }
                     
@@ -159,7 +159,7 @@
                     $return_insert_month = mysql_query($sql);
                     
                     if (!$return_insert_month) {
-                        echo $takaisin;
+                        echo $takaisin_hallintaan;
                         die('Koodi 46. Virhe yhteydessä tietokantaan: ' . mysql_error());
                     }
                     
@@ -173,11 +173,11 @@
                     $return_month_added = mysql_query($sql);
                     
                     if (!$return_month_added) {
-                        echo $takaisin;
+                        echo $takaisin_hallintaan;
                         die('Koodi 47. Virhe yhteydessä tietokantaan: ' . mysql_error());
                     }
                     if (mysql_affected_rows() > 1){
-                        echo $takaisin;
+                        echo $takaisin_hallintaan;
                         die('Koodi 48. Enemmän kuin yksi rivi muutettu, ota yhteyttä ylläpitäjään');
                     }
                 }
@@ -201,11 +201,11 @@
                     $check_customer_exists = mysql_query($sql);
                     
                     if (!$check_customer_exists) {
-                        echo $takaisin;
+                        echo $takaisin_hallintaan;
                         die('Koodi 49. Virhe yhteydessä tietokantaan: ' . mysql_error());
                     }
                     if (mysql_num_rows($check_customer_exists) != 0){
-                        echo $takaisin;
+                        echo $takaisin_hallintaan;
                         die("Koodi 50. Asiakasnimi $asiakas tai Kipitunnus $kipitunnus on jo olemassa, ei voida luoda uudestaan. 
                         Jos haluat luoda asiakkaan samalla tunnuksella tai nimellä, muokkaa rekisteritaulukkoa");
                     }
@@ -229,7 +229,7 @@
                     $return_create_customer = mysql_query($sql);
                     
                     if (!$return_create_customer) {
-                        echo $takaisin;
+                        echo $takaisin_hallintaan;
                         die('Koodi 51. Asiakasta ei voitu luoda rekisteriin: ' . mysql_error());
                     }     
                 }
@@ -245,8 +245,7 @@
                         . "FROM $seuranta");
                             
                 if (!$return_next_month) {
-                    echo $takaisin;
-                    echo $takaisin;
+                    echo $takaisin_hallintaan;
                     die('Koodi 52. Virhe yhteydessä tietokantaan: ' . mysql_error());
                 }
                 else{

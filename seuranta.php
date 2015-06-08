@@ -86,7 +86,7 @@
                     <div class="kuukausiotsikot"><h4><?php echo 'Kuukausiseuranta ',$ALV_month ?></h4><h4> Maksupäivä <?php echo $payday ?></h4></div>
                     <table class="kuukausiseuranta">
                         
-                    <tr class="kkseurantasolu">
+                    <tr class="seurantaheaders" >
                         <?php // printing table headers
                         for ($i = 0; $i < $seur_fields_num; $i++) {
                             $seur_field = mysql_fetch_field($draw_seuranta_return);
@@ -169,7 +169,7 @@
                                 <button onclick="return editasiakas('<?php echo $rek_id, "', '", $rek_cell ?>')"><img id="pen" src="pen.png"/></button>
                                 </div>
                                 <div id="<?php echo $rek_id, 'hide2' ?>" style='display:none'>
-                                <form id="<?php echo $rek_id, 'rek' ?>" action='' method='get'>
+                                <form id="<?php echo $rek_id, 'rek' ?>" action='' method='post'>
                                 <input value="<?php echo $rek_row[0] ?>" name='row2' type='hidden'/>
                                 <input value="<?php echo $rek_col ?>" name='column2' type='hidden'/>
                                 <input name='newvalue2' type='text'/><br/>

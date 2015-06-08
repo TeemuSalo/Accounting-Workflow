@@ -8,7 +8,8 @@ $database = 'jp_asiakkaat';
 $rekisteri = 'jp_asiakasrekisteri';
 $seuranta = 'jp_kuukausiseuranta';
 
-$takaisin = '<a href="#">TAKAISIN</a><br/><br/>';
+$takaisin_seurantaan = '<a href="seuranta.php">TAKAISIN</a><br/><br/>';
+$takaisin_hallintaan = '<a href="hallinta.php">TAKAISIN</a><br/><br/>';
 
 if (isset($_SESSION['selected_month']))
 {

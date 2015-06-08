@@ -34,7 +34,7 @@ if (isset($_POST['insertkk'])) {
     {
         $sql = "UPDATE $seuranta SET `Sähköposti`='$curdate' WHERE Rivi=$editrow";
     }
-    elseif (empty($_POST['newvalue1']) && strpos($editcolumn, "Rak.Ilm.") !== false)
+    elseif (empty($_POST['newvalue1']) && strpos($editcolumn, "Rak. Ilm.") !== false)
     {
         $sql = "UPDATE $seuranta SET `Rakentamis`='$curdate' WHERE Rivi=$editrow";
     }
@@ -96,7 +96,7 @@ if (isset($_POST['insertkk'])) {
             $sql = "UPDATE $seuranta SET `Sähköposti`='$newvalue' WHERE Rivi=$editrow";   
         }
     }
-    elseif (!empty($_POST['newvalue1']) && strpos($editcolumn, "Rak.Ilm.") !== false)
+    elseif (!empty($_POST['newvalue1']) && strpos($editcolumn, "Rak. Ilm.") !== false)
     {
         if (strpos($newvalue, "null") !== false)
         {
@@ -130,7 +130,7 @@ if (isset($_POST['insertkk'])) {
                     
     if (!$update_seuranta_return)
     {
-        echo $takaisin;
+        echo $takaisin_seurantaan;
         die('Koodi 20. Virhe yhteydessä tietokantaan: ' . mysql_error());
     }
 }
@@ -310,7 +310,7 @@ $draw_seuranta_return = mysql_query("SELECT "
                             
 if (!$draw_seuranta_return)
 {
-    echo $takaisin;
+    echo $takaisin_seurantaan;
     die('Koodi 21. Virhe yhteydessä tietokantaan: ' . mysql_error());
 }
 // Fields_num käytetään 'Piirrä kuukausiseuranta osa 2:ssa'
@@ -324,18 +324,18 @@ $seur_fields_num = mysql_num_fields($draw_seuranta_return);
  *          SYÖTÄ ARVO ASIAKASREKISTERIIN
  */
 
-if (isset($_GET['insertrek']) && !empty($_GET['newvalue2'])) {
+if (isset($_POST['insertrek']) && !empty($_POST['newvalue2'])) {
 
-    $rek_editrow = ($_GET['row2']);
-    $rek_editcolumn = ($_GET['column2']);
-    $rek_newvalue = ($_GET['newvalue2']);
+    $rek_editrow = ($_POST['row2']);
+    $rek_editcolumn = ($_POST['column2']);
+    $rek_newvalue = ($_POST['newvalue2']);
 
     // sending query
     $sql = "UPDATE $rekisteri SET `$rek_editcolumn`='$rek_newvalue' WHERE Rivi=$rek_editrow";
 
     $rek_update_return = mysql_query($sql);
     if (!$rek_update_return) {
-        echo $takaisin;
+        echo $takaisin_seurantaan;
         die('Koodi 22. Virhe yhteydessä tietokantaan: ' . mysql_error());
     }
 }
@@ -349,7 +349,7 @@ if (isset($_GET['insertrek']) && !empty($_GET['newvalue2'])) {
 $draw_rek_return = mysql_query("SELECT * FROM $rekisteri ORDER BY Asiakas");
 if (!$draw_rek_return) 
 {
-    echo $takaisin;
+    echo $takaisin_seurantaan;
     die('Koodi 23. Virhe yhteydessä tietokantaan: ' . mysql_error());
 }
 $rek_fields_num = mysql_num_fields($draw_rek_return); 
