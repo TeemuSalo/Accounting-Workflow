@@ -20,8 +20,8 @@
         <nav class="topnav">
             <!--<a href=""><img src="jplogo.jpg"/></a>-->
             <ul>
-                <a href="mysql_test.php"><li>Seuranta ja Rekisteri</li></a>
-                <a href="mysql_gui.php"><li>Lisäykset ja hallinta</li></a>
+                <a href="seuranta.php"><li>Seuranta ja Rekisteri</li></a>
+                <a href="hallinta.php"><li>Lisäykset ja hallinta</li></a>
                 <!--
                 <a href="index.html"><li id="etusivu">Etusivu</li></a>
                 <a href="palvelut.html"><li id="palvelut">Palvelut</li></a>
