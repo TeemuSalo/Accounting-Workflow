@@ -301,16 +301,55 @@ body:before {
         font-size: 1.5em;
     }
     table.kuukausiseuranta{
+        border-spacing: 0;
         width: 100%;
-        border: 0.2em solid #0B0B3B;
+        border-left: 0.2em solid #0B0B3B;
     }
     table.kuukausiseuranta th{
-        padding: 0.2em;
-        border-right: 0.1em solid #0B0B3B;
+        //padding-left: 0.2em;
+        //border-right: 0.1em solid #0B0B3B;
     }
+
+    .container{
+        /* alue johon absolute div sijoitetaan */
+        position: relative;
+        background-color: #500;
+        padding-top: 2.2em;
+    }
+
+    .tablecontainer {
+        /* rullaava alue */
+        overflow-y: auto;
+        height: 50em;
+    }
+
+    .seurantaheaders{
+        /* Piilottaa "oikean rivin" korkeudella, mutta pitää leveyden */
+        height: 0;
+        line-height: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        color: transparent;
+        border: none;
+        white-space: nowrap;
+    }
+
+    .seurantaheaders div{
+        /* divin voi asettaa absoluuttisesti */
+        position: absolute;
+        background: transparent;
+        color: #fff;
+        padding: 9px 25px;
+        top: 0;
+        margin-left: -20px;
+        line-height: normal;
+        //border-left: 1px solid #800;
+    }
+
     table.kuukausiseuranta td{
         padding: 0.2em;
         border-bottom: 0.1em solid #0B0B3B;
+        border-right: 0.1em solid #0B0B3B;
     }
     table.kuukausiseuranta tr:nth-child(even){
         background-color: #F0F0F0;

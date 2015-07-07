@@ -84,48 +84,51 @@
                             PIIRRÄ KUUKAUSISEURANTA OSA 2   
                      -->
                     <div class="kuukausiotsikot"><h4><?php echo 'Kuukausiseuranta ',$ALV_month ?></h4><h4> Maksupäivä <?php echo $payday ?></h4></div>
-                    <table class="kuukausiseuranta">
-                        
-                    <tr class="seurantaheaders" >
-                        <?php // printing table headers
-                        for ($i = 0; $i < $seur_fields_num; $i++) {
-                            $seur_field = mysql_fetch_field($draw_seuranta_return);
-                            // Nimeä jokainen sarake $columniksi
-                            $seur_column[$i] = $seur_field->name; ?>
-                            <th><?php echo $seur_field->name ?></th>
-                        <?php } ?>
-                    </tr>
-                    
-                    <?php // printing table rows
-                    while ($seur_row = mysql_fetch_row($draw_seuranta_return)) 
-                    { ?>
-                        <tr>
-                        <?php // $row is array... foreach( .. ) puts every element
-                        // of $row to $cell variable
-                        $seur_iterator = 0;
-                        foreach ($seur_row as $seur_cell) {
-                            $seur_col = $seur_column[$seur_iterator];
-                            $seur_id = $seur_row[0] . $seur_col; ?>
-                            <td>
-                            <div id="<?php echo $seur_id,'show1' ?>"><p><?php echo $seur_cell ?></p>
-                            <button onclick="return editkausi('<?php echo $seur_id, "', '", $seur_cell ?>')"><img id="pen" src="pen.png"/></button>
-                            </div>
-                            <div id="<?php echo $seur_id, 'hide1' ?>" style='display:none'>
-                            <form id="<?php echo $seur_id, 'seuranta' ?>" action='' method='post'>
-                            <input value="<?php echo $seur_row[0] ?>" name='row1' type='hidden'/>
-                            <input value="<?php echo $seur_col ?>" name='column1' type='hidden'/>
-                            <input name='newvalue1' type='text' /><br/>
-                            <input type='submit' name='insertkk' value='Lähetä'/>
-                            <button onclick="return canceleditkausi('<?php echo $seur_id, "', '", $seur_cell ?>')">Peruuta</button>
-                            </form>
-                            </div>
-                            </td>
-                            <?php $seur_iterator++;
-                        } ?>
+                    <div class="container">
+                    <div class="tablecontainer">
+                        <table class="kuukausiseuranta">
+
+                        <tr class="seurantaheaders" >
+                            <?php // printing table headers
+                            for ($i = 0; $i < $seur_fields_num; $i++) {
+                                $seur_field = mysql_fetch_field($draw_seuranta_return);
+                                // Nimeä jokainen sarake $columniksi
+                                $seur_column[$i] = $seur_field->name; ?>
+                                <th><?php echo $seur_field->name ?> <div><?php echo $seur_field->name ?></div> </th> <!-- TUPLANA -->
+                            <?php } ?>
                         </tr>
-                    <?php } ?>
-                    </table>
-                    
+
+                        <?php // printing table rows
+                        while ($seur_row = mysql_fetch_row($draw_seuranta_return)) 
+                        { ?>
+                            <tr>
+                            <?php // $row is array... foreach( .. ) puts every element
+                            // of $row to $cell variable
+                            $seur_iterator = 0;
+                            foreach ($seur_row as $seur_cell) {
+                                $seur_col = $seur_column[$seur_iterator];
+                                $seur_id = $seur_row[0] . $seur_col; ?>
+                                <td>
+                                <div id="<?php echo $seur_id,'show1' ?>"><p><?php echo $seur_cell ?></p>
+                                <button onclick="return editkausi('<?php echo $seur_id, "', '", $seur_cell ?>')"><img id="pen" src="pen.png"/></button>
+                                </div>
+                                <div id="<?php echo $seur_id, 'hide1' ?>" style='display:none'>
+                                <form id="<?php echo $seur_id, 'seuranta' ?>" action='' method='post'>
+                                <input value="<?php echo $seur_row[0] ?>" name='row1' type='hidden'/>
+                                <input value="<?php echo $seur_col ?>" name='column1' type='hidden'/>
+                                <input name='newvalue1' type='text' /><br/>
+                                <input type='submit' name='insertkk' value='Lähetä'/>
+                                <button onclick="return canceleditkausi('<?php echo $seur_id, "', '", $seur_cell ?>')">Peruuta</button>
+                                </form>
+                                </div>
+                                </td>
+                                <?php $seur_iterator++;
+                            } ?>
+                            </tr>
+                        <?php } ?>
+                        </table>
+                    </div>
+                    </div>
                     <?php mysql_free_result($draw_seuranta_return); ?>
 
                 <br/><br/>
