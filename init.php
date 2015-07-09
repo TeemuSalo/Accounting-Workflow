@@ -5,8 +5,8 @@ $db_user = 'root';
 $db_pwd = '';
 $database = 'jp_asiakkaat';
 
-$rekisteri = 'jp_asiakasrekisteri';
-$seuranta = 'jp_kuukausiseuranta';
+$rekisteri = 'testi_asiakasrek';    // HUOM TESTI DATABASE
+$seuranta = 'testi_kuukausi';       // HUOM TESTI DATABASE
 
 $takaisin_seurantaan = '<a href="seuranta.php">TAKAISIN</a><br/><br/>';
 $takaisin_hallintaan = '<a href="hallinta.php">TAKAISIN</a><br/><br/>';

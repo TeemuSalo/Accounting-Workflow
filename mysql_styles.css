@@ -200,6 +200,7 @@ body:before {
         font-size: 1em;
         width:auto;
     }
+    /*
     .topnav{
         height: 8.0em;
         position: relative;
@@ -215,10 +216,11 @@ body:before {
         margin-left: 3%;
         top: 1.875em;
     }
+    */
     .topnav ul{
         float: right;
-        margin-top: 2em;
-        margin-right: 2.1em;
+        /*margin-top: 2em;
+        margin-right: 2.1em; */
         width: auto;
     }
     .topnav li {
@@ -232,7 +234,7 @@ body:before {
 
     #path{
         position: relative;
-        height: 3.125em;
+        height: 3em;
         width: auto;
         background: linear-gradient(to bottom, #A4A4A4 50%,#6E6E6E);
     }
@@ -240,6 +242,7 @@ body:before {
         padding: 0.938em;
         margin-left:9%;
         color:white;
+        float:left;
     }
     #path a{
         color:white;
@@ -273,7 +276,7 @@ body:before {
     }*/
 
     article {
-        margin: 1.0em auto 0 auto;
+        margin: 0 auto 0 auto;
         font-size: 1em;
         padding: 1.000em;
         color:#0B0B3B;
@@ -296,18 +299,17 @@ body:before {
         margin-right: 0.8em;
         margin-left: 0.2em;
     }
-
-    .kuukausiotsikot h4{
+    .vasemmalle{
+        float:left;
+    }
+    .kuukausiotsikot{
         font-size: 1.5em;
+        float: right;
     }
     table.kuukausiseuranta{
         border-spacing: 0;
         width: 100%;
-        border-left: 0.2em solid #0B0B3B;
-    }
-    table.kuukausiseuranta th{
-        //padding-left: 0.2em;
-        //border-right: 0.1em solid #0B0B3B;
+        /* border-left: 0.2em solid #0B0B3B; */
     }
 
     .container{
@@ -315,12 +317,14 @@ body:before {
         position: relative;
         background-color: #500;
         padding-top: 2.2em;
+        clear:both;
     }
 
     .tablecontainer {
         /* rullaava alue */
         overflow-y: auto;
-        height: 50em;
+        height: 45em;
+        border: 0.1em solid #500;
     }
 
     .seurantaheaders{
@@ -343,7 +347,7 @@ body:before {
         top: 0;
         margin-left: -20px;
         line-height: normal;
-        //border-left: 1px solid #800;
+        /*border-left: 1px solid #800; */
     }
 
     table.kuukausiseuranta td{

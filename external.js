@@ -45,60 +45,6 @@ $(document).ready(function () {
     var hint = $('input[name="jshint"]').val();
     $('select[name="kuukausilista"] option').eq(hint).prop('selected', true);
     
-    
-    // Fixed tabled headers on scrolldown
-    function UpdateTableHeaders() {
-   
-           var el             = $(".seurantaheaders"),
-               offset         = el.offset(),
-               scrollTop      = $(window).scrollTop(),
-               floatingHeader = $(".floatingHeader");
-
-           if ((scrollTop >= offset.top)) {
-               floatingHeader.css('visibility', 'visible');
-               floatingHeader.css('font-size', '0.9em');
-               
-           } else {
-               floatingHeader.css('visibility', 'hidden');
-           }
-    }
-    
-    var clonedHeaderRow;
-    // DOM Ready      
-    clonedHeaderRow = $(".seurantaheaders");
-    clonedHeaderRow
-        .before(clonedHeaderRow.clone())
-        .css("width", clonedHeaderRow.width())
-        .addClass("floatingHeader");
-    
-    clonedHeaderRow.children().each( function(ite) {
-        
-            switch(ite){
-                case 0:
-                    $(this).css('width', '1.2%');
-                    break;
-                case 1:
-                    $(this).css('width', '1.2%');
-                    break;
-                case 2:
-                    $(this).css('width', '7.2%');
-                    break;
-                case 3:
-                    $(this).css('width', '4.0%');
-                    break;
-                case 4:
-                    $(this).css('width', '2.6%');
-                    break;
-                case 5:
-                    $(this).css('width', '2.6%');
-                    break;
-                default:
-                    $(this).css('width', '2.2%');
-            }
-        });
-
-    $(window)
-        .scroll(UpdateTableHeaders)
-        .trigger("scroll");
+ 
     
 });
