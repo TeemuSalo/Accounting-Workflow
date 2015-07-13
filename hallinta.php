@@ -33,20 +33,17 @@
             mysql_query("SET NAMES 'utf8'");
         ?>
 
-        <nav class="topnav">
-            <!--<a href=""><img src="jplogo.jpg"></img></a>-->
-            <ul>
-                <a href="seuranta.php"><li>Seuranta ja Rekisteri</li></a>
-                <a href="hallinta.php"><li>Lisäykset ja hallinta</li></a>
-                <!--
-                <a href="index.html"><li id="etusivu">Etusivu</li></a>
-                <a href="palvelut.html"><li id="palvelut">Palvelut</li></a>
-                <a href="hintalaskuri.html"><li id="hintalaskuri">Hintalaskuri</li></a>
-                <a href="yhteystiedot.html"><li id="yhteystiedot">Yhteystiedot</li></a>-->
-            </ul>
-        </nav>
-
-        <div id="path"><p>MySQL Graafinen hallintapaneeli</p></div>
+        <div id="path">
+            <p>JP Asiakasseuranta ja tietokanta</a></p>
+            <nav class="topnav">
+                <!--<a href=""><img src="jplogo.jpg"/></a>-->
+                <ul>
+                    <a href="seuranta.php"><li>Seuranta</li></a>
+                    <a href="rekisteri.php"><li>Rekisteri</li></a>
+                    <a href="hallinta.php"><li>Lisäykset ja hallinta</li></a>
+                </ul>
+            </nav>
+        </div>
 
         <section>
             <article id="kirjanpito">

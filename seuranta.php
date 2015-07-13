@@ -51,7 +51,7 @@
 
                     <form id="vaihdakuukausi" action="" method="post">
                         <input type="hidden" name="jshint" value="<?php if(isset($_SESSION['selected_month']))
-                                                                           {echo $_SESSION['selected_month'];} else{echo '0';} ?>" />
+                                                                           {echo $_SESSION['selected_month'];} else{echo $kuukausi;} ?>" />
                         <?php
                         if (isset($_SESSION['Kommentit'])) { ?>
                             Kommentit<input type="checkbox" name="Kommentit" value="Kommentit" checked="yes"/>
