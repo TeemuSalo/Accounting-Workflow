@@ -27,78 +27,39 @@ $(document).ready(function () {
         // Erotus kuukautta ennen tai kuukautta jälkeen
         if( (days > -30) && (days <= 31) ) 
         {
-            $(arr[i]).css('background', 'yellow');
+            $(arr[i]).closest('td').css('background', 'yellow');
         }
         // Erotus 1 - 2 kuukautta
         else if( (days > 31) && (days <= 91) ) 
         {
-            $(arr[i]).css('background', 'orange');
+            $(arr[i]).closest('td').css('background', 'orange');
         }
         // Erotus yli 3 kuukautta
         else if( days > 91 ) 
         {
-            $(arr[i]).css('background', '#CC4444');
+            $(arr[i]).closest('td').css('background', '#CC4444');
         }
     });
+    
     
     // kuukausipudotusvalikon indexi on aina valittu kuukausi
     var hint = $('input[name="jshint"]').val();
     $('select[name="kuukausilista"] option').eq(hint).prop('selected', true);
     
     
-    // Fixed tabled headers on scrolldown
-    function UpdateTableHeaders() {
-   
-           var el             = $(".seurantaheaders"),
-               offset         = el.offset(),
-               scrollTop      = $(window).scrollTop(),
-               floatingHeader = $(".floatingHeader");
+    // Tyhjät solut värjätty, kun alv päivä lähenee
+    var datenow = new Date();
+    monthnow = datenow.getMonth();
+    
+    if( (monthnow - hint) > 0 )
+    {
+        var arr2 = $('table div > p:empty');
 
-           if ((scrollTop >= offset.top)) {
-               floatingHeader.css('visibility', 'visible');
-               floatingHeader.css('font-size', '0.9em');
-               
-           } else {
-               floatingHeader.css('visibility', 'hidden');
-           }
-    }
-    
-    var clonedHeaderRow;
-    // DOM Ready      
-    clonedHeaderRow = $(".seurantaheaders");
-    clonedHeaderRow
-        .before(clonedHeaderRow.clone())
-        .css("width", clonedHeaderRow.width())
-        .addClass("floatingHeader");
-    
-    clonedHeaderRow.children().each( function(ite) {
-        
-            switch(ite){
-                case 0:
-                    $(this).css('width', '1.2%');
-                    break;
-                case 1:
-                    $(this).css('width', '1.2%');
-                    break;
-                case 2:
-                    $(this).css('width', '7.2%');
-                    break;
-                case 3:
-                    $(this).css('width', '4.0%');
-                    break;
-                case 4:
-                    $(this).css('width', '2.6%');
-                    break;
-                case 5:
-                    $(this).css('width', '2.6%');
-                    break;
-                default:
-                    $(this).css('width', '2.2%');
-            }
+        $.each(arr2, function (i) {
+
+            $(arr2[i]).closest('td').css('background', '#FFBBAA');
+
         });
-
-    $(window)
-        .scroll(UpdateTableHeaders)
-        .trigger("scroll");
+    }
     
 });
