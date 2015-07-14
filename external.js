@@ -1,7 +1,7 @@
 $(document).ready(function () {
     
     // Array TP sarakkeen show1 sisältö
-    var arr = $('[id*=Tilinpäätösshow1] > p');
+    var arr = $('[class=Tilinpäätös] > p');
                 
     $.each(arr, function (i) {
 
