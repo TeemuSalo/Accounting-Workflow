@@ -286,7 +286,15 @@ body:before {
         color: #0B263B;
     }
 
-    #pen {
+    .show{
+        
+    }
+
+    .ok, .cancel{
+        display: none;
+    }
+
+    .pen {
         width:13px;
         height: 13px;
     }
@@ -300,9 +308,11 @@ body:before {
         margin-left: 0.2em;
     }
     .vasemmalle{
+        /* Pudotusvalikko ja laatikot vasemmalle */
         float:left;
     }
     .kuukausiotsikot{
+        /* seurantakuukausi oikealle */
         font-size: 1.5em;
         float: right;
     }
@@ -323,7 +333,7 @@ body:before {
     .tablecontainer {
         /* rullaava alue */
         overflow-y: auto;
-        height: 45em;
+        height: 43.5em;
         border: 0.1em solid #500;
     }
 
@@ -428,12 +438,13 @@ body:before {
         margin: 0.5em;
     }
 
+/*
     .floatingHeader {
         position: fixed;
         top:0em;
         visibility: hidden;
     }
-
+*/
 /*
     footer {
         clear:both;

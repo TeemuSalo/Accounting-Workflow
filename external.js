@@ -1,7 +1,7 @@
 $(document).ready(function () {
     
     // Array TP sarakkeen show1 sisältö
-    var arr = $('[id*=Tilinpäätösshow1] > p');
+    var arr = $('[class=Tilinpäätös] > p');
                 
     $.each(arr, function (i) {
 
@@ -27,24 +27,39 @@ $(document).ready(function () {
         // Erotus kuukautta ennen tai kuukautta jälkeen
         if( (days > -30) && (days <= 31) ) 
         {
-            $(arr[i]).css('background', 'yellow');
+            $(arr[i]).closest('td').css('background', 'yellow');
         }
         // Erotus 1 - 2 kuukautta
         else if( (days > 31) && (days <= 91) ) 
         {
-            $(arr[i]).css('background', 'orange');
+            $(arr[i]).closest('td').css('background', 'orange');
         }
         // Erotus yli 3 kuukautta
         else if( days > 91 ) 
         {
-            $(arr[i]).css('background', '#CC4444');
+            $(arr[i]).closest('td').css('background', '#CC4444');
         }
     });
+    
     
     // kuukausipudotusvalikon indexi on aina valittu kuukausi
     var hint = $('input[name="jshint"]').val();
     $('select[name="kuukausilista"] option').eq(hint).prop('selected', true);
     
- 
+    
+    // Tyhjät solut värjätty, kun alv päivä lähenee
+    var datenow = new Date();
+    monthnow = datenow.getMonth();
+    
+    if( (monthnow - hint) > 0 )
+    {
+        var arr2 = $('table div > p:empty');
+
+        $.each(arr2, function (i) {
+
+            $(arr2[i]).closest('td').css('background', '#FFBBAA');
+
+        });
+    }
     
 });

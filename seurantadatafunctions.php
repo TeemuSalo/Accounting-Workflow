@@ -1,140 +1,11 @@
 <?php
 /*
- *          SYÖTÄ ARVO KUUKAUSISEURANTAAN
+ *          
+        SIIRRETTY OMAAN TIEDOSTOONSA
+ 
+        SYÖTÄ ARVO KUUKAUSISEURANTAAN
  */
 
-if (isset($_POST['insertkk'])) 
-{
-
-    $editrow = ($_POST['row1']);
-    $editcolumn = ($_POST['column1']);
-    $newvalue = ($_POST['newvalue1']);
-                    
-    // curdate used for empty fields automatic insert
-    $curdate = date('Y-m-d');
-
-    // Set empty value in field as current date
-    // Checks each custom column for match, strpos returns false if string isn't found
-    if (empty($_POST['newvalue1']) && strpos($editcolumn, "EU") !== false) 
-    {
-        $sql = "UPDATE `$seuranta` SET EU='$curdate' WHERE Rivi=$editrow";
-    }
-    elseif (empty($_POST['newvalue1']) && strpos($editcolumn, "ALV") !== false) 
-    {
-        $sql = "UPDATE $seuranta SET ALV='$curdate' WHERE Rivi=$editrow";
-    }
-    elseif (empty($_POST['newvalue1']) && strpos($editcolumn, "TAS") !== false) 
-    {
-        $sql = "UPDATE $seuranta SET TAS='$curdate' WHERE Rivi=$editrow";
-    }
-    elseif (empty($_POST['newvalue1']) && strpos($editcolumn, "TYEL") !== false)
-    {
-        $sql = "UPDATE $seuranta SET TYEL='$curdate' WHERE Rivi=$editrow";
-    }
-    elseif (empty($_POST['newvalue1']) && strpos($editcolumn, "Sähköposti") !== false)
-    {
-        $sql = "UPDATE $seuranta SET `Sähköposti`='$curdate' WHERE Rivi=$editrow";
-    }
-    elseif (empty($_POST['newvalue1']) && strpos($editcolumn, "Rak. Ilm.") !== false)
-    {
-        $sql = "UPDATE $seuranta SET `Rakentamis`='$curdate' WHERE Rivi=$editrow";
-    }
-                    
-    // This means there was a value, value 'null' means erase field
-    // Checks each custom column for match, strpos returns false if string isn't found
-    elseif (!empty($_POST['newvalue1']) && strpos($editcolumn, "EU") !== false) 
-    {
-        if (strpos($newvalue, "null") !== false)
-        {
-            $sql = "UPDATE $seuranta SET EU= NULL WHERE Rivi=$editrow";  
-        }
-        else
-        {
-            $sql = "UPDATE $seuranta SET EU='$newvalue' WHERE Rivi=$editrow";
-        }
-    }
-    elseif (!empty($_POST['newvalue1']) && strpos($editcolumn, "ALV") !== false) 
-    {
-        if (strpos($newvalue, "null") !== false)
-        {
-            $sql = "UPDATE $seuranta SET ALV= NULL WHERE Rivi=$editrow";  
-        }
-        else
-        {
-            $sql = "UPDATE $seuranta SET ALV='$newvalue' WHERE Rivi=$editrow";
-        }
-    }
-    elseif (!empty($_POST['newvalue1']) && strpos($editcolumn, "TAS") !== false) 
-    {
-        if (strpos($newvalue, "null") !== false)
-        {
-            $sql = "UPDATE $seuranta SET TAS= NULL WHERE Rivi=$editrow";  
-        }
-        else
-        {
-            $sql = "UPDATE $seuranta SET TAS='$newvalue' WHERE Rivi=$editrow";
-        }
-    }
-    elseif (!empty($_POST['newvalue1']) && strpos($editcolumn, "TYEL") !== false)
-    {
-        if (strpos($newvalue, "null") !== false)
-        {
-            $sql = "UPDATE $seuranta SET TYEL= NULL WHERE Rivi=$editrow";  
-        }
-        else
-        {
-            $sql = "UPDATE $seuranta SET TYEL='$newvalue' WHERE Rivi=$editrow";
-        }
-    }
-    elseif (!empty($_POST['newvalue1']) && strpos($editcolumn, "Sähköposti") !== false)
-    {
-        if (strpos($newvalue, "null") !== false)
-        {
-            $sql = "UPDATE $seuranta SET `Sähköposti`= NULL WHERE Rivi=$editrow";  
-        }
-        else
-        {
-            $sql = "UPDATE $seuranta SET `Sähköposti`='$newvalue' WHERE Rivi=$editrow";   
-        }
-    }
-    elseif (!empty($_POST['newvalue1']) && strpos($editcolumn, "Rak. Ilm.") !== false)
-    {
-        if (strpos($newvalue, "null") !== false)
-        {
-            $sql = "UPDATE $seuranta SET `Rakentamis`= NULL WHERE Rivi=$editrow";  
-        }
-        else
-        {
-            $sql = "UPDATE $seuranta SET `Rakentamis`='$newvalue' WHERE Rivi=$editrow";   
-        }
-    }
-                    
-    // Not a custom 'AS' column, insert value directly
-    elseif (empty($_POST['newvalue1']))
-    {
-        $sql = "UPDATE $seuranta SET `$editcolumn`='$curdate' WHERE Rivi=$editrow";
-    }
-    else
-    {
-        if (strpos($newvalue, "null") !== false)
-        {
-            $sql = "UPDATE $seuranta SET `$editcolumn`= NULL WHERE Rivi=$editrow";  
-        }
-        else
-        {
-            $sql = "UPDATE $seuranta SET `$editcolumn`='$newvalue' WHERE Rivi=$editrow";   
-        }
-    }
-
-    // Make Query
-    $update_seuranta_return = mysql_query($sql);
-                    
-    if (!$update_seuranta_return)
-    {
-        echo $takaisin_seurantaan;
-        die('Koodi 20. Virhe yhteydessä tietokantaan: ' . mysql_error());
-    }
-}
 ?>
 
 <?php
@@ -176,7 +47,7 @@ else
 switch ($kuukausi) {
     case 0:
         unset($_SESSION['selected_month']);
-        header('Location: http://localhost/jpmysql/mysql_test.php');
+        header('Location: http://localhost/workspace/asiakasseuranta/seuranta.php');
         break;
     case 1:
         $ALV_month = 'tammikuu';
@@ -252,6 +123,13 @@ if(isset($_POST['vaihdakk']))
     } else {
         unset($_SESSION['TehdytTunnit']);
     }
+    
+    if (isset($_POST['TYEL']))
+    {
+        $_SESSION['TYEL'] = 'TRUE';
+    } else {
+        unset($_SESSION['TYEL']);
+    }
 
     if (isset($_POST['Rakentamis']))
     {
@@ -261,8 +139,8 @@ if(isset($_POST['vaihdakk']))
     }
 }
 
-// SESSION mukaan näytä tai piilota kentät
-if (isset($_SESSION['Kommentit']))
+    // SESSION mukaan näytä tai piilota kentät
+    if (isset($_SESSION['Kommentit']))
     {
         $Kommentit = '`Kommentit`, ';
     } else {
@@ -283,6 +161,13 @@ if (isset($_SESSION['Kommentit']))
         $TehdytTunnit = '';
     }
 
+    if (isset($_SESSION['TYEL']))
+    {
+        $TYEL = "`TYEL` AS 'TYEL $TAS_month', ";
+    } else {
+        $TYEL = '';
+    }
+
     if (isset($_SESSION['Rakentamis']))
     {
         $Rakentamis = "`Rakentamis` AS 'Rak. Ilm. $ALV_month', ";
@@ -295,14 +180,15 @@ $draw_seuranta_return = mysql_query("SELECT "
                       . "`Kipitunnus`, "
                       . "`Asiakas`, "
                       . "`Aineisto Saapunut`, "
+                      . "`Kirjanpito Tehty` , "
                       . "`EU` AS 'EU $ALV_month', "
                       . "`ALV` AS 'ALV $ALV_month', "
                       . "`TAS` AS 'TAS $TAS_month', "
-                      . "`TYEL` AS 'TYEL $TAS_month', "
                       . "`Sähköposti`, "
                       . "$Kommentit "
                       . "$Laskutettu "
                       . "$TehdytTunnit "
+                      . "$TYEL "
                       . "$Rakentamis "
                       . "`Tilinpäätös` "
                       . "FROM $seuranta "
