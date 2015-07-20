@@ -5,7 +5,144 @@
  
         SYÖTÄ ARVO KUUKAUSISEURANTAAN
  */
+<<<<<<< HEAD
 
+=======
+/*
+if (isset($_POST['ajaxrow'])) 
+{
+
+    $editrow = ($_POST['ajaxrow']);
+    $editcolumn = ($_POST['ajaxcol']);
+    $newvalue = ($_POST['newvalue1']);
+                    
+    // curdate used for empty fields automatic insert
+    $curdate = date('Y-m-d');
+
+    // Set empty value in field as current date
+    // Checks each custom column for match, strpos returns false if string isn't found
+    if (empty($_POST['newvalue1']) && strpos($editcolumn, "EU") !== false) 
+    {
+        $sql = "UPDATE `$seuranta` SET EU='$curdate' WHERE Rivi=$editrow";
+    }
+    elseif (empty($_POST['newvalue1']) && strpos($editcolumn, "ALV") !== false) 
+    {
+        $sql = "UPDATE $seuranta SET ALV='$curdate' WHERE Rivi=$editrow";
+    }
+    elseif (empty($_POST['newvalue1']) && strpos($editcolumn, "TAS") !== false) 
+    {
+        $sql = "UPDATE $seuranta SET TAS='$curdate' WHERE Rivi=$editrow";
+    }
+    elseif (empty($_POST['newvalue1']) && strpos($editcolumn, "TYEL") !== false)
+    {
+        $sql = "UPDATE $seuranta SET TYEL='$curdate' WHERE Rivi=$editrow";
+    }
+    elseif (empty($_POST['newvalue1']) && strpos($editcolumn, "Sähköposti") !== false)
+    {
+        $sql = "UPDATE $seuranta SET `Sähköposti`='$curdate' WHERE Rivi=$editrow";
+    }
+    elseif (empty($_POST['newvalue1']) && strpos($editcolumn, "Rak. Ilm.") !== false)
+    {
+        $sql = "UPDATE $seuranta SET `Rakentamis`='$curdate' WHERE Rivi=$editrow";
+    }
+                    
+    // This means there was a value, value 'null' means erase field
+    // Checks each custom column for match, strpos returns false if string isn't found
+    elseif (!empty($_POST['newvalue1']) && strpos($editcolumn, "EU") !== false) 
+    {
+        if (strpos($newvalue, "null") !== false)
+        {
+            $sql = "UPDATE $seuranta SET EU= NULL WHERE Rivi=$editrow";  
+        }
+        else
+        {
+            $sql = "UPDATE $seuranta SET EU='$newvalue' WHERE Rivi=$editrow";
+        }
+    }
+    elseif (!empty($_POST['newvalue1']) && strpos($editcolumn, "ALV") !== false) 
+    {
+        if (strpos($newvalue, "null") !== false)
+        {
+            $sql = "UPDATE $seuranta SET ALV= NULL WHERE Rivi=$editrow";  
+        }
+        else
+        {
+            $sql = "UPDATE $seuranta SET ALV='$newvalue' WHERE Rivi=$editrow";
+        }
+    }
+    elseif (!empty($_POST['newvalue1']) && strpos($editcolumn, "TAS") !== false) 
+    {
+        if (strpos($newvalue, "null") !== false)
+        {
+            $sql = "UPDATE $seuranta SET TAS= NULL WHERE Rivi=$editrow";  
+        }
+        else
+        {
+            $sql = "UPDATE $seuranta SET TAS='$newvalue' WHERE Rivi=$editrow";
+        }
+    }
+    elseif (!empty($_POST['newvalue1']) && strpos($editcolumn, "TYEL") !== false)
+    {
+        if (strpos($newvalue, "null") !== false)
+        {
+            $sql = "UPDATE $seuranta SET TYEL= NULL WHERE Rivi=$editrow";  
+        }
+        else
+        {
+            $sql = "UPDATE $seuranta SET TYEL='$newvalue' WHERE Rivi=$editrow";
+        }
+    }
+    elseif (!empty($_POST['newvalue1']) && strpos($editcolumn, "Sähköposti") !== false)
+    {
+        if (strpos($newvalue, "null") !== false)
+        {
+            $sql = "UPDATE $seuranta SET `Sähköposti`= NULL WHERE Rivi=$editrow";  
+        }
+        else
+        {
+            $sql = "UPDATE $seuranta SET `Sähköposti`='$newvalue' WHERE Rivi=$editrow";   
+        }
+    }
+    elseif (!empty($_POST['newvalue1']) && strpos($editcolumn, "Rak. Ilm.") !== false)
+    {
+        if (strpos($newvalue, "null") !== false)
+        {
+            $sql = "UPDATE $seuranta SET `Rakentamis`= NULL WHERE Rivi=$editrow";  
+        }
+        else
+        {
+            $sql = "UPDATE $seuranta SET `Rakentamis`='$newvalue' WHERE Rivi=$editrow";   
+        }
+    }
+                    
+    // Not a custom 'AS' column, insert value directly
+    elseif (empty($_POST['newvalue1']))
+    {
+        $sql = "UPDATE $seuranta SET `$editcolumn`='$curdate' WHERE Rivi=$editrow";
+    }
+    else
+    {
+        if (strpos($newvalue, "null") !== false)
+        {
+            $sql = "UPDATE $seuranta SET `$editcolumn`= NULL WHERE Rivi=$editrow";  
+        }
+        else
+        {
+            $sql = "UPDATE $seuranta SET `$editcolumn`='$newvalue' WHERE Rivi=$editrow";   
+        }
+    }
+
+    // Make Query
+    $update_seuranta_return = mysql_query($sql);
+                    
+    if (!$update_seuranta_return)
+    {
+        echo $takaisin_seurantaan;
+        die('Koodi 20. Virhe yhteydessä tietokantaan: ' . mysql_error());
+    }
+}
+*/
+>>>>>>> 6c6b43132088867e41db47e021e9e0a9dc3c1178
 ?>
 
 <?php
