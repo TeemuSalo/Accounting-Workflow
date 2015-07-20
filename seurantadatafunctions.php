@@ -5,9 +5,7 @@
  
         SYÖTÄ ARVO KUUKAUSISEURANTAAN
  */
-<<<<<<< HEAD
 
-=======
 /*
 if (isset($_POST['ajaxrow'])) 
 {
@@ -142,7 +140,7 @@ if (isset($_POST['ajaxrow']))
     }
 }
 */
->>>>>>> 6c6b43132088867e41db47e021e9e0a9dc3c1178
+
 ?>
 
 <?php
