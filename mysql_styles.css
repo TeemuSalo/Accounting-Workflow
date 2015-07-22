@@ -235,7 +235,7 @@ body:before {
     #path{
         position: relative;
         height: 3em;
-        width: auto;
+        min-width: 70em;
         background: linear-gradient(to bottom, #A4A4A4 50%,#6E6E6E);
     }
     #path p{
@@ -278,9 +278,10 @@ body:before {
     article {
         margin: 0 auto 0 auto;
         font-size: 1em;
-        padding: 1.000em;
+        padding: 0 0.5em;
         color:#0B0B3B;
         text-align: left;
+        clear:both;
     }
     article h4{
         color: #0B263B;
@@ -310,6 +311,7 @@ body:before {
     .vasemmalle{
         /* Pudotusvalikko ja laatikot vasemmalle */
         float:left;
+        height: 6em;
     }
     .kuukausiotsikot{
         /* seurantakuukausi oikealle */
@@ -326,14 +328,21 @@ body:before {
         /* alue johon absolute div sijoitetaan */
         position: relative;
         background-color: #500;
-        padding-top: 2.2em;
+        padding-top: 2em;
+        padding-bottom: 2em;
         clear:both;
+        height: 43.3em;
+        min-width: 90em;
+    }
+    .pohjainfo{
+        color: white;
+        padding: 0.2em 2em;
     }
 
     .tablecontainer {
         /* rullaava alue */
         overflow-y: auto;
-        height: 43.5em;
+        height: 100%;
         border: 0.1em solid #500;
     }
 

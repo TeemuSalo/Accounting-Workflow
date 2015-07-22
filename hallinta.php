@@ -304,7 +304,7 @@
                 <br/>
                 <select form="valitseasiakas" name="asiakaslista">        
                     <?php 
-                        $return_customer_list = mysql_query("SELECT Asiakas FROM $rekisteri");
+                        $return_customer_list = mysql_query("SELECT Asiakas FROM $rekisteri ORDER BY Asiakas");
                         while ($customers = mysql_fetch_row($return_customer_list)){
                         foreach ($customers as $customer){ ?>
                             <option value="<?php echo $customer ?>"><?php echo $customer ?></option>

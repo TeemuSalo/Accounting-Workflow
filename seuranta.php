@@ -29,7 +29,7 @@
             </nav>
         </div>
 
-        <section>
+
             <article id="kirjanpito">
                 
                 <div class="vasemmalle">
@@ -131,6 +131,7 @@
                         <?php } ?>
                         </table>
                     </div>
+                        <div class="pohjainfo">Asiakkaita yhteensä: <?php echo mysql_num_rows($draw_seuranta_return) ?></div>
                     </div>
                     <?php mysql_free_result($draw_seuranta_return); ?>
      
@@ -149,7 +150,7 @@
                 <!-- PIIRRÄ ASIAKASREKISTERI OSA 2 -->
 
             </article>
-        </section>
+
         
         <script type="text/javascript" src="jquery-1.11.3.min.js"></script>
         <script type="text/javascript" src="tablefunctions.js"></script>
