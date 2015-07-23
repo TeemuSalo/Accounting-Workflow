@@ -6,7 +6,7 @@
     background-color:transparent;
     text-decoration:none;
 }
-
+/*
 body:before {
     content: "";
     position: fixed;
@@ -19,7 +19,7 @@ body:before {
     box-shadow: 0px 0px 1.250em rgba(0,0,0,.8);
     z-index: 100;
 }
-
+*/
 /*@media all and (min-width:1366px){ */
     /************************Max 1900px yli medium-largen *********************/
 /*
@@ -195,10 +195,12 @@ body:before {
 /*@media all and (max-width:1365px) and (min-width:1025px){ */
     /***********************MEDIUM LARGE =1365px juuri sopiva *******************/
 
-    body{
+	body{
         font: 1em Arial, Helvetica, sans-serif;
         font-size: 1em;
         width:auto;
+		height: 100vh;
+		position: relative;
     }
     /*
     .topnav{
@@ -239,7 +241,7 @@ body:before {
         background: linear-gradient(to bottom, #A4A4A4 50%,#6E6E6E);
     }
     #path p{
-        padding: 0.938em;
+        padding: 0.9em;
         margin-left:9%;
         color:white;
         float:left;
@@ -276,12 +278,13 @@ body:before {
     }*/
 
     article {
-        margin: 0 auto 0 auto;
+        margin: 0 auto;
         font-size: 1em;
         padding: 0 0.5em;
         color:#0B0B3B;
         text-align: left;
         clear:both;
+		height: 87vh;
     }
     article h4{
         color: #0B263B;
@@ -311,7 +314,7 @@ body:before {
     .vasemmalle{
         /* Pudotusvalikko ja laatikot vasemmalle */
         float:left;
-        height: 6em;
+        height: 5.8em;
     }
     .kuukausiotsikot{
         /* seurantakuukausi oikealle */
@@ -321,7 +324,6 @@ body:before {
     table.kuukausiseuranta{
         border-spacing: 0;
         width: 100%;
-        /* border-left: 0.2em solid #0B0B3B; */
     }
 
     .container{
@@ -331,8 +333,8 @@ body:before {
         padding-top: 2em;
         padding-bottom: 2em;
         clear:both;
-        height: 43.3em;
         min-width: 90em;
+		height: 88%;
     }
     .pohjainfo{
         color: white;
