@@ -1,5 +1,4 @@
 <?php
-    session_start();
     require 'init.php';
     require 'rekisteridatafunctions.php';
 ?>
