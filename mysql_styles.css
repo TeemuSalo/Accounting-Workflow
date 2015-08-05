@@ -340,6 +340,10 @@ body:before {
         color: white;
         padding: 0.2em 2em;
     }
+	
+	#mydiv textarea{
+		resize: none;
+	}
 
     .tablecontainer {
         /* rullaava alue */

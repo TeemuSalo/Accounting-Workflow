@@ -95,7 +95,7 @@
                     <div class="kuukausiotsikot"><h4><?php echo 'Kuukausiseuranta ',$ALV_month ?></h4><h4> Maksupäivä <?php echo $payday ?></h4></div>
                     
 					<div id="mydiv" style="display:none;">
-                        <textarea rows="20" cols="50"></textarea>
+                        <textarea spellcheck="false" rows="20" cols="50"></textarea>
                     </div>
 					
 					<div class="container">

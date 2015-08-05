@@ -116,6 +116,7 @@ $(document).ready(function () {
     // Kommentit dialogin luonti ja nappulat
 	$('#mydiv').dialog({
 		autoOpen: false,
+		resizable: false,
 		width: 510,
 		buttons: {
             "Edellinen": function () {
