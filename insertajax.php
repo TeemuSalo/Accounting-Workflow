@@ -1,5 +1,8 @@
 <?php
     /*
+    
+    VANHA PHP POST VERSIO, MUUTETTU AJAXIIN
+    
     include 'init.php';
 
     $editrow = ($_POST['ajaxrow']);

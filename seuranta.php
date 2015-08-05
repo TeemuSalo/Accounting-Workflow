@@ -1,5 +1,4 @@
 <?php
-    session_start();
     require 'init.php';
     require 'seurantadatafunctions.php';
 ?>
@@ -9,7 +8,10 @@
         <title>JP TILIT - MySQL</title>
         <meta name="keywords" content=""/>
         <meta name="description" content=""/> 
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>    
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+		
+		<link rel="stylesheet" href="jquery-ui/jquery-ui.min.css">
+		
         <link rel="stylesheet" type="text/css" href="mysql_styles.css"/>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
         <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js'></script>		
@@ -91,7 +93,12 @@
                             PIIRRÄ KUUKAUSISEURANTA OSA 2   
                      -->
                     <div class="kuukausiotsikot"><h4><?php echo 'Kuukausiseuranta ',$ALV_month ?></h4><h4> Maksupäivä <?php echo $payday ?></h4></div>
-                    <div class="container">
+                    
+					<div id="mydiv" style="display:none;">
+                        <textarea rows="20" cols="50"></textarea>
+                    </div>
+					
+					<div class="container">
                     <div class="tablecontainer">
                         <table class="kuukausiseuranta">
 
@@ -116,9 +123,23 @@
                             {
                                 $seur_col = $seur_column[$seur_iterator];
                                 $seur_id = $seur_row[0] . $seur_col; ?>
-                                <td>
-                                    <div class="<?php echo $seur_col ?>"><p><?php echo $seur_cell ?></p>
-                                        <?php if( strpos($seur_col, "Rivi") === false && strpos($seur_col, "Kipitunnus") === false && strpos($seur_col, "Asiakas") === false): ?>
+                                <td class="<?php echo $seur_col ?>">
+                                    <div class="<?php echo $seur_col ?>">
+                                        
+                                        <?php if(strpos($seur_col, "Kommentit") === false): ?>
+                                            <p><?php echo $seur_cell; ?> </p>
+                                        <?php else:
+                                            if($seur_cell != ""): ?>
+                                                <a href="#"><?php echo "Kommentit"; ?></a>
+                                            <?php else: ?>
+                                                <a href="#"><?php echo "Tyhjä"; ?></a>
+                                            <?php endif; ?>
+                                        <?php endif ?>
+                                        
+                                        <?php if( strpos($seur_col, "Rivi") === false && 
+                                                    strpos($seur_col, "Kipitunnus") === false && 
+                                                    strpos($seur_col, "Asiakas") === false &&
+                                                    strpos($seur_col, "Kommentit") === false): ?>
                                         <button class="show"><img class="pen" src="pen.png"/></button>
                                         <button class="cancel"><img class="pen" src="cancel.png" alt=""/></button>
                                         <button class="ok"><img class="pen" src="check.png" alt=""/></button>
@@ -153,6 +174,8 @@
 
         
         <script type="text/javascript" src="jquery-1.11.3.min.js"></script>
+		<script src="jquery-ui/external/jquery/jquery.js"></script>
+		<script src="jquery-ui/jquery-ui.min.js"></script>
         <script type="text/javascript" src="tablefunctions.js"></script>
         <script type="text/javascript" src="external.js"></script>
         <script type="text/javascript" src="ajaxquery.js"></script>

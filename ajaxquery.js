@@ -57,7 +57,7 @@ $(document).ready(function () {
         var val = showbutton.closest('div').find('input').val();
         
         
-        $.post("insertajax.php", { ajaxrow: row, ajaxcol: col, newvalue1: val}, function(data){
+        $.post("insertajax.php", { ajaxrow: row, ajaxcol: col, newvalue1: val }, function(data){
         
             cancelbutton.css('display', 'none');
         

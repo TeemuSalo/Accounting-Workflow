@@ -388,6 +388,9 @@ body:before {
     table.kuukausiseuranta button {
         float:right;
     }
+    table.kuukausiseuranta a, table.kuukausiseuranta a:visited {
+        color: #0B263B;
+    }
 
     .rekisteriotsikot h4{
         font-size: 1.5em;
@@ -448,6 +451,7 @@ body:before {
     .GUI_form input[type=checkbox]{
         margin: 0.5em;
     }
+
 
 /*
     .floatingHeader {
