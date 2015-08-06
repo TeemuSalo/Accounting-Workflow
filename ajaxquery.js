@@ -20,7 +20,7 @@ $(document).ready(function () {
         
         var prevtext = showbutton.closest('div').find("p").text();
         
-        showbutton.closest('div').find('input').val(prevtext);
+        showbutton.closest('div').find('input').val( $.trim(prevtext) );
         
     });
     
