@@ -1,3 +1,4 @@
+<?php require 'init.php'; ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -11,28 +12,6 @@
 
     <body>
         
-        <?php
-            // PHP INIT.php
-            $db_host = 'localhost';
-            $db_user = 'root';
-            $db_pwd = '';
-            $database = 'jp_asiakkaat';
-
-            $rekisteri = 'jp_asiakasrekisteri';
-            $seuranta = 'jp_kuukausiseuranta';
-
-            $takaisin_hallintaan = '<a href="hallinta.php">TAKAISIN</a><br/><br/>';
-
-            $conn = mysql_connect($db_host, $db_user, $db_pwd);
-            if (!$conn)
-                die("Can't connect to database");
-
-            if (!mysql_select_db($database))
-                die("Can't select database");
-
-            mysql_query("SET NAMES 'utf8'");
-        ?>
-
         <div id="path">
             <p>JP Asiakasseuranta ja tietokanta</a></p>
             <nav class="topnav">
@@ -339,8 +318,6 @@
 
         
         <script type="text/javascript" src="jquery-1.11.3.min.js"></script>
-        <script type="text/javascript">
 
-        </script>
     </body>
 </html>
