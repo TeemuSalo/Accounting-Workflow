@@ -2,12 +2,12 @@
 // PHP INIT.php
 session_start();
 $db_host = 'localhost';
-$db_user = 'root';
-$db_pwd = '';
-$database = 'jp_asiakkaat';
+$db_user = 'user123';
+$db_pwd = 'password';
+$database = 'abc_workflowdatabase';
 
-$rekisteri = 'testi_asiakasrek';    // HUOM TESTI DATABASE
-$seuranta = 'testi_kuukausi';       // HUOM TESTI DATABASE
+$rekisteri = 'zxc_registertable';       // DATABASE FOR CUSTOMER REGISTER
+$seuranta = 'zxc_workflowtable';        // DATABASE FOR WORKFLOW TABLE
 
 $takaisin_seurantaan = '<a href="seuranta.php">TAKAISIN</a><br/><br/>';
 $takaisin_hallintaan = '<a href="hallinta.php">TAKAISIN</a><br/><br/>';
