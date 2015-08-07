@@ -124,10 +124,10 @@
                                 $seur_col = $seur_column[$seur_iterator];
                                 $seur_id = $seur_row[0] . $seur_col; ?>
                                 <td class="<?php echo $seur_col ?>">
-                                    <div class="<?php echo $seur_col ?>">
+                                    <div class="<?php echo $seur_col; ?>">
                                         
                                         <?php if(strpos($seur_col, "Kommentit") === false): ?>
-                                            <p><?php echo $seur_cell; ?> </p>
+                                            <p><?php echo $seur_cell; ?></p>
                                         <?php else:
                                             if($seur_cell != ""): ?>
                                                 <a href="#"><?php echo "Kommentit"; ?></a>
