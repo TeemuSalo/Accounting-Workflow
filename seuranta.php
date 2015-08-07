@@ -22,7 +22,6 @@
         <div id="path">
             <p>JP Asiakasseuranta ja tietokanta</a></p>
             <nav class="topnav">
-                <!--<a href=""><img src="jplogo.jpg"/></a>-->
                 <ul>
                     <a href="seuranta.php"><li>Seuranta</li></a>
                     <a href="rekisteri.php"><li>Rekisteri</li></a>
@@ -160,8 +159,8 @@
 
         
         <script type="text/javascript" src="jquery-1.11.3.min.js"></script>
-		<script src="jquery-ui/external/jquery/jquery.js"></script>
-		<script src="jquery-ui/jquery-ui.min.js"></script>
+	<script src="jquery-ui/external/jquery/jquery.js"></script>
+	<script src="jquery-ui/jquery-ui.min.js"></script>
         <script type="text/javascript" src="tablefunctions.js"></script>
         <script type="text/javascript" src="external.js"></script>
         <script type="text/javascript" src="ajaxquery.js"></script>
