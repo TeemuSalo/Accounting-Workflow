@@ -1,6 +1,8 @@
 # Accounting-Workflow
 A browser based monthly workflow scheduler mainly for accounting businesses.
 
+* Very much a work in progress, still contains inline php, multiple declarations possible etc *
+
 The finnish business law dictates many different monthly dates and events when companies must report certain figures
 eg. monthly VAT or amount of salaries payed.
 
