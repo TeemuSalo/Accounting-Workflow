@@ -19,7 +19,6 @@
         <div id="path">
             <p>JP Asiakasseuranta ja tietokanta</a></p>
             <nav class="topnav">
-                <!--<a href=""><img src="jplogo.jpg"/></a>-->
                 <ul>
                     <a href="seuranta.php"><li>Seuranta</li></a>
                     <a href="rekisteri.php"><li>Rekisteri</li></a>
@@ -30,22 +29,6 @@
 
         <section>
             <article id="kirjanpito">
-                
-                <!-- PIIRRÄ KUUKAUSISEURANTA OSA 2 -->
-                    
-                <!--<br/><br/>-->
-                <!--
-                -
-                -
-                -
-                TAULUKKO VAIHTUU
-                -
-                -
-                -
-                -->
-                <!--<br/><br/>-->                
-                
-                <!-- PIIRRÄ ASIAKASREKISTERI OSA 2 -->
                 
                 <div class="rekisteriotsikot"><h4>Asiakasrekisteri</h4></div>
                 <table class="asiakasrekisteri">
