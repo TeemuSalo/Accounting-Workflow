@@ -4,8 +4,8 @@ A browser based monthly workflow scheduler mainly for accounting businesses.
 This is a fully functional web page, that requires modification for a specific SQL Database.
 
 Current features:
-* Monthly schedule follow for clients
-* A full client register with company information and contacts
+* Monthly schedule tracking for clients
+* A full client registry with company information and contacts
 * Super easy one-click functianality to add current date to desired table cell
 * Ajax based update system for table cells, prevents page reload but still executes php
 * Color marked cell for upcoming important dates like: VAT-dates, salaries, financial statements etc.
