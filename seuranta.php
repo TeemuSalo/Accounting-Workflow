@@ -155,20 +155,6 @@
                         <div class="pohjainfo">Asiakkaita yhteensä: <?php echo mysql_num_rows($draw_seuranta_return) ?></div>
                     </div>
                     <?php mysql_free_result($draw_seuranta_return); ?>
-     
-                <!--<br/><br/> -->
-                <!--
-                -
-                -
-                -
-                TAULUKKO VAIHTUU
-                -
-                -
-                -
-                -->
-                <!--<br/><br/> -->     
-                
-                <!-- PIIRRÄ ASIAKASREKISTERI OSA 2 -->
 
             </article>
 
