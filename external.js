@@ -128,7 +128,7 @@ $(document).ready(function () {
                     var tekstikuukausi = laskekuukausi( parseInt( data.month ) );
             
                     $('#mydiv').dialog({
-                        title: "Kommentit " + data.asiakas + tekstikuukausi
+                        title: "Kommentit " + data.asiakas + " " + tekstikuukausi
                     });
 
                 },
@@ -144,7 +144,7 @@ $(document).ready(function () {
                     var tekstikuukausi = laskekuukausi( parseInt( data.month ) );
             
                     $('#mydiv').dialog({
-                        title: "Kommentit " + data.asiakas + tekstikuukausi
+                        title: "Kommentit " + data.asiakas + " " + tekstikuukausi
                     });
                 }, 
                     dataType="json");
@@ -188,7 +188,7 @@ $(document).ready(function () {
             var tekstikuukausi = laskekuukausi( parseInt( data.month ) );
             
             $('#mydiv').dialog({
-                title: "Kommentit " + data.asiakas + tekstikuukausi
+                title: "Kommentit " + data.asiakas + " " + tekstikuukausi
             });
         },
         dataType="json");
