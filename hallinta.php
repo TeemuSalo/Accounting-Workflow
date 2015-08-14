@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>JP TILIT - MySQL GUI</title>
+        <title>Accounting Workflow control</title>
         <meta name="keywords" content=""/>
         <meta name="description" content=""/> 
         <meta name="viewport" content="width=device-width, initial-scale=1"/>    
