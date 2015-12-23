@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Accounting Workflow</title>
+        <title>Accounting Workflow Demo</title>
         <meta name="keywords" content=""/>
         <meta name="description" content=""/> 
         <meta name="viewport" content="width=device-width, initial-scale=1"/>    
@@ -17,7 +17,7 @@
     <body>
 
         <div id="path">
-            <p>JP Asiakasseuranta ja tietokanta</a></p>
+            <p>Accounting Workflow Demo</a></p>
             <nav class="topnav">
                 <ul>
                     <a href="seuranta.php"><li>Seuranta</li></a>
@@ -45,7 +45,8 @@
                     <?php // printing table rows
                     while ($rek_row = mysql_fetch_row($draw_rek_return)) { ?>
                         <tr>
-                        <?php // $row is array... foreach( .. ) puts every element
+                        <?php 
+                        // $row is array... foreach( .. ) puts every element
                         // of $row to $cell variable
                         $rek_iterator = 0;
                         foreach ($rek_row as $rek_cell) {
@@ -57,14 +58,15 @@
                                             <img class="pen" src="pen.png"/>
                                         </button>
                                     </div>
-                                        <div id="<?php echo $rek_id, 'hide2' ?>" style='display:none'>
-                                            <form id="<?php echo $rek_id, 'rek' ?>" action='' method='post'>
-                                                <input value="<?php echo $rek_row[0] ?>" name='row2' type='hidden'/>
-                                                <input value="<?php echo $rek_col ?>" name='column2' type='hidden'/>
-                                                <input name='newvalue2' type='text'/><br/>
-                                                <input type='submit' name='insertrek' value='Lähetä'/>
-                                                <button onclick="return canceledit('<?php echo $rek_id, "', '", $rek_cell ?>')">Peruuta</button>
-                                            </form>
+                                    <div id="<?php echo $rek_id, 'hide2' ?>" style='display:none'>
+                                        <form id="<?php echo $rek_id, 'rek' ?>" action='' method='post'>
+                                            <input value="<?php echo $rek_row[0] ?>" name='row2' type='hidden'/>
+                                            <input value="<?php echo $rek_col ?>" name='column2' type='hidden'/>
+                                            <input name='newvalue2' type='text'/>
+                                            <br/>
+                                            <input type='submit' name='insertrek' value='Lähetä'/>
+                                            <button onclick="return canceledit('<?php echo $rek_id, "', '", $rek_cell ?>')">Peruuta</button>
+                                        </form>
                                     </div>
                                 </td>
                         <?php $rek_iterator++; } ?>

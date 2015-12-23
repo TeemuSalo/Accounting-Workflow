@@ -1,0 +1,156 @@
+* { margin: 0; padding: 0; }
+
+    .topnav a:link {
+		color:#000000;
+		background-color:transparent;
+		text-decoration:none;
+    }
+	
+    body{
+        font: 1em Arial, Helvetica, sans-serif;
+        font-size: 1em;
+        width:auto;
+		height: auto;
+		position: relative;
+    }
+    .topnav ul{
+    }
+    .topnav li {
+    }
+    #path{
+        display: none;
+    }
+    #path p{
+    }
+    #path a{
+    }
+	#path form{
+	}
+    article {
+        margin: 0 auto;
+        font-size: 1em;
+        padding: 0.5em;
+        color:#0B0B3B;
+        text-align: left;
+        clear:both;
+		height: auto;
+    }
+
+    article h4{
+        color: #0B263B;
+    }
+	.show{
+        display: none;
+	}
+    .ok, .cancel{
+        display: none;
+    }
+    .pen {
+        display: none;
+    }
+    #vaihdakuukausi input {
+
+    }
+    #vaihdakuukausi input[type=checkbox] {
+
+    }
+    .vasemmalle{
+        /* Pudotusvalikko ja laatikot vasemmalle */
+        display: none;
+    }
+    .kuukausiotsikot{
+        /* seurantakuukausi oikealle */
+        font-size: 1em;
+        float: right;
+    }
+    table.kuukausiseuranta{
+        border-spacing: 1px;
+        width: 100%;
+    }
+    .container{
+        /* alue johon absolute div sijoitetaan */
+        position: relative;
+        background-color: #236;
+        padding-bottom: 0em;
+        clear:both;
+        min-width: 90em;
+		height: auto;
+    }
+    .pohjainfo{
+        float:left;
+        color: #236;
+        padding: 0.1em 2em;
+    }
+    #tulostusversio{
+        display: none;
+    }
+	#mydiv textarea{
+		resize: none;
+	}
+    .tablecontainer {
+        /* rullaava alue */
+        overflow-y: auto;
+        height: 100%;
+        border: 0.1em solid #236;
+    }
+
+    .seurantaheaders{
+        /* Piilottaa "oikean rivin" korkeudella, mutta pitää leveyden */
+        height: 2em;
+        border: none;
+        white-space: nowrap;
+    }
+    .seurantaheaders th{
+        min-width: 110px;
+    }
+    .seurantaheaders th:nth-of-type(1){
+        min-width: 0px;
+        width: 0; /* niin pieni kuin mahdollista */
+    }
+    .seurantaheaders th:nth-of-type(2){
+        min-width: 50px;
+    }
+    .seurantaheaders div{
+        /* tämä div asetetaan absoluuttisesti otsikoiksi*/
+        position: absolute;
+        background: transparent;
+        color: #fff;
+        padding: 9px 5px;
+        top: 0;
+        line-height: normal;
+        display:none;
+    }
+	
+	input.seuranta_input{
+		position: absolute;
+		margin: 0;
+		top: 45%;
+		margin-top: -0.75em;
+		left: 1%;
+		height: 1.5em;
+		width: 60%;
+		padding: 0;
+		font-size:1em;
+		padding-left: 0.2em;
+	}
+
+    table.kuukausiseuranta td{
+        padding: 0.2em;
+		position:relative;
+    }
+    table.kuukausiseuranta tr:nth-child(even){
+        background-color: #eaf4ff;
+    }
+    table.kuukausiseuranta tr:nth-child(odd){
+        background-color: #cce4ff;
+    }
+    table.kuukausiseuranta p {
+        float:left;
+		margin: auto;
+    }
+    table.kuukausiseuranta button {
+
+    }
+    table.kuukausiseuranta a, table.kuukausiseuranta a:visited {
+        color: #0B263B;
+    }

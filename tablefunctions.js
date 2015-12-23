@@ -13,6 +13,7 @@ function editasiakas(id, solu) {
 
     return false; // Älä päivitä sivua
 }
+
 // Rekisterin muokkausvalikon peruutus
 function canceledit(id, solu) {
 

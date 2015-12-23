@@ -2,16 +2,17 @@
     * { margin: 0; padding: 0; }
 
     .topnav a:link {
-	color:#000000;
-	background-color:transparent;
-	text-decoration:none;
+		color:#000000;
+		background-color:transparent;
+		text-decoration:none;
     }
+	
     body{
         font: 1em Arial, Helvetica, sans-serif;
         font-size: 1em;
         width:auto;
-	height: 100vh;
-	position: relative;
+		height: 100vh;
+		position: relative;
     }
     .topnav ul{
         float: right;
@@ -29,12 +30,16 @@
         position: relative;
         height: 3em;
         min-width: 70em;
-        background: linear-gradient(to bottom, #A4A4A4 50%,#6E6E6E);
+        background: #236;
+		background: -webkit-linear-gradient(#236, #447, #236); /* For Safari 5.1 to 6.0 */
+		background: -o-linear-gradient(#236, #447, #236); /* For Opera 11.1 to 12.0 */
+		background: -moz-linear-gradient(#236, #447, #236); /* For Firefox 3.6 to 15 */
+		background: linear-gradient(#236, #447, #236); /* Standard syntax */
     }
     #path p{
         padding: 0.9em;
         margin-left:9%;
-        color:white;
+        color: white;
         float:left;
     }
     #path a{
@@ -42,24 +47,42 @@
         background-color:transparent;
         text-decoration:none;
     }
+	#path form{
+		float:left;
+		position: absolute;
+		top: 50%;
+        left: 2%;
+        margin-top: -12px;
+	}
+    #path form input{
+        height: 25px;
+    }
     article {
         margin: 0 auto;
         font-size: 1em;
-        padding: 0 0.5em;
+        padding: 0.5em;
         color:#0B0B3B;
         text-align: left;
         clear:both;
 		height: 87vh;
     }
+
     article h4{
         color: #0B263B;
     }
+	.show{
+		width: 1.8em;
+		height: 1.8em;
+	}
     .ok, .cancel{
         display: none;
+		width: 1.8em;
+		height: 1.8em;
     }
     .pen {
-        width:13px;
-        height: 13px;
+        width:1.3em;
+        height: 1.3em;
+		padding: 0;
     }
     #vaihdakuukausi input {
         font-size: 1.1em;
@@ -80,13 +103,13 @@
         float: right;
     }
     table.kuukausiseuranta{
-        border-spacing: 0;
+        border-spacing: 1px;
         width: 100%;
     }
     .container{
         /* alue johon absolute div sijoitetaan */
         position: relative;
-        background-color: #500;
+        background-color: #236;
         padding-top: 2em;
         padding-bottom: 2em;
         clear:both;
@@ -94,8 +117,16 @@
 		height: 88%;
     }
     .pohjainfo{
+        float:left;
         color: white;
         padding: 0.2em 2em;
+    }
+    #tulostusversio{
+        float:right;
+        height: 26px;
+        padding: 1px 15px;
+        margin-top: 2px;
+        margin-right: 1%;
     }
 	#mydiv textarea{
 		resize: none;
@@ -104,7 +135,7 @@
         /* rullaava alue */
         overflow-y: auto;
         height: 100%;
-        border: 0.1em solid #500;
+        border: 0.1em solid #236;
     }
 
     .seurantaheaders{
@@ -117,34 +148,65 @@
         border: none;
         white-space: nowrap;
     }
+    .seurantaheaders th{
+        min-width: 110px;
+    }
+    .seurantaheaders th:nth-of-type(1){
+        min-width: 0px;
+        width: 0; /* niin pieni kuin mahdollista */
+    }
+    .seurantaheaders th:nth-of-type(2){
+        min-width: 50px;
+    }
 
     .seurantaheaders div{
-        /* tämä div voi asetetaan absoluuttisesti otsikoiksi*/
+        /* tämä div asetetaan absoluuttisesti otsikoiksi*/
         position: absolute;
         background: transparent;
         color: #fff;
-        padding: 9px 25px;
+        padding: 9px 5px;
         top: 0;
-        margin-left: -20px;
         line-height: normal;
     }
+	
+	input.seuranta_input{
+		position: absolute;
+		margin: 0;
+		top: 45%;
+		margin-top: -0.75em;
+		left: 1%;
+		height: 1.5em;
+		width: 60%;
+		padding: 0;
+		font-size:1em;
+		padding-left: 0.2em;
+	}
 
     table.kuukausiseuranta td{
-        padding: 0.2em;
-        border-bottom: 0.1em solid #0B0B3B;
-        border-right: 0.1em solid #0B0B3B;
+        padding: 0.35em;
+		position:relative;
     }
     table.kuukausiseuranta tr:nth-child(even){
-        background-color: #F0F0F0;
+        background-color: #eaf4ff;
     }
     table.kuukausiseuranta tr:nth-child(odd){
-        background-color: #D0D0D0;
+        background-color: #cce4ff;
+    }
+    .border-row{
+        border-top: 0.1em solid #236;
+        border-bottom: 0.1em solid #236;
     }
     table.kuukausiseuranta p {
         float:left;
+		margin: auto;
     }
     table.kuukausiseuranta button {
-        float:right;
+		position:absolute;
+		margin: 0;
+		padding: 0;
+		right:2%;
+		top: 35%;
+		margin-top: -0.5em;
     }
     table.kuukausiseuranta a, table.kuukausiseuranta a:visited {
         color: #0B263B;
@@ -157,6 +219,8 @@
         border: 0.2em solid #0B0B3B;
     }
     table.asiakasrekisteri th{
+        color: #fff;
+        background-color: #236;
         padding: 0.2em;
         border: 0.1em solid #0B0B3B;
     }
@@ -165,10 +229,10 @@
         border: 0.1em solid #0B0B3B;
     }
     table.asiakasrekisteri tr:nth-child(even){
-        background-color: #F0F0F0;
+        background-color: #eaf4ff;
     }
     table.asiakasrekisteri tr:nth-child(odd){
-        background-color: #D0D0D0;
+        background-color: #cce4ff;
     }
     table.asiakasrekisteri p {
         float:left;
@@ -176,6 +240,11 @@
     table.asiakasrekisteri button {
         float:right;
     }
+
+    .hallinta{
+        padding: 2em;
+    }
+
     table#luokuukausi{
         text-align: center;
         border: 0.2em solid #0B0B3B;
@@ -205,4 +274,15 @@
     }
     .GUI_form input[type=checkbox]{
         margin: 0.5em;
+    }
+
+    .custom_ui .ui-widget-header { 
+        border: 1px solid #fff;
+        margin: 0 0.5em;
+        background: #236; 
+        color: #fff; 
+    }
+
+    .custom_ui .ui-widget-content { 
+
     }

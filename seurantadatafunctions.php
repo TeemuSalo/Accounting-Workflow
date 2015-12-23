@@ -1,53 +1,83 @@
-<?php
-/*
- *
-        SIIRRETTY OMAAN TIEDOSTOONSA
- 
-        SYÖTÄ ARVO KUUKAUSISEURANTAAN OSIO
- */
-?>
 
 <?php
 /*
- *          PIIRRÄ KUUKAUSISEURANTA OSA 1
+ *      PIIRRÄ KUUKAUSISEURANTA OSA 1
  */
 
-// If POST or SESSION is set, then change filter to that month
-if ( isset($_POST['vaihdakk']) || isset($_SESSION['selected_month']) )
+// Jos POST lähetetty, käytetään valittua kautta
+if ( isset($_POST['vaihdakk']) )
 {
-    // Valitse kuukausi sessiosta tai valitusta laatikosta. Tyhjä laatikkovalinta on kuluva kuukausi
-    if( isset($_POST['kuukausilista']) )
-    {
-        $kuukausi = $_POST['kuukausilista'];
-        $_SESSION['selected_month'] = $kuukausi;
-    }
-    else
-    {
-        $kuukausi = $_SESSION['selected_month'];
-    }
-                    
-    // ALV maksupäivä oikeassa yläkulmassa
-    $nextmonth = 2 + $kuukausi;
-    $payday = '12.'.$nextmonth.'.'.date('Y');
+    // Valitse kuukausi valitusta laatikosta.
+    $kuukausi = $_POST['kuukausilista'];
+    $_SESSION['selected_month'] = $kuukausi;
+    
+	// Valitse vuosi valitusta laatikosta	
+	$vuosi = $_POST['vuosilista'];
+	$_SESSION['selected_year'] = $vuosi;  
 }
+
+// Jos SESSIO on olemassa, mutta ei POSTIA, käytetään SESSIOTA
+else if( isset($_SESSION['selected_month']) )
+{
+	$kuukausi = $_SESSION['selected_month'];
+	$vuosi = $_SESSION['selected_year'];
+}
+
+// Ei POSTIA eikä SESSIOTA
 else 
 {
-    // Seurattava kirjanpidon kuukausi on oletuksena kuluvaa kuukautta edeltävä
     $this_month = intval(date('n'));
-    //$TAS_month = $this_month;
-    $kuukausi = $this_month - 1;
-                 
-     // ALV maksupäivä on oletuksena kuluvaa kuukautta seuraavan kuukauden 12. päivä
-    $nextmonth = $this_month;
-    $payday = '12.'.$nextmonth.'.'.date('Y');
+    $this_year = intval(date('Y'));
+    
+    if( $this_month > 1 )
+    {
+        
+        // Seurattava kirjanpidon kuukausi on oletuksena kuluvaa kuukautta edeltävä
+        $kuukausi = $this_month - 1;
+        $vuosi = $this_year;
+        
+    }
+    
+    // Jos kuluva kuukausi on tammikuu, seurattava kuukausi on edellisen vuoden joulukuu
+    else
+    {
+    
+        $kuukausi = 12;
+        $vuosi = $vuosi - 1;
+    
+    }
 }
+
+// Tarkista meneekö maksukuukausi seuraavalle kalenterivuodelle
+if( $kuukausi >= 11 )
+{
+    
+    $pay_month = $kuukausi - 10;
+    $pay_year = $vuosi + 1;
+
+}
+
+// Maksukuukausi pysyy samalla kalenterivuodella
+else
+{
+
+    $pay_month = $kuukausi + 2;
+    $pay_year = $vuosi;
+    
+}
+
+// Päivitetään käytettävä taulukko, mikäli vuosi muuttui tai ei
+$seuranta = $seuranta_prefix . $vuosi;
+
+// Globaalit arvot, asetetaan html pudotusvalikko-formien aktiivinen arvo tämän mukaan
+$GLOBALS['g_kuukausi'] = $kuukausi;
+$GLOBALS['g_vuosi'] = $vuosi;
+
+// Muodosta maksukuukausi
+$payday = '12.'.$pay_month.'.'.$pay_year;
 
 // Päättele custom 'AS' taulukon nimi
 switch ($kuukausi) {
-    case 0:
-        unset($_SESSION['selected_month']);
-        header('Location: http://localhost/workspace/asiakasseuranta/seuranta.php');
-        break;
     case 1:
         $ALV_month = 'tammikuu';
         $TAS_month = 'helmikuu';
@@ -138,65 +168,69 @@ if(isset($_POST['vaihdakk']))
     }
 }
 
-    // SESSION mukaan näytä tai piilota kentät
-    if (isset($_SESSION['Kommentit']))
-    {
-        $Kommentit = '`Kommentit`, ';
-    } else {
-        $Kommentit = '';
-    }
+// SESSION mukaan näytä tai piilota kentät
+if (isset($_SESSION['Kommentit']))
+{
+    $Kommentit = $seuranta.".`Kommentit`, ";
+} else {
+    $Kommentit = '';
+}
 
-    if (isset($_SESSION['Laskutettu'])) 
-    {
-        $Laskutettu = '`Laskutettu`, ';
-    } else {
-        $Laskutettu = '';
-    }
+if (isset($_SESSION['Laskutettu'])) 
+{
+    $Laskutettu = $seuranta.".`Laskutettu`, ";
+} else {
+    $Laskutettu = '';
+}
 
-    if (isset($_SESSION['TehdytTunnit']))
-    {
-        $TehdytTunnit = '`Tehdyt Tunnit`, ';
-    } else {
-        $TehdytTunnit = '';
-    }
+if (isset($_SESSION['TehdytTunnit']))
+{
+    $TehdytTunnit = $seuranta.".`Tehdyt Tunnit`, ";
+} else {
+    $TehdytTunnit = '';
+}
 
-    if (isset($_SESSION['TYEL']))
-    {
-        $TYEL = "`TYEL` AS 'TYEL $TAS_month', ";
-    } else {
-        $TYEL = '';
-    }
+if (isset($_SESSION['TYEL']))
+{
+    $TYEL = $seuranta.".`TYEL` AS 'TYEL $TAS_month', ";
+} else {
+    $TYEL = '';
+}
 
-    if (isset($_SESSION['Rakentamis']))
-    {
-        $Rakentamis = "`Rakentamis` AS 'Rak. Ilm. $ALV_month', ";
-    } else {
-        $Rakentamis = '';
-    }
+if (isset($_SESSION['Rakentamis']))
+{
+    $Rakentamis = $seuranta.".`Rakentamis` AS 'Rak. $ALV_month', ";
+} else {
+    $Rakentamis = '';
+}
+
 
 $draw_seuranta_return = mysql_query("SELECT "
-                      . "`Rivi`, "
-                      . "`Kipitunnus`, "
-                      . "`Asiakas`, "
-                      . "`Aineisto Saapunut`, "
-                      . "`Kirjanpito Tehty` , "
-                      . "`EU` AS 'EU $ALV_month', "
-                      . "`ALV` AS 'ALV $ALV_month', "
-                      . "`TAS` AS 'TAS $TAS_month', "
-                      . "`Sähköposti`, "
+                      . "$seuranta.`Rivi`, "
+                      . "$seuranta.`Kipitunnus`, "
+                      . "$seuranta.`Asiakas`, "
+                      . "$seuranta.`Aineisto Saapunut`, "
+                      . "$seuranta.`Kirjanpito Tehty` , "
+                      . "$seuranta.`EU` AS 'EU $ALV_month', "
+                      . "$seuranta.`ALV` AS 'ALV $ALV_month', "
+                      . "$seuranta.`TAS` AS 'TAS $TAS_month', "
+                      . "$seuranta.`Sähköposti`, "
                       . "$Kommentit "
                       . "$Laskutettu "
                       . "$TehdytTunnit "
                       . "$TYEL "
                       . "$Rakentamis "
-                      . "`Tilinpäätös` "
+                      . "$rekisteri.`Tilinpäätös` "
                       . "FROM $seuranta "
-                      . "WHERE Kuukausi = $kuukausi "
+					  . "LEFT JOIN $rekisteri "
+                      . "ON $seuranta.`Asiakas`=$rekisteri.`Asiakas` "
+                      . "WHERE $seuranta.Kuukausi = $kuukausi "
                       . "ORDER BY Asiakas");
                             
 if (!$draw_seuranta_return)
 {
     echo $takaisin_seurantaan;
+	session_destroy(); // Tuhoa sessio tai jäät looppiin
     die('Koodi 21. Virhe yhteydessä tietokantaan: ' . mysql_error());
 }
 // Fields_num käytetään 'Piirrä kuukausiseuranta osa 2:ssa'

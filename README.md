@@ -1,12 +1,6 @@
 # Accounting-Workflow
 A browser based monthly workflow scheduler mainly for accounting businesses.
 
-If you want to see a working demo version, check out the link to my website section
-
-<http://www.codexl.fi/data/awdemo/workflow_demo.php>
-
-Please notice that in the demo version, all the server side actions have been disabled for obvious reasons.
-
 This is a fully functional web page, that requires modification for a specific SQL Database.
 
 Current features:

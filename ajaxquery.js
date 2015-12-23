@@ -1,4 +1,11 @@
+/*
+ *      Piilottaa ja paljastaa syöttöpainikkeet ja kentät
+ *      Lähettää ajax-komennolla luodun input-kentän arvot insertajax.php tiedostoon
+ */
+
 $(document).ready(function () {
+    
+    // Näytä syöttökenttä ja OK / CANCEL napit
     
     $('button.show').click( function(){
         
@@ -8,7 +15,7 @@ $(document).ready(function () {
         
         var cancelbutton = okbutton.next();
         
-        cancelbutton.css('display', 'inline');
+        cancelbutton.css({'display' : 'inline', 'right' : '2em'});
         
         okbutton.css('display', 'inline');
         
@@ -16,7 +23,7 @@ $(document).ready(function () {
     
         showbutton.closest('div').find("p").toggle();
         
-        showbutton.closest('div').prepend('<input type="text" name="name" size="8">');
+        showbutton.closest('div').prepend('<input class="seuranta_input" type="text" name="name">');
         
         var prevtext = showbutton.closest('div').find("p").text();
         

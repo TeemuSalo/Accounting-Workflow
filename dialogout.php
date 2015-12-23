@@ -1,7 +1,13 @@
 <?php
+    /*
+     *      Dialog kommentti-laatikon toiminnot SQL-taulukon kanssa
+     *      Data lähetetään ajax-komennolla external.js tiedostosta
+     */
+
     include 'init.php';
 
-    if(isset($_POST['lopetus'])){
+    if ( isset($_POST['lopetus']) )
+    {
     
         unset($_SESSION['RiviID']);
         unset($_SESSION['asiakas']);
@@ -9,7 +15,8 @@
     
     }
 
-    if(isset($_POST['edellinen'])){
+    if( isset( $_POST['edellinen']) )
+    {
         
         $asiakas = $_SESSION['asiakas'];
         
@@ -44,7 +51,8 @@
         }
     }
 
-    if(isset($_POST['seuraava'])){
+    if (isset ( $_POST['seuraava']) )
+    {
         
         $asiakas = $_SESSION['asiakas'];
         
@@ -79,7 +87,8 @@
         }
     }
     
-    elseif(isset($_POST["RiviID"])){
+    elseif ( isset($_POST["RiviID"]) )
+    {
         
         $RiviID = $_POST["RiviID"];
         $asiakas = $_POST['asiakas'];
@@ -114,7 +123,8 @@
         }
     }
 
-    elseif(isset($_POST['uusiKommentti'])){
+    elseif ( isset($_POST['uusiKommentti']) )
+    {
         
         $asiakas = $_SESSION['asiakas'];
         
@@ -122,10 +132,11 @@
 
         $uusiKommentti = $_POST['uusiKommentti'];
 
-        $sql = "UPDATE $seuranta SET Kommentit='$uusiKommentti' WHERE Asiakas='$asiakas' AND kuukausi=$kuukausi";
+        $sql = "UPDATE $seuranta SET Kommentit='$uusiKommentti' WHERE Asiakas='$asiakas' AND Kuukausi=$kuukausi";
 
         $setkommentti = mysql_query($sql);
 
         if(!$setkommentti){ echo "virhe ". mysql_error();}   
     }
+
 ?>

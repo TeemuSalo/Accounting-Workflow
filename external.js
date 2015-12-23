@@ -1,3 +1,9 @@
+/*
+ *      ERINÄISIÄ OMIA FUNKTIOITA
+ *
+ */
+
+
 $(document).ready(function () {
     
     // laskekuukausi funktio muuttaa numeron kuukauden tekstimuotoon
@@ -49,12 +55,12 @@ $(document).ready(function () {
         return month;
     }
     
-    // Array sisältää kaikki Tilinpäätös sarakkeiden sisältö
+    // Array sisältää kaikkien Tilinpäätössarakkeiden arvot
     var arr = $('[class=Tilinpäätös] > p');
                 
     $.each(arr, function (i) {
 
-        // Hakee TP sarakkeen <p> sisällön
+        // Hakee TP sarakkeen <p> sisällön, eli tilinpäätöspäivän
         var TP = $(arr[i]).text();
 
         // Korvaa ' - ' merkit ' / '
@@ -67,42 +73,67 @@ $(document).ready(function () {
 
         var curdate = new Date();
 
-        // Ero millisekunteina?
+        // Ero millisekunteina
         var datediff = new Date(curdate - TPdate);
 
         // Muuta ero päiviksi
         var days = datediff / 1000 / 60 / 60 / 24;
 
-        // Erotus kuukautta ennen tai kuukautta jälkeen
+        // Erotus kuukautta ennen tai kuukautta jälkeen tilinpäätöspäivän
         if( (days > -30) && (days <= 31) ) 
         {
                 $(arr[i]).closest('td').css('background', 'yellow');
         }
-        // Erotus 1 - 2 kuukautta
+        // Erotus 1 - 2 kuukautta tilinpäätöspäivästä
         else if( (days > 31) && (days <= 91) ) 
         {
                 $(arr[i]).closest('td').css('background', 'orange');
         }
-        // Erotus yli 3 kuukautta
+        // Erotus yli 3 kuukautta, eli viimeinen tilinpäätöksen lähettämiskuukausi
         else if( days > 91 ) 
         {
                 $(arr[i]).closest('td').css('background', '#CC4444');
         }
     });
+
     
+    // Myöhemmin käytettävä muuttuja, mm dialog-kommentit
+    var selected_month = $( "select[name='kuukausilista'] option:selected" ).val();
     
-    // kuukausipudotusvalikon indexi on aina valittu kuukausi
-    // Tekee turhaksi 'Valitse' osion
-    var hint = $('input[name="jshint"]').val();
-    $('select[name="kuukausilista"] option').eq(hint).prop('selected', true);
+    // Avaa tulostusversion uuteen tabiin
+    $('#tulostusversio').click(function(){
     
+        var w = window.open(window.location.href);
+        
+        $(w).load(function(){
+            w.$('link[href="mysql_styles.css"]').attr('href','print_styles.css');
+        });
+    
+    });
+    
+    //Värjää valittu rivi klikattaessa
+    //Poista värjäys muista riveiltä
+    $('tr').hover(function(){
+
+        $(this).click(function(){
+            
+            $kaikki_solut =  $('.kuukausiseuranta').find('td');
+            
+            $kaikki_solut.each(function(){
+                $(this).removeClass('border-row');
+            });
+                
+            $(this).find('td').addClass('border-row');
+        });
+        
+    });
     
     // Tyhjät solut värjätty, kun alv päivä lähenee
-    // Värjää aina toissa kuukaudet, eli elokuussa kesäkuun
+    // Värjää aina toissa kuukaudet, eli elokuussa värjätään kesäkuun tyhjät
     var datenow = new Date();
     monthnow = datenow.getMonth();
     
-    if( (monthnow - hint) > 0 )
+    if( (monthnow - selected_month) > 0 )
     {
         var arr2 = $('table div > p:empty');
 
@@ -132,7 +163,10 @@ $(document).ready(function () {
                     });
 
                 },
-                    dataType="json");
+                dataType="json")
+                  .fail(function(jqXHR) {
+                    alert( "error, contact webmaster: " + jqXHR.responseText );
+                  });
                 
             },
             "Seuraava": function () {
@@ -147,7 +181,10 @@ $(document).ready(function () {
                         title: "Kommentit " + data.asiakas + " " + tekstikuukausi
                     });
                 }, 
-                    dataType="json");
+                dataType="json")
+                .fail(function(jqXHR) {
+                    alert( "error, contact webmaster: " + jqXHR.responseText );
+                  });
             },
 			"Ok": function() {
                 
@@ -157,7 +194,10 @@ $(document).ready(function () {
                     
                     $('#mydiv').dialog("close");
 
-                });
+                })
+                .fail(function(jqXHR) {
+                    alert( "error, contact webmaster: " + jqXHR.responseText );
+                  });
 			},
 			"Cancel": function() {
                 
@@ -171,15 +211,16 @@ $(document).ready(function () {
 	});
 
     // Dialogin ensimmäinen avaus
-    // Asettaa php Session arvot samalla dialogout.php tiedostossa
+    // Asettaa php SESSION arvot samalla dialogout.php tiedostossa
+    // SESSION arvoja käytetään dialogin näppäinten toiminnoissa
 	$('.Kommentit a').click(function() {
         
         var RiviID = $(this).closest("tr").attr("id");
         
         var asiakas = $(this).closest("tr").find(".Asiakas p").html();
         
-        var kuukausi = $('input[name="jshint"]').val();
-        
+        var kuukausi = selected_month;
+		
 	
 		$.post("dialogout.php", { RiviID: RiviID, asiakas: asiakas, kuukausi: kuukausi }, function(data){
             
@@ -193,7 +234,7 @@ $(document).ready(function () {
         },
         dataType="json");
 		
-        
+        $('#mydiv').dialog({'dialogClass':'custom_ui'});
 		$('#mydiv').dialog('open');
 		return false;
 	});
