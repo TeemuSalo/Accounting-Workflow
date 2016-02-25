@@ -5,6 +5,9 @@
      *          arvot lähetetään ajaxquery.js tiedoston ajax-komennolla
      */
 
+    // Start session, no authenticate.php include
+    session_start();
+
     include 'init.php';
 
     if ( isset($_POST['ajaxrow']) ) 

@@ -53,7 +53,7 @@
         // Eroavaisuus vaikutetuissa riveissä?
         if ($affected_rows != $affected_rows_2) {
             echo $takaisin_hallintaan;
-            die('Hallintadatafunktion virhe 104: Kuukausiseurantaa ei voitu luoda. Ota yhteyttä ylläpitäjään. ' . mysql_error());
+            die('Hallintadatafunktion virhe 104: Ota yhteyttä ylläpitäjään. ' . mysql_error());
         }
     }
 
@@ -85,19 +85,6 @@
                 die('Hallintadatafunktion virhe 105: ' . mysql_error());
                 
             }
-            
-            // Täytyy käsin muokata Rivi-kolumni itsestään kasvavaksi primary keyksi
-            // EI ENÄÄ
-            //$create_new_year = mysql_query("ALTER TABLE $seuranta MODIFY COLUMN Rivi INT PRIMARY KEY AUTO_INCREMENT");
-            
-            /*
-            if (!$create_new_year)
-            {
-                echo $takaisin_hallintaan;
-                die('Hallintadatafunktion virhe 106: ' . mysql_error());
-                
-            }
-            */
         }
         else
         {

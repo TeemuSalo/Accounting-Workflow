@@ -4,6 +4,9 @@
      *      Data lähetetään ajax-komennolla external.js tiedostosta
      */
 
+    // Start session, no authenticate.php included
+    session_start();
+
     include 'init.php';
 
     if ( isset($_POST['lopetus']) )
@@ -46,6 +49,7 @@
             }
             else    
             {
+				// TÄMÄ JSON PALAUTETAAN TAKAISIN
                 echo json_encode( array( 'edel' => $edelliset_kommentit[0], 'month' => $kuukausi, 'asiakas' => $asiakas ) );
             }
         }
@@ -82,6 +86,7 @@
             }
             else    
             {
+				// TÄMÄ JSON PALAUTETAAN TAKAISIN
                 echo json_encode( array( 'seur' => $seuraavat_kommentit[0], 'month' => $kuukausi, 'asiakas' => $asiakas ) );
             }
         }
@@ -118,6 +123,7 @@
             }
             else    
             {
+				// TÄMÄ JSON PALAUTETAAN TAKAISIN
                 echo json_encode( array( 'kommentit' => $return[0], 'month' => $kuukausi, 'asiakas' => $asiakas ) );
             }
         }
@@ -136,6 +142,7 @@
 
         $setkommentti = mysql_query($sql);
 
+		// EI PALAUTETA MITÄÄN JOS QUERY ONNISTUU
         if(!$setkommentti){ echo "virhe ". mysql_error();}   
     }
 

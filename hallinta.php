@@ -1,11 +1,12 @@
 <?php
+	require 'authenticate.php';
 	require 'init.php';
     require 'hallintadatafunctions.php';
 ?>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Accounting Workflow Demo</title>
+        <title>JP TILIT - MySQL GUI</title>
         <meta name="keywords" content=""/>
         <meta name="description" content=""/> 
         <meta name="viewport" content="width=device-width, initial-scale=1"/>    
@@ -16,7 +17,9 @@
     <body>
         
         <div id="path">
-            <p>Accounting Workflow Demo</a></p>
+            <div><form action="" method="post"><input type="submit" name="logout" value="Logout"></form></div>
+            <p>JP Asiakasseuranta ja tietokanta</a></p>
+            <p>Tervetuloa <?php echo $_SESSION['authenticate']; ?></p>
             <nav class="topnav">
                 <!--<a href=""><img src="jplogo.jpg"/></a>-->
                 <ul>

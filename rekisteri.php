@@ -1,11 +1,12 @@
 <?php
+	require 'authenticate.php';
     require 'init.php';
     require 'rekisteridatafunctions.php';
 ?>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Accounting Workflow Demo</title>
+        <title>JP TILIT - MySQL</title>
         <meta name="keywords" content=""/>
         <meta name="description" content=""/> 
         <meta name="viewport" content="width=device-width, initial-scale=1"/>    
@@ -17,7 +18,9 @@
     <body>
 
         <div id="path">
-            <p>Accounting Workflow Demo</a></p>
+            <div><form action="" method="post"><input type="submit" name="logout" value="Logout"></form></div>
+            <p>JP Asiakasseuranta ja tietokanta</a></p>
+            <p>Tervetuloa <?php echo $_SESSION['authenticate']; ?></p>
             <nav class="topnav">
                 <ul>
                     <a href="seuranta.php"><li>Seuranta</li></a>
@@ -44,7 +47,7 @@
 
                     <?php // printing table rows
                     while ($rek_row = mysql_fetch_row($draw_rek_return)) { ?>
-                        <tr>
+                        <tr id="<?php echo $rek_row[0]?>">
                         <?php 
                         // $row is array... foreach( .. ) puts every element
                         // of $row to $cell variable
@@ -53,11 +56,22 @@
                             $rek_col = $rek_column[$rek_iterator];
                             $rek_id = $rek_row[0] . $rek_col; ?>
                                 <td>
-                                    <div id="<?php echo $rek_id, 'show2' ?>"><?php echo $rek_cell ?> 
+                                    <div class="<?php echo $rek_col ?>" >
+                                        
+                                        <p><?php echo $rek_cell ?></p> 
+                                        
+                                        <!--
                                         <button onclick="return editasiakas('<?php echo $rek_id, "', '", $rek_cell ?>')">
                                             <img class="pen" src="pen.png"/>
                                         </button>
+                                        -->
+                                        <button class="show"><img class="pen" src="pen.png"/></button>
+                                        <button class="cancel"><img class="pen" src="cancel.png" alt=""/></button>
+                                        <button class="ok"><img class="pen" src="check.png" alt=""/></button>
+                                        
                                     </div>
+                                    
+                                    <!--
                                     <div id="<?php echo $rek_id, 'hide2' ?>" style='display:none'>
                                         <form id="<?php echo $rek_id, 'rek' ?>" action='' method='post'>
                                             <input value="<?php echo $rek_row[0] ?>" name='row2' type='hidden'/>
@@ -68,6 +82,8 @@
                                             <button onclick="return canceledit('<?php echo $rek_id, "', '", $rek_cell ?>')">Peruuta</button>
                                         </form>
                                     </div>
+                                    -->
+                                    
                                 </td>
                         <?php $rek_iterator++; } ?>
                         </tr>
@@ -79,8 +95,8 @@
         </section>
         
         <script type="text/javascript" src="jquery-1.11.3.min.js"></script>
-        <script type="text/javascript" src="tablefunctions.js"></script>
-        <script type="text/javascript" src="external.js"></script>
+        <script type="text/javascript" src="reg_ajaxquery.js"></script>
+        <script type="text/javascript" src="rekistericolors.js"></script>
             
     </body>
 </html>

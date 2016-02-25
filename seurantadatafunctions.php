@@ -29,22 +29,35 @@ else
     $this_month = intval(date('n'));
     $this_year = intval(date('Y'));
     
-    if( $this_month > 1 )
+    // Tarkista onko kuluvan vuoden taulukkoa olemassa
+    if( end($kaikki_vuodet) < $this_year )
     {
-        
-        // Seurattava kirjanpidon kuukausi on oletuksena kuluvaa kuukautta edeltävä
-        $kuukausi = $this_month - 1;
-        $vuosi = $this_year;
-        
+        // Käytetään olemassa olevaa viimeisintä vuotta, jotta ei haeta olematonta taulukkoa
+        $vuosi = end($kaikki_vuodet);
+        // Oletuksena joulukuu, koska eletään kuluvan vuoden tammikuuta todennäköisesti
+        $kuukausi = 12;
     }
-    
-    // Jos kuluva kuukausi on tammikuu, seurattava kuukausi on edellisen vuoden joulukuu
     else
     {
+        // Vuositaulukko on olemassa kuluvalta vuodelta, käytetään sitä
+        $vuosi = $this_year;
     
-        $kuukausi = 12;
-        $vuosi = $vuosi - 1;
-    
+        if( $this_month > 1 )
+        {
+
+            // Seurattava kirjanpidon kuukausi on oletuksena kuluvaa kuukautta edeltävä
+            $kuukausi = $this_month - 1;
+            //$vuosi = end($kaikki_vuodet);
+
+        }   
+        else
+        {
+
+            // Jos kuluva kuukausi on tammikuu, seurattava kuukausi on joulukuu
+            $kuukausi = 12;
+            $vuosi = $vuosi - 1;
+
+        }
     }
 }
 

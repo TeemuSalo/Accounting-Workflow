@@ -55,6 +55,10 @@ $(document).ready(function () {
         return month;
     }
     
+    /* ------------------------------------------------------------------------------ */
+    
+    // KUUKAUSISEURANTA VERSIO
+    
     // Array sisältää kaikkien Tilinpäätössarakkeiden arvot
     var arr = $('[class=Tilinpäätös] > p');
                 
@@ -95,10 +99,17 @@ $(document).ready(function () {
                 $(arr[i]).closest('td').css('background', '#CC4444');
         }
     });
-
+    
+    /* ------------------------------------------------------------------------------ */
+    
     
     // Myöhemmin käytettävä muuttuja, mm dialog-kommentit
     var selected_month = $( "select[name='kuukausilista'] option:selected" ).val();
+    var selected_year = $( "select[name='vuosilista'] option:selected" ).val();
+    
+    
+    /* ------------------------------------------------------------------------------ */
+    
     
     // Avaa tulostusversion uuteen tabiin
     $('#tulostusversio').click(function(){
@@ -110,6 +121,8 @@ $(document).ready(function () {
         });
     
     });
+    
+    /* ------------------------------------------------------------------------------ */
     
     //Värjää valittu rivi klikattaessa
     //Poista värjäys muista riveiltä
@@ -128,12 +141,35 @@ $(document).ready(function () {
         
     });
     
+    /* ------------------------------------------------------------------------------ */
+    
+    
     // Tyhjät solut värjätty, kun alv päivä lähenee
     // Värjää aina toissa kuukaudet, eli elokuussa värjätään kesäkuun tyhjät
     var datenow = new Date();
     monthnow = datenow.getMonth();
+    yearnow = datenow.getFullYear();
     
-    if( (monthnow - selected_month) > 0 )
+    // Tarkasta, onko valittuna edellinen kalenterivuosi
+    if( yearnow > selected_year )
+    {
+        // Tarkista, onko nyt tammikuu ja valittuna joulukuu
+        if( monthnow - selected_month != -12 )
+        {
+            // Värjätään solut, tarkastelussa on yli kuukautta vanhempi jakso
+            var arr2 = $('table div > p:empty');
+
+            $.each(arr2, function (i) {
+
+                $(arr2[i]).closest('td').css('background', '#FFBBAA');
+
+            });
+        }
+    }
+    
+    // Valittuna on kuluva kalenterivuosi, 
+    // tarkista onko valittuna yli kuukautta vanhempi jakso
+    else if( (monthnow - selected_month) > 0 )
     {
         var arr2 = $('table div > p:empty');
 
@@ -143,6 +179,8 @@ $(document).ready(function () {
 
         });
     }
+    
+    /* --------------------------------------------------------------------------------- */
 	
     // Kommentit dialogin luonti ja nappulat
 	$('#mydiv').dialog({
@@ -209,6 +247,10 @@ $(document).ready(function () {
 			}
 		}
 	});
+    
+    
+    /* ------------------------------------------------------------------------------ */
+    
 
     // Dialogin ensimmäinen avaus
     // Asettaa php SESSION arvot samalla dialogout.php tiedostossa

@@ -1,11 +1,12 @@
 <?php
+	require 'authenticate.php';
     require 'init.php';
     require 'seurantadatafunctions.php';
 ?>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Accounting Workflow Demo</title>
+        <title>JP TILIT - MySQL</title>
         <meta name="keywords" content=""/>
         <meta name="description" content=""/> 
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -19,7 +20,9 @@
     <body>
 
         <div id="path">
-            <p>Accounting Workflow Demo</a></p>
+            <div><form action="" method="post"><input type="submit" name="logout" value="Logout"></form></div>
+            <p>JP Asiakasseuranta ja tietokanta</a></p>
+            <p>Tervetuloa <?php echo $_SESSION['authenticate']; ?></p>
             <nav class="topnav">
                 <ul>
                     <a href="seuranta.php"><li>Seuranta</li></a>
@@ -207,7 +210,6 @@
         <script type="text/javascript" src="jquery-1.11.3.min.js"></script>
 		<script src="jquery-ui/external/jquery/jquery.js"></script>
 		<script src="jquery-ui/jquery-ui.min.js"></script>
-        <script type="text/javascript" src="tablefunctions.js"></script>
         <script type="text/javascript" src="external.js"></script>
         <script type="text/javascript" src="ajaxquery.js"></script>
             

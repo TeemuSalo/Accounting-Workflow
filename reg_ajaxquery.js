@@ -1,5 +1,5 @@
 /*
- *      KUUKAUSISEURANNAN FUNKTIOT
+ *      ASIAKASREKISTERIN VERSIO
  *      Piilottaa ja paljastaa syöttöpainikkeet ja kentät
  *      Lähettää ajax-komennolla luodun input-kentän arvot insertajax.php tiedostoon
  */
@@ -24,7 +24,9 @@ $(document).ready(function () {
     
         showbutton.closest('div').find("p").toggle();
         
-        showbutton.closest('div').prepend('<input class="seuranta_input" type="text" name="name">');
+        showbutton.closest('div').css('min-width', '7em'); // Rivi ja Kipitunnus tilaa varten
+        
+        showbutton.closest('div').prepend('<input class="rekisteri_input" type="text" name="name">');
         
         var prevtext = showbutton.closest('div').find("p").text();
         
@@ -49,6 +51,8 @@ $(document).ready(function () {
         showbutton.closest('div').find("p").toggle();
         
         showbutton.closest('div').find('input').remove();
+        
+        showbutton.closest('div').css('min-width', '0'); // Rivi ja Kipitunnus tilan resetointi
     
     });
     
@@ -65,7 +69,7 @@ $(document).ready(function () {
         var val = showbutton.closest('div').find('input').val();
         
         
-        $.post("insertajax.php", { ajaxrow: row, ajaxcol: col, newvalue1: val }, function(data){
+        $.post("rekisteridatafunctions.php", { ajaxrow: row, ajaxcol: col, newvalue2: val }, function(data){
         
             cancelbutton.css('display', 'none');
         
@@ -80,5 +84,7 @@ $(document).ready(function () {
             showbutton.closest('div').find('input').remove();
         
         });
+        
+        showbutton.closest('div').css('min-width', '0'); // Rivi ja Kipitunnus tilan resetointi
     });
 });
