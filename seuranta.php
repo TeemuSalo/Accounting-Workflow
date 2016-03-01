@@ -134,7 +134,7 @@
                 </div>
                 
                     <!--
-                            PIIRRÄ KUUKAUSISEURANTA OSA 2   
+                            PIIRRÄ KUUKAUSISEURANTA OSA 2, VALMISTELEVA OSA 1 TIEDOSTOSSA seurantadatafunctions.php
                      -->
                     <div class="kuukausiotsikot"><h4><?php echo 'Kuukausiseuranta ',$ALV_month ?></h4><h4> Maksupäivä <?php echo $payday ?></h4></div>
                     
@@ -185,7 +185,7 @@
                                                         strpos($seur_col, "Kipitunnus") === false && 
                                                         strpos($seur_col, "Asiakas") === false &&
                                                         strpos($seur_col, "Kommentit") === false &&
-                                                        strpos($seur_col, "Tilinpäätös") === false) : ?>
+                                                        strpos($seur_col, "Tilinpäätös") === false ) : ?>
 
                                                             <button class="show"><img class="pen" src="pen.png"/></button>
                                                             <button class="cancel"><img class="pen" src="cancel.png" alt=""/></button>

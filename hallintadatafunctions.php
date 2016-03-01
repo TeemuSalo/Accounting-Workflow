@@ -89,7 +89,7 @@
         else
         {
             echo $takaisin_hallintaan;
-            die('Hallintadatafunktion virhe 107: Avattava vuosi on jo olemassa, älä päivittele ');
+            die('Hallintadatafunktion virhe 106: Avattava vuosi on jo olemassa, älä päivittele ');
         }
 
         $sql_create_month = "INSERT INTO $seuranta (Kipitunnus, Asiakas) "
@@ -101,7 +101,7 @@
         if (!$ret_create_month)
         {
             echo $takaisin_hallintaan;
-            die('Hallintadatafunktion virhe 108: ' . mysql_error());
+            die('Hallintadatafunktion virhe 107: ' . mysql_error());
         }
         
         $affected_rows = mysql_affected_rows();
@@ -115,14 +115,14 @@
 
         if (!$ret_update_month) {
             echo $takaisin_hallintaan;
-            die('Hallintadatafunktion virhe 109: ' . mysql_error());
+            die('Hallintadatafunktion virhe 108: ' . mysql_error());
         }
 
         $affected_rows_2 = mysql_affected_rows();
 
         if ($affected_rows != $affected_rows_2) {
             echo $takaisin_hallintaan;
-            die('Hallintadatafunktion virhe 110: Kuukausiseurantaa ei voitu luoda. Ota yhteyttä ylläpitäjään. ' . mysql_error());
+            die('Hallintadatafunktion virhe 109: Kuukausiseurantaa ei voitu luoda. Ota yhteyttä ylläpitäjään. ' . mysql_error());
         }
         
         // Päivitetään vuosilista, koska init.php tulee ennen näitä sql-tapahtumia
@@ -155,7 +155,7 @@
         if (!$sql_test_result)
         {
             echo $takaisin_hallintaan;
-            die('Hallintadatafunktion virhe 111 / 1: ' . mysql_error());
+            die('Hallintadatafunktion virhe 110: ' . mysql_error());
         }
         
         // Palauttaa 0 jos kuukautta ei ole olemassa
@@ -181,17 +181,17 @@
         if (!$get_customer)
         {
             echo $takaisin_hallintaan;
-            die('Koodi 111 / 2. Virhe yhteydessä tietokantaan: ' . mysql_error());
+            die('Hallintadatafunktion virhe 111: ' . mysql_error());
         }
         if (mysql_num_rows($get_customer) == 0)
         {
             echo $takaisin_hallintaan;
-            die('Hallintadatafunktion virhe 111 / 3: Asiakasta ei löytynyt rekisteristä!');
+            die('Hallintadatafunktion virhe 112: Asiakasta ei löytynyt rekisteristä!');
         }
         if (mysql_num_rows($get_customer) > 1)
         {
             echo $takaisin_hallintaan;
-            die('Hallintadatafunktion virhe 112: Asiakasrekisteri virhe, liian monta asiakasta samalla nimellä.');
+            die('Hallintadatafunktion virhe 113: Asiakasrekisteri virhe, liian monta asiakasta samalla nimellä.');
         }
         
         $row = mysql_fetch_row($get_customer);
@@ -210,12 +210,12 @@
         if (!$check_month_exists)
         {
             echo $takaisin_hallintaan;
-            die('Hallintadatafunktion virhe 113: ' . mysql_error());
+            die('Hallintadatafunktion virhe 114: ' . mysql_error());
         }
         if (mysql_num_rows($check_month_exists) != 0)
         {
             echo $takaisin_hallintaan;
-            die('Hallintadatafunktion virhe 114: Asiakkaalla on jo seuranta samalla kuukaudella!');
+            die('Hallintadatafunktion virhe 115: Asiakkaalla on jo seuranta samalla kuukaudella!');
         }
 
         mysql_free_result($check_month_exists);
@@ -232,7 +232,7 @@
         if (!$return_insert_month)
         {
             echo $takaisin_hallintaan;
-            die('Hallintadatafunktion virhe 115: ' . mysql_error());
+            die('Hallintadatafunktion virhe 116: ' . mysql_error());
         }
 
         /*
@@ -247,12 +247,12 @@
         if (!$return_month_added)
         {
             echo $takaisin_hallintaan;
-            die('Hallintadatafunktion virhe 116: ' . mysql_error());
+            die('Hallintadatafunktion virhe 117: ' . mysql_error());
         }
         if (mysql_affected_rows() > 1)
         {
             echo $takaisin_hallintaan;
-            die('Hallintadatafunktion virhe 117: Enemmän kuin yksi rivi muutettu, ota yhteyttä ylläpitäjään!');
+            die('Hallintadatafunktion virhe 118: Enemmän kuin yksi rivi muutettu, ota yhteyttä ylläpitäjään!');
         }
     }
 ?>
@@ -279,12 +279,12 @@
         if (!$check_customer_exists)
         {
             echo $takaisin_hallintaan;
-            die('Hallintadatafunktion virhe 118: ' . mysql_error());
+            die('Hallintadatafunktion virhe 119: ' . mysql_error());
         }
         if (mysql_num_rows($check_customer_exists) != 0)
         {
             echo $takaisin_hallintaan;
-            die("Hallintadatafunktion virhe 119: Asiakasnimi $asiakas tai Kipitunnus $kipitunnus on jo olemassa, ei voida luoda uudestaan. 
+            die("Hallintadatafunktion virhe 120: Asiakasnimi $asiakas tai Kipitunnus $kipitunnus on jo olemassa, ei voida luoda uudestaan. 
             Jos haluat luoda asiakkaan samalla tunnuksella tai nimellä, muokkaa rekisteritaulukkoa");
         }
         mysql_free_result($check_customer_exists);
@@ -312,7 +312,7 @@
         if (!$return_create_customer)
         {
             echo $takaisin_hallintaan;
-            die('Hallintadatafunktion virhe 120: Asiakasta ei voitu luoda rekisteriin: ' . mysql_error());
+            die('Hallintadatafunktion virhe 121: Asiakasta ei voitu luoda rekisteriin: ' . mysql_error());
         }     
     }
 ?>
@@ -337,7 +337,7 @@
     if (!$return_next_month)
     {
         echo $takaisin_hallintaan;
-        die('Hallintadatafunktion virhe 121: ' . mysql_error());
+        die('Hallintadatafunktion virhe 122: ' . mysql_error());
     }
     else
     {

@@ -2,7 +2,7 @@
 <?php
     /*
      *          SYÖTÄ ARVO KUUKAUSISEURANTAAN
-     *          arvot lähetetään ajaxquery.js tiedoston ajax-komennolla
+     *          arvot lähetetään ajaxquery.js tiedostosta ajax-komennolla
      */
 
     // Start session, no authenticate.php include
@@ -140,7 +140,7 @@
         if (!$update_seuranta_return)
         {
             echo "FAIL";
-            die('Koodi 1. Virhe syötössä: ' . mysql_error());
+            die('Insertajax virhe syötössä: ' . mysql_error());
         }
         else
         {

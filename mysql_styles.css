@@ -229,7 +229,6 @@
     table.asiakasrekisteri td{
         position: relative;
         padding: 0.2em;
-        /*border: 0.1em solid #0B0B3B;*/
     }
     table.asiakasrekisteri tr:nth-child(even){
         background-color: #eaf4ff;
@@ -302,8 +301,4 @@
         margin: 0 0.5em;
         background: #236; 
         color: #fff; 
-    }
-
-    .custom_ui .ui-widget-content { 
-
     }

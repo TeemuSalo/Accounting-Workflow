@@ -11,16 +11,13 @@
 
     if ( isset($_POST['lopetus']) )
     {
-    
         unset($_SESSION['RiviID']);
         unset($_SESSION['asiakas']);
         unset($_SESSION['kuukausi']);
-    
     }
 
     if( isset( $_POST['edellinen']) )
-    {
-        
+    { 
         $asiakas = $_SESSION['asiakas'];
         
         $kuukausi = $_SESSION['kuukausi'];
@@ -36,8 +33,8 @@
 
         if (!$getkommentit)
         {
-            echo "FAIL";
-            die('Koodi 1. Virhe syötössä: ' . mysql_error());
+            echo "FAIL101";
+            die('DialogOut Virhe 100 syötössä: ' . mysql_error());
         }
         else
         {
@@ -45,7 +42,7 @@
 
             if ( sizeof($edelliset_kommentit) < 1 )
             {
-                echo "FAIL: uuden arvon nouto epäonnistui";
+                echo "FAIL102: uuden arvon nouto epäonnistui";
             }
             else    
             {
@@ -57,7 +54,6 @@
 
     if (isset ( $_POST['seuraava']) )
     {
-        
         $asiakas = $_SESSION['asiakas'];
         
         $kuukausi = $_SESSION['kuukausi'];
@@ -73,8 +69,8 @@
 
         if (!$getkommentit)
         {
-            echo "FAIL";
-            die('Koodi 1. Virhe syötössä: ' . mysql_error());
+            echo "FAIL201";
+            die('DialogOut Virhe 200 syötössä: ' . mysql_error());
         }
         else
         {
@@ -82,7 +78,7 @@
 
             if ( sizeof($seuraavat_kommentit) < 1 )
             {
-                echo "FAIL: uuden arvon nouto epäonnistui";
+                echo "FAIL202: uuden arvon nouto epäonnistui";
             }
             else    
             {
@@ -93,8 +89,7 @@
     }
     
     elseif ( isset($_POST["RiviID"]) )
-    {
-        
+    {   
         $RiviID = $_POST["RiviID"];
         $asiakas = $_POST['asiakas'];
         $kuukausi = $_POST['kuukausi'];
@@ -110,8 +105,8 @@
 
         if (!$gettext)
         {
-            echo "FAIL";
-            die('Koodi 1. Virhe syötössä: ' . mysql_error());
+            echo "FAIL301";
+            die('DialogOut Virhe 300 syötössä: ' . mysql_error());
         }
         else
         {
@@ -119,7 +114,7 @@
 
             if ( sizeof($return) < 1 )
             {
-                echo "FAIL: uuden arvon nouto epäonnistui";
+                echo "FAIL302: uuden arvon nouto epäonnistui";
             }
             else    
             {
@@ -131,7 +126,6 @@
 
     elseif ( isset($_POST['uusiKommentti']) )
     {
-        
         $asiakas = $_SESSION['asiakas'];
         
         $kuukausi = $_SESSION['kuukausi'];
@@ -143,7 +137,7 @@
         $setkommentti = mysql_query($sql);
 
 		// EI PALAUTETA MITÄÄN JOS QUERY ONNISTUU
-        if(!$setkommentti){ echo "virhe ". mysql_error();}   
+        if(!$setkommentti){ echo "DialogOut Virhe 4 ". mysql_error();}   
     }
 
 ?>

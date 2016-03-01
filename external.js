@@ -1,3 +1,5 @@
+
+
 /*
  *      ERINÄISIÄ OMIA FUNKTIOITA
  *
@@ -57,7 +59,7 @@ $(document).ready(function () {
     
     /* ------------------------------------------------------------------------------ */
     
-    // KUUKAUSISEURANTA VERSIO
+    // KUUKAUSISEURANTA VERSIO - VÄRJÄÄ TILINPÄÄTÖSSARAKE PÄIVÄMÄÄRÄN MUKAAN
     
     // Array sisältää kaikkien Tilinpäätössarakkeiden arvot
     var arr = $('[class=Tilinpäätös] > p');
@@ -102,7 +104,6 @@ $(document).ready(function () {
     
     /* ------------------------------------------------------------------------------ */
     
-    
     // Myöhemmin käytettävä muuttuja, mm dialog-kommentit
     var selected_month = $( "select[name='kuukausilista'] option:selected" ).val();
     var selected_year = $( "select[name='vuosilista'] option:selected" ).val();
@@ -110,8 +111,8 @@ $(document).ready(function () {
     
     /* ------------------------------------------------------------------------------ */
     
+    // AVAA TULOSTUSVERSIO NÄKYMÄSTÄ UUTEEN TABIIN
     
-    // Avaa tulostusversion uuteen tabiin
     $('#tulostusversio').click(function(){
     
         var w = window.open(window.location.href);
@@ -124,30 +125,37 @@ $(document).ready(function () {
     
     /* ------------------------------------------------------------------------------ */
     
-    //Värjää valittu rivi klikattaessa
-    //Poista värjäys muista riveiltä
+    // VÄRJÄÄ VALITTU RIVI KLIKATESSA
+    
     $('tr').hover(function(){
 
         $(this).click(function(){
             
             $kaikki_solut =  $('.kuukausiseuranta').find('td');
             
+            // Poista värjäys muista riveiltä ensin
             $kaikki_solut.each(function(){
                 $(this).removeClass('border-row');
             });
                 
+            // Lisätään värjäys klikatulle riville
             $(this).find('td').addClass('border-row');
         });
         
     });
     
+    
     /* ------------------------------------------------------------------------------ */
     
+    // TYHJIEN SOLUVÄRJÄYS KUUKAUSISEURANNASSA
     
     // Tyhjät solut värjätty, kun alv päivä lähenee
     // Värjää aina toissa kuukaudet, eli elokuussa värjätään kesäkuun tyhjät
     var datenow = new Date();
+    
+    // HUOM Tammikuu on 0, helmikuu on 1
     monthnow = datenow.getMonth();
+    
     yearnow = datenow.getFullYear();
     
     // Tarkasta, onko valittuna edellinen kalenterivuosi
@@ -158,11 +166,23 @@ $(document).ready(function () {
         {
             // Värjätään solut, tarkastelussa on yli kuukautta vanhempi jakso
             var arr2 = $('table div > p:empty');
+            
+            var classname = '';
 
             $.each(arr2, function (i) {
 
-                $(arr2[i]).closest('td').css('background', '#FFBBAA');
+                classname = $(this).closest('div').prop('class');
 
+                // Värjätään vain oleelliset solut
+                if( classname.toLowerCase().indexOf("aineisto") >= 0 || +
+                    classname.toLowerCase().indexOf("kirjanpito") >= 0 || +
+                    classname.toLowerCase().indexOf("eu") >= 0 || +
+                    classname.toLowerCase().indexOf("alv") >= 0 || +
+                    classname.toLowerCase().indexOf("tas") >= 0 || +
+                    classname.toLowerCase().indexOf("sähköposti") >= 0 )
+                {
+                    $(arr2[i]).closest('td').css('background', '#FFBBAA');
+                }
             });
         }
     }
@@ -172,17 +192,30 @@ $(document).ready(function () {
     else if( (monthnow - selected_month) > 0 )
     {
         var arr2 = $('table div > p:empty');
+        
+        var classname = '';
 
         $.each(arr2, function (i) {
-
-            $(arr2[i]).closest('td').css('background', '#FFBBAA');
-
+            
+            classname = $(this).closest('div').prop('class');
+            
+            // Värjätään vain oleelliset solut
+            if( classname.toLowerCase().indexOf("aineisto") >= 0 || +
+                classname.toLowerCase().indexOf("kirjanpito") >= 0 || +
+                classname.toLowerCase().indexOf("eu") >= 0 || +
+                classname.toLowerCase().indexOf("alv") >= 0 || +
+                classname.toLowerCase().indexOf("tas") >= 0 || +
+                classname.toLowerCase().indexOf("sähköposti") >= 0 )
+            {
+                $(arr2[i]).closest('td').css('background', '#FFBBAA');
+            }
         });
     }
     
     /* --------------------------------------------------------------------------------- */
 	
-    // Kommentit dialogin luonti ja nappulat
+    // KOMMENTIT DIALOGIN LUONTI JA VALINTANAPPULAT
+    
 	$('#mydiv').dialog({
 		autoOpen: false,
 		resizable: false,
@@ -252,7 +285,8 @@ $(document).ready(function () {
     /* ------------------------------------------------------------------------------ */
     
 
-    // Dialogin ensimmäinen avaus
+    // DIALOGIN AVAUS
+    
     // Asettaa php SESSION arvot samalla dialogout.php tiedostossa
     // SESSION arvoja käytetään dialogin näppäinten toiminnoissa
 	$('.Kommentit a').click(function() {

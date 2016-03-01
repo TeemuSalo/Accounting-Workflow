@@ -59,30 +59,11 @@
                                     <div class="<?php echo $rek_col ?>" >
                                         
                                         <p><?php echo $rek_cell ?></p> 
-                                        
-                                        <!--
-                                        <button onclick="return editasiakas('<?php echo $rek_id, "', '", $rek_cell ?>')">
-                                            <img class="pen" src="pen.png"/>
-                                        </button>
-                                        -->
                                         <button class="show"><img class="pen" src="pen.png"/></button>
                                         <button class="cancel"><img class="pen" src="cancel.png" alt=""/></button>
                                         <button class="ok"><img class="pen" src="check.png" alt=""/></button>
                                         
                                     </div>
-                                    
-                                    <!--
-                                    <div id="<?php echo $rek_id, 'hide2' ?>" style='display:none'>
-                                        <form id="<?php echo $rek_id, 'rek' ?>" action='' method='post'>
-                                            <input value="<?php echo $rek_row[0] ?>" name='row2' type='hidden'/>
-                                            <input value="<?php echo $rek_col ?>" name='column2' type='hidden'/>
-                                            <input name='newvalue2' type='text'/>
-                                            <br/>
-                                            <input type='submit' name='insertrek' value='Lähetä'/>
-                                            <button onclick="return canceledit('<?php echo $rek_id, "', '", $rek_cell ?>')">Peruuta</button>
-                                        </form>
-                                    </div>
-                                    -->
                                     
                                 </td>
                         <?php $rek_iterator++; } ?>

@@ -1,6 +1,6 @@
-// Kuukausiseuranta ei käytä näitä funktioita enää
+// MIKÄÄN EI ENÄÄ KÄYTÄ NÄITÄ FUNKTIOITA
 
-// Rekisterin näytä asiakkaan muokkausvalikko
+/* Rekisterin näytä asiakkaan muokkausvalikko
 function editasiakas(id, solu) {
 
     var shownelement = document.getElementById(id + 'show2');
@@ -24,4 +24,4 @@ function canceledit(id, solu) {
     hiddenelement.style.display = "none";
 
     return false; //Älä päivitä sivua
-}
+} */

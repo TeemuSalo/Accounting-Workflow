@@ -31,7 +31,7 @@
         if (!$rek_update_return)
         {
             echo 'virhe';
-            die('Koodi 22. Virhe yhteydessä tietokantaan: ' . mysql_error());
+            die('Rekisteridatafunktiovirhe 101: ' . mysql_error());
         }
         else
         {
@@ -57,7 +57,7 @@
     else
     {
         /*
-         *          PIIRRÄ ASIAKASREKISTERI OSA 1
+         *          PIIRRÄ ASIAKASREKISTERI OSA 1, LOPPUOSA TIEDOSTOSSA rekisteri.php
          */
 
         $draw_rek_return = mysql_query("SELECT * FROM $rekisteri ORDER BY Asiakas");
@@ -65,7 +65,7 @@
         if (!$draw_rek_return) 
         {
             echo $takaisin_seurantaan;
-            die('Koodi 23. Virhe yhteydessä tietokantaan: ' . mysql_error());
+            die('Rekisteridatafunktiovirhe 102: ' . mysql_error());
         }
 
         $rek_fields_num = mysql_num_fields($draw_rek_return); 

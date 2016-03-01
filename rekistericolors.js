@@ -28,17 +28,17 @@
         // Erotus kuukautta ennen tai kuukautta jälkeen tilinpäätöspäivän
         if( (days > -30) && (days <= 31) ) 
         {
-                $(arr[i]).closest('td').css('background', 'yellow');
+            $(arr[i]).closest('td').css('background', 'yellow');
         }
         // Erotus 1 - 2 kuukautta tilinpäätöspäivästä
         else if( (days > 31) && (days <= 91) ) 
         {
-                $(arr[i]).closest('td').css('background', 'orange');
+            $(arr[i]).closest('td').css('background', 'orange');
         }
         // Erotus yli 3 kuukautta, eli viimeinen tilinpäätöksen lähettämiskuukausi
         else if( days > 91 ) 
         {
-                $(arr[i]).closest('td').css('background', '#CC4444');
+            $(arr[i]).closest('td').css('background', '#CC4444');
         }
     });
 
@@ -73,13 +73,13 @@
         // Sarakkeen arvo ei saa olla 0000-00-00, muuten värjätään
         if( current_year > PI_year && PI.search('0000') < 0 )
         {
-                $(arr[i]).closest('td').css('background', '#dd4444');
+            $(arr[i]).closest('td').css('background', '#dd4444');
         }
         // isNaN tulkitsee sarakkeen arvon 0000-00-00 ei-luvuksi
         // isNaN tulkitsee tyhjän arvon luvuksi, eli isNaN(null) == false
         else if( isNaN(PI) == false  )
         {
-                $(arr[i]).closest('td').css('background', '#dd4444');
+            $(arr[i]).closest('td').css('background', '#dd4444');
         }
     });
 
@@ -113,13 +113,13 @@
         // Sarakkeen arvo ei saa olla 0000-00-00, muuten värjätään
         if( current_year > PI_year && PI.search('0000') < 0 )
         {
-                $(arr[i]).closest('td').css('background', '#dd4444');
+            $(arr[i]).closest('td').css('background', '#dd4444');
         }
         // isNaN tulkitsee sarakkeen arvon 0000-00-00 ei-luvuksi
         // isNaN tulkitsee tyhjän arvon luvuksi, eli isNaN(null) == false
         else if( isNaN(PI) == false  )
         {
-                $(arr[i]).closest('td').css('background', '#dd4444');
+            $(arr[i]).closest('td').css('background', '#dd4444');
         }
     });
 
@@ -153,13 +153,13 @@
         // Sarakkeen arvo ei saa olla 0000-00-00, muuten värjätään
         if( current_year > PI_year && PI.search('0000') < 0 )
         {
-                $(arr[i]).closest('td').css('background', '#dd4444');
+            $(arr[i]).closest('td').css('background', '#dd4444');
         }
         // isNaN tulkitsee sarakkeen arvon 0000-00-00 ei-luvuksi
         // isNaN tulkitsee tyhjän arvon luvuksi, eli isNaN(null) == false
         else if( isNaN(PI) == false  )
         {
-                $(arr[i]).closest('td').css('background', '#dd4444');
+            $(arr[i]).closest('td').css('background', '#dd4444');
         }
     });
 
@@ -193,13 +193,13 @@
         // Sarakkeen arvo ei saa olla 0000-00-00, muuten värjätään
         if( current_year > PI_year && PI.search('0000') < 0 )
         {
-                $(arr[i]).closest('td').css('background', '#dd4444');
+            $(arr[i]).closest('td').css('background', '#dd4444');
         }
         // isNaN tulkitsee sarakkeen arvon 0000-00-00 ei-luvuksi
         // isNaN tulkitsee tyhjän arvon luvuksi, eli isNaN(null) == false
         else if( isNaN(PI) == false  )
         {
-                $(arr[i]).closest('td').css('background', '#dd4444');
+            $(arr[i]).closest('td').css('background', '#dd4444');
         }
     });
 

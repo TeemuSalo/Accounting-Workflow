@@ -44,19 +44,15 @@ else
     
         if( $this_month > 1 )
         {
-
             // Seurattava kirjanpidon kuukausi on oletuksena kuluvaa kuukautta edeltävä
             $kuukausi = $this_month - 1;
             //$vuosi = end($kaikki_vuodet);
-
         }   
         else
         {
-
             // Jos kuluva kuukausi on tammikuu, seurattava kuukausi on joulukuu
             $kuukausi = 12;
             $vuosi = $vuosi - 1;
-
         }
     }
 }
@@ -64,19 +60,15 @@ else
 // Tarkista meneekö maksukuukausi seuraavalle kalenterivuodelle
 if( $kuukausi >= 11 )
 {
-    
     $pay_month = $kuukausi - 10;
     $pay_year = $vuosi + 1;
-
 }
 
 // Maksukuukausi pysyy samalla kalenterivuodella
 else
 {
-
     $pay_month = $kuukausi + 2;
     $pay_year = $vuosi;
-    
 }
 
 // Päivitetään käytettävä taulukko, mikäli vuosi muuttui tai ei
@@ -235,7 +227,7 @@ $draw_seuranta_return = mysql_query("SELECT "
                       . "$Rakentamis "
                       . "$rekisteri.`Tilinpäätös` "
                       . "FROM $seuranta "
-					  . "LEFT JOIN $rekisteri "
+					  . "LEFT JOIN $rekisteri "    // HAETAAN TILINPÄÄTÖSPÄIVÄ REKISTERITAULUKOSTA
                       . "ON $seuranta.`Asiakas`=$rekisteri.`Asiakas` "
                       . "WHERE $seuranta.Kuukausi = $kuukausi "
                       . "ORDER BY Asiakas");
@@ -244,9 +236,9 @@ if (!$draw_seuranta_return)
 {
     echo $takaisin_seurantaan;
 	session_destroy(); // Tuhoa sessio tai jäät looppiin
-    die('Koodi 21. Virhe yhteydessä tietokantaan: ' . mysql_error());
+    die('Seurantadatafunktio virhe 101: ' . mysql_error());
 }
 // Fields_num käytetään 'Piirrä kuukausiseuranta osa 2:ssa'
 $seur_fields_num = mysql_num_fields($draw_seuranta_return); 
-// Piirrä kuukausiseuranta loppuu
+// Piirrä kuukausiseuranta loppuu, kts. seuranta.php
 ?>
